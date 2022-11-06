@@ -1,0 +1,25 @@
+addons/
+# assets/
+build/
+logs/
+
+# Godot-specific ignores
+.import/
+export.cfg
+
+# android
+android/
+
+# gd-plug
+.plugged/
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# VSCode
+.vscode/
+
+# Runtime
+app.save
+prefs.cfg

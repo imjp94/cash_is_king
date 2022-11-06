@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/projectile/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/main/Character.gd" type="Script" id=2]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/textures/texture_02.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Account.gd" type="Script" id=4]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="CapsuleMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=10]
+resource_local_to_scene = true
+albedo_color = Color( 0, 0, 1, 1 )
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.125, 0.125, 0.125 )
+uv1_triplanar = true
+
+[sub_resource type="CapsuleShape" id=6]
+
+[sub_resource type="SphereMesh" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 1, 0, 0, 1 )
+roughness = 0.3
+
+[sub_resource type="SphereShape" id=9]
+radius = 2.0
+
+[sub_resource type="DynamicFont" id=11]
+size = 96
+outline_size = 12
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="Character" type="RigidBody"]
+collision_layer = 3
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+linear_damp = 0.99
+script = ExtResource( 2 )
+speed = 20.0
+turn_vel = 270.0
+projectile_ps = ExtResource( 1 )
+shoot_force = 1500.0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 4 )
+default_value = 20.0
+max_value = 0.0
+credit_duration = 3.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0 )
+shape = SubResource( 6 )
+
+[node name="ShootOrigin" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2, -1.1 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 9 )
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0 )
+billboard = 1
+text = "20"
+font = SubResource( 11 )
+
+[connection signal="broke" from="Health" to="." method="_on_Health_broke"]
+[connection signal="changed" from="Health" to="." method="_on_Health_changed"]
+[connection signal="credit_timeout" from="Health" to="." method="_on_Health_credit_timeout"]
+[connection signal="credited" from="Health" to="." method="_on_Health_credited"]

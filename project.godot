@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Cash Is King"
+run/main_scene="res://Game.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gd-blender-3d-shortcuts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/ui_design_tool/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+event={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":65,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_physics/layer_1="default"
+3d_physics/layer_2="player"
+3d_physics/layer_3="floor"
+3d_physics/layer_4="building"
+3d_physics/layer_5="projectile"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

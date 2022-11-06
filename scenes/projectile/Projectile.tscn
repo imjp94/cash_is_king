@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/projectile/Projectile.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=5]
+height = 0.5
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.942667, 1, 0.14, 1 )
+metallic = 1.0
+roughness = 0.3
+emission_enabled = true
+emission = Color( 1, 0.85, 0, 1 )
+emission_energy = 0.2
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereShape" id=3]
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.35
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("MeshInstance:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( -90, 360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "pick"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("MeshInstance:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[node name="Projectile" type="RigidBody" groups=["projectile"]]
+collision_layer = 16
+collision_mask = 28
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+linear_damp = 0.99
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.6, 0, 0, 0, -2.62268e-08, 0.6, 0, -0.6, -2.62268e-08, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.555, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.1, 0 )
+collision_mask = 4
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/pick = SubResource( 8 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
