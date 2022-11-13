@@ -20,9 +20,8 @@ uv1_triplanar = true
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4.5, 4, 4.5 )
 
-[node name="Bank" instance=ExtResource( 1 )]
+[node name="Bank" groups=["bank"] instance=ExtResource( 1 )]
 interest = 0
-interest_mature_time = 15.0
 
 [node name="CollisionShape" parent="StaticBody" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
