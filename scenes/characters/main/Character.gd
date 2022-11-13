@@ -36,7 +36,7 @@ func _physics_process(delta):
 	var axis_x = Input.get_axis("ui_left", "ui_right")
 	var axis_y = Input.get_axis("ui_down", "ui_up")
 
-	move(axis_y, axis_x)
+	move_and_turn(axis_y, axis_x)
 
 func _unhandled_input(event):
 	if not player:
@@ -53,7 +53,16 @@ func _unhandled_input(event):
 
 	_can_input = true
 
+func move_and_turn(forward, right):
+	move(forward, right)
+	turn(forward, right)
+
 func move(forward, right):
+	add_central_force(Vector3.FORWARD * forward * (speed))
+	add_central_force(Vector3.RIGHT * right * (speed))
+	# linear_velocity = (Vector3.FORWARD * forward * speed) + (Vector3.RIGHT * right * speed)
+
+func turn(forward, right):
 	var value = abs(forward) + abs(right)
 	var base_transform = Transform() # World Transform
 
@@ -74,15 +83,7 @@ func move(forward, right):
 	# turn_vel determine the sensitivity of rotation
 	# higher turn_vel result sharper rotation
 	var av = Vector3.UP * deg2rad(turn_vel * angle_diff)
-	# if not is_on_floor:
-	# 	av *= angular_air_control
-	# set_integrated_angular_velocity(av)
-	# add_torque(av)
 	angular_velocity = av
-
-	add_central_force(Vector3.FORWARD * forward * (speed))
-	add_central_force(Vector3.RIGHT * right * (speed))
-	# linear_velocity = (Vector3.FORWARD * forward * speed) + (Vector3.RIGHT * right * speed)
 
 func shoot():
 	if not projectile_ps:

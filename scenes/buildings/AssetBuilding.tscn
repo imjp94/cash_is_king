@@ -57,7 +57,7 @@ outline_size = 12
 use_filter = true
 font_data = ExtResource( 4 )
 
-[node name="AssetBuilding" type="Spatial" groups=["asset_building"]]
+[node name="AssetBuilding" type="Spatial" groups=["asset_building", "navmesh"]]
 script = ExtResource( 2 )
 
 [node name="Health" type="Node" parent="."]
