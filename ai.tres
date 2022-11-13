@@ -1,0 +1,283 @@
+[gd_resource type="Resource" load_steps=40 format=2]
+
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=2]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=3]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" type="Script" id=5]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 34, 160 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 254, 160 )
+}
+name = "Idle"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 113.5, -20 )
+}
+name = "Invest"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 388.5, -40 )
+}
+name = "Harvest"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 30, 320 )
+}
+name = "Defend"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 569, 160 )
+}
+name = "AttackProperty"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 445, 340 )
+}
+name = "AttackCharacter"
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 252, 440 )
+}
+name = "Saving"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+from = "Entry"
+to = "Idle"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 6 )
+name = "building_mature"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+from = "Idle"
+to = "Harvest"
+conditions = {
+"building_mature": SubResource( 28 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 5 )
+name = "empty_building"
+comparation = 2
+value = 0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 3 )
+from = "Idle"
+to = "Invest"
+conditions = {
+"empty_building": SubResource( 22 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=29]
+script = ExtResource( 6 )
+name = "has_enough_money"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 3 )
+from = "Idle"
+to = "AttackProperty"
+conditions = {
+"has_enough_money": SubResource( 29 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=30]
+script = ExtResource( 6 )
+name = "has_excess_money"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+from = "Idle"
+to = "Saving"
+conditions = {
+"has_excess_money": SubResource( 30 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=31]
+script = ExtResource( 4 )
+name = "building_attacked"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 3 )
+from = "Idle"
+to = "Defend"
+conditions = {
+"building_attacked": SubResource( 31 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=32]
+script = ExtResource( 6 )
+name = "character_or_building_attacked"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 3 )
+from = "Idle"
+to = "AttackCharacter"
+conditions = {
+"character_or_building_attacked": SubResource( 32 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 3 )
+from = "Harvest"
+to = "Idle"
+conditions = {
+"abort": SubResource( 23 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 3 )
+from = "Invest"
+to = "Idle"
+conditions = {
+"abort": SubResource( 24 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=33]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 3 )
+from = "AttackProperty"
+to = "Idle"
+conditions = {
+"abort": SubResource( 33 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 3 )
+from = "Saving"
+to = "Idle"
+conditions = {
+"abort": SubResource( 25 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 3 )
+from = "Defend"
+to = "Idle"
+conditions = {
+"abort": SubResource( 34 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 4 )
+name = "abort"
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 3 )
+from = "AttackCharacter"
+to = "Idle"
+conditions = {
+"abort": SubResource( 27 )
+}
+priority = 0
+
+[resource]
+script = ExtResource( 1 )
+name = ""
+states = {
+"AttackCharacter": SubResource( 8 ),
+"AttackProperty": SubResource( 7 ),
+"Defend": SubResource( 6 ),
+"Entry": SubResource( 1 ),
+"Harvest": SubResource( 5 ),
+"Idle": SubResource( 2 ),
+"Invest": SubResource( 4 ),
+"Saving": SubResource( 9 )
+}
+transitions = {
+"AttackCharacter": {
+"Idle": SubResource( 21 )
+},
+"AttackProperty": {
+"Idle": SubResource( 18 )
+},
+"Defend": {
+"Idle": SubResource( 20 )
+},
+"Entry": {
+"Idle": SubResource( 3 )
+},
+"Harvest": {
+"Idle": SubResource( 16 )
+},
+"Idle": {
+"AttackCharacter": SubResource( 15 ),
+"AttackProperty": SubResource( 12 ),
+"Defend": SubResource( 14 ),
+"Harvest": SubResource( 10 ),
+"Invest": SubResource( 11 ),
+"Saving": SubResource( 13 )
+},
+"Invest": {
+"Idle": SubResource( 17 )
+},
+"Saving": {
+"Idle": SubResource( 19 )
+}
+}
