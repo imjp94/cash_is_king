@@ -80,6 +80,11 @@ billboard = 1
 text = "20"
 font = SubResource( 11 )
 
+[node name="NavigationAgent" type="NavigationAgent" parent="."]
+path_desired_distance = 2.0
+avoidance_enabled = true
+radius = 3.0
+
 [connection signal="broke" from="Health" to="." method="_on_Health_broke"]
 [connection signal="changed" from="Health" to="." method="_on_Health_changed"]
 [connection signal="credit_timeout" from="Health" to="." method="_on_Health_credit_timeout"]

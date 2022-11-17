@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=77 format=2]
+[gd_resource type="Resource" load_steps=93 format=2]
 
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=2]
@@ -10,14 +10,14 @@
 [sub_resource type="Resource" id=8]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 545, 280 )
+"graph_offset": Vector2( 565, 280 )
 }
 name = "AttackCharacter"
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 489, 60 )
+"graph_offset": Vector2( 509, 60 )
 }
 name = "AttackProperty"
 
@@ -35,12 +35,157 @@ __meta__ = {
 }
 name = "Entry"
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=77]
 script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 413.5, 180 )
+}
+name = "Arrive"
+
+[sub_resource type="Resource" id=75]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 171, 180 )
+}
+name = "Depart"
+
+[sub_resource type="Resource" id=74]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 34, 180 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=79]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 294, 400 )
+}
+name = "Exit"
+
+[sub_resource type="Resource" id=78]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 294, 280 )
+}
+name = "Finish"
+
+[sub_resource type="Resource" id=76]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 287.5, 180 )
+}
+name = "InRange"
+
+[sub_resource type="Resource" id=85]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=86]
+script = ExtResource( 3 )
+from = "Arrive"
+to = "Finish"
+conditions = {
+"done": SubResource( 85 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=81]
+script = ExtResource( 4 )
+name = "in_range"
+
+[sub_resource type="Resource" id=82]
+script = ExtResource( 3 )
+from = "Depart"
+to = "InRange"
+conditions = {
+"in_range": SubResource( 81 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=80]
+script = ExtResource( 3 )
+from = "Entry"
+to = "Depart"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=89]
+script = ExtResource( 6 )
+name = "building_mature"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=90]
+script = ExtResource( 3 )
+from = "Finish"
+to = "Depart"
+conditions = {
+"building_mature": SubResource( 89 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=87]
+script = ExtResource( 6 )
+name = "building_mature"
+comparation = 0
+value = false
+
+[sub_resource type="Resource" id=88]
+script = ExtResource( 3 )
+from = "Finish"
+to = "Exit"
+conditions = {
+"building_mature": SubResource( 87 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=83]
+script = ExtResource( 4 )
+name = "arrived"
+
+[sub_resource type="Resource" id=84]
+script = ExtResource( 3 )
+from = "InRange"
+to = "Arrive"
+conditions = {
+"arrived": SubResource( 83 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=91]
+script = ExtResource( 1 )
 __meta__ = {
 "graph_offset": Vector2( 388.5, -40 )
 }
 name = "Harvest"
+states = {
+"Arrive": SubResource( 77 ),
+"Depart": SubResource( 75 ),
+"Entry": SubResource( 74 ),
+"Exit": SubResource( 79 ),
+"Finish": SubResource( 78 ),
+"InRange": SubResource( 76 )
+}
+transitions = {
+"Arrive": {
+"Finish": SubResource( 86 )
+},
+"Depart": {
+"InRange": SubResource( 82 )
+},
+"Entry": {
+"Depart": SubResource( 80 )
+},
+"Finish": {
+"Depart": SubResource( 90 ),
+"Exit": SubResource( 88 )
+},
+"InRange": {
+"Arrive": SubResource( 84 )
+}
+}
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
@@ -49,19 +194,12 @@ __meta__ = {
 }
 name = "Idle"
 
-[sub_resource type="Resource" id=9]
+[sub_resource type="Resource" id=38]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 252, 440 )
+"graph_offset": Vector2( 453.5, 180 )
 }
-name = "Saving"
-
-[sub_resource type="Resource" id=35]
-script = ExtResource( 2 )
-__meta__ = {
-"graph_offset": Vector2( 14, 180 )
-}
-name = "Entry"
+name = "Arrive"
 
 [sub_resource type="Resource" id=36]
 script = ExtResource( 2 )
@@ -70,19 +208,12 @@ __meta__ = {
 }
 name = "Depart"
 
-[sub_resource type="Resource" id=37]
+[sub_resource type="Resource" id=35]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 307.5, 180 )
+"graph_offset": Vector2( 14, 180 )
 }
-name = "InRange"
-
-[sub_resource type="Resource" id=38]
-script = ExtResource( 2 )
-__meta__ = {
-"graph_offset": Vector2( 453.5, 180 )
-}
-name = "Arrive"
+name = "Entry"
 
 [sub_resource type="Resource" id=39]
 script = ExtResource( 2 )
@@ -98,11 +229,23 @@ __meta__ = {
 }
 name = "Finish"
 
-[sub_resource type="Resource" id=41]
+[sub_resource type="Resource" id=37]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 307.5, 180 )
+}
+name = "InRange"
+
+[sub_resource type="Resource" id=46]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=47]
 script = ExtResource( 3 )
-from = "Entry"
-to = "Depart"
+from = "Arrive"
+to = "Finish"
 conditions = {
+"done": SubResource( 46 )
 }
 priority = 0
 
@@ -119,6 +262,44 @@ conditions = {
 }
 priority = 0
 
+[sub_resource type="Resource" id=41]
+script = ExtResource( 3 )
+from = "Entry"
+to = "Depart"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=50]
+script = ExtResource( 5 )
+name = "empty_building"
+comparation = 2
+value = 0
+
+[sub_resource type="Resource" id=51]
+script = ExtResource( 3 )
+from = "Finish"
+to = "Depart"
+conditions = {
+"empty_building": SubResource( 50 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=92]
+script = ExtResource( 5 )
+name = "empty_building"
+comparation = 0
+value = 0
+
+[sub_resource type="Resource" id=49]
+script = ExtResource( 3 )
+from = "Finish"
+to = "Exit"
+conditions = {
+"empty_building": SubResource( 92 )
+}
+priority = 0
+
 [sub_resource type="Resource" id=44]
 script = ExtResource( 4 )
 name = "arrived"
@@ -129,47 +310,6 @@ from = "InRange"
 to = "Arrive"
 conditions = {
 "arrived": SubResource( 44 )
-}
-priority = 0
-
-[sub_resource type="Resource" id=46]
-script = ExtResource( 4 )
-name = "done"
-
-[sub_resource type="Resource" id=47]
-script = ExtResource( 3 )
-from = "Arrive"
-to = "Finish"
-conditions = {
-"done": SubResource( 46 )
-}
-priority = 0
-
-[sub_resource type="Resource" id=48]
-script = ExtResource( 4 )
-name = "done"
-
-[sub_resource type="Resource" id=49]
-script = ExtResource( 3 )
-from = "Finish"
-to = "Exit"
-conditions = {
-"done": SubResource( 48 )
-}
-priority = 0
-
-[sub_resource type="Resource" id=50]
-script = ExtResource( 5 )
-name = "empty_building"
-comparation = 4
-value = 0
-
-[sub_resource type="Resource" id=51]
-script = ExtResource( 3 )
-from = "Finish"
-to = "Depart"
-conditions = {
-"empty_building": SubResource( 50 )
 }
 priority = 0
 
@@ -206,12 +346,12 @@ transitions = {
 }
 }
 
-[sub_resource type="Resource" id=53]
+[sub_resource type="Resource" id=9]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 34, 200 )
+"graph_offset": Vector2( 252, 440 )
 }
-name = "Entry"
+name = "Saving"
 
 [sub_resource type="Resource" id=54]
 script = ExtResource( 2 )
@@ -220,19 +360,12 @@ __meta__ = {
 }
 name = "Depart"
 
-[sub_resource type="Resource" id=55]
+[sub_resource type="Resource" id=53]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 287.5, 200 )
+"graph_offset": Vector2( 34, 200 )
 }
-name = "InRange"
-
-[sub_resource type="Resource" id=56]
-script = ExtResource( 2 )
-__meta__ = {
-"graph_offset": Vector2( 430, 200 )
-}
-name = "Arrived"
+name = "Entry"
 
 [sub_resource type="Resource" id=57]
 script = ExtResource( 2 )
@@ -248,16 +381,38 @@ __meta__ = {
 }
 name = "Finish"
 
-[sub_resource type="Resource" id=59]
-script = ExtResource( 4 )
-name = "done"
+[sub_resource type="Resource" id=55]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 287.5, 200 )
+}
+name = "InRange"
 
-[sub_resource type="Resource" id=60]
+[sub_resource type="Resource" id=56]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 430, 200 )
+}
+name = "Arrive"
+
+[sub_resource type="Resource" id=65]
+script = ExtResource( 4 )
+name = "in_range"
+
+[sub_resource type="Resource" id=66]
 script = ExtResource( 3 )
-from = "Finish"
-to = "Exit"
+from = "Depart"
+to = "InRange"
 conditions = {
-"done": SubResource( 59 )
+"in_range": SubResource( 65 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=69]
+script = ExtResource( 3 )
+from = "Entry"
+to = "Depart"
+conditions = {
 }
 priority = 0
 
@@ -274,29 +429,16 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=63]
+[sub_resource type="Resource" id=59]
 script = ExtResource( 4 )
 name = "done"
 
-[sub_resource type="Resource" id=64]
+[sub_resource type="Resource" id=60]
 script = ExtResource( 3 )
-from = "Arrived"
-to = "Finish"
+from = "Finish"
+to = "Exit"
 conditions = {
-"done": SubResource( 63 )
-}
-priority = 0
-
-[sub_resource type="Resource" id=65]
-script = ExtResource( 4 )
-name = "in_range"
-
-[sub_resource type="Resource" id=66]
-script = ExtResource( 3 )
-from = "Depart"
-to = "InRange"
-conditions = {
-"in_range": SubResource( 65 )
+"done": SubResource( 59 )
 }
 priority = 0
 
@@ -307,28 +449,33 @@ name = "arrived"
 [sub_resource type="Resource" id=68]
 script = ExtResource( 3 )
 from = "InRange"
-to = "Arrived"
+to = "Arrive"
 conditions = {
 "arrived": SubResource( 67 )
 }
 priority = 0
 
-[sub_resource type="Resource" id=69]
+[sub_resource type="Resource" id=63]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=64]
 script = ExtResource( 3 )
-from = "Entry"
-to = "Depart"
+from = "Arrive"
+to = "Finish"
 conditions = {
+"done": SubResource( 63 )
 }
 priority = 0
 
 [sub_resource type="Resource" id=70]
 script = ExtResource( 1 )
 __meta__ = {
-"graph_offset": Vector2( 444, 420 )
+"graph_offset": Vector2( 464, 440 )
 }
 name = "Withdraw"
 states = {
-"Arrived": SubResource( 56 ),
+"Arrive": SubResource( 56 ),
 "Depart": SubResource( 54 ),
 "Entry": SubResource( 53 ),
 "Exit": SubResource( 57 ),
@@ -336,7 +483,7 @@ states = {
 "InRange": SubResource( 55 )
 }
 transitions = {
-"Arrived": {
+"Arrive": {
 "Finish": SubResource( 64 )
 },
 "Depart": {
@@ -401,16 +548,11 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=23]
-script = ExtResource( 4 )
-name = "abort"
-
 [sub_resource type="Resource" id=16]
 script = ExtResource( 3 )
 from = "Harvest"
 to = "Idle"
 conditions = {
-"abort": SubResource( 23 )
 }
 priority = 0
 
@@ -554,7 +696,7 @@ states = {
 "AttackProperty": SubResource( 7 ),
 "Defend": SubResource( 6 ),
 "Entry": SubResource( 1 ),
-"Harvest": SubResource( 5 ),
+"Harvest": SubResource( 91 ),
 "Idle": SubResource( 2 ),
 "Invest": SubResource( 52 ),
 "Saving": SubResource( 9 ),
