@@ -24,7 +24,7 @@ albedo_color = Color( 1, 0, 0, 1 )
 roughness = 0.3
 
 [sub_resource type="SphereShape" id=9]
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="DynamicFont" id=11]
 size = 96
