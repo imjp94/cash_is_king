@@ -33,12 +33,15 @@ func _on_asset_building_player_changed(from, to, asset_building):
 			return
 
 func _on_player_pawn_dead(player):
+	player.set_pawn_np(NodePath())
+	
 	yield(get_tree().create_timer(spawn_time), "timeout")
 
 	var character = Character.instance()
 	add_child(character)
 	character.global_transform.origin = get("player%d_spawn_point" % player.index)
 	player.set_pawn_np(character.get_path())
+	player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 
 func _on_TurnTimer_timeout():
 	if get_play_time() > 60000 and overall_interest_rate < 0.5:

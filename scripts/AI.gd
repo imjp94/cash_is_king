@@ -20,11 +20,13 @@ func _ready():
 
 	action_state.set_param("empty_building", get_empty_buildings().size())
 
+	connect("pawn_changed", self, "_on_pawn_changed")
+
 func _unhandled_input(event):
 	if Engine.editor_hint:
 		return
 	# debug with mouse
-	if not pawn:
+	if not is_instance_valid(pawn):
 		return
 
 	var nav_agent = pawn.get_node_or_null("NavigationAgent")
@@ -57,7 +59,7 @@ func _process(delta):
 func _physics_process(delta):
 	if Engine.editor_hint:
 		return
-	if not pawn:
+	if not is_instance_valid(pawn):
 		return
 	var nav_agent = pawn.get_node_or_null("NavigationAgent")
 	if not nav_agent:
@@ -81,6 +83,8 @@ func _physics_process(delta):
 
 func shooting_target():
 	if not _is_shooting:
+		return
+	if not is_instance_valid(pawn):
 		return
 	if pawn.health.value == 0:
 		action_state.reset(1) # Idle located at index 1, right after Entry
@@ -138,7 +142,7 @@ func is_nav_agent_target_reached(nav_agent):
 	return nav_agent.get_target_location().distance_to(pawn.global_transform.origin) <= nav_agent.path_desired_distance
 
 func _on_action_state_transited(from, to):
-	if not pawn:
+	if not is_instance_valid(pawn):
 		return
 	var nav_agent = pawn.get_node_or_null("NavigationAgent")
 	if not nav_agent:
@@ -267,3 +271,10 @@ func _on_pawn_health_changed(diff):
 		if pawn.health.value >= 10 or get_bank().health.value == 0:
 			_is_interacting = false
 			action_state.set_trigger("done")
+
+func _on_pawn_changed(from, to):
+	action_state.restart()
+	if to:
+		pawn.get_node("NavigationAgent").connect("velocity_computed", self, "_on_nav_agent_velocity_computed")
+		pawn.get_node("NavigationAgent").connect("target_reached", self, "_on_nav_agent_target_reached")
+		pawn.health.connect("changed", self, "_on_pawn_health_changed")

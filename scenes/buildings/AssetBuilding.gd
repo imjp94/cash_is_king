@@ -96,6 +96,8 @@ func _on_Health_credit_timeout(credits):
 	for creditor in credits:
 		var amount = credits[creditor]
 		var target = creditor.pawn
+		if not is_instance_valid(target): # TODO: Happens when player dead and havent respawned, should return to creditor's bank
+			return
 		var target_health = target.get_node("Health")
 		for i in amount:
 			var coin = CoinScene.instance()

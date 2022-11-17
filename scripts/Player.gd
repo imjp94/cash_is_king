@@ -2,6 +2,7 @@ tool
 extends Node
 
 signal color_changed(from, to)
+signal pawn_changed(from, to)
 
 enum DEVICE_TYPE {
 	ALL = 7 # 111
@@ -64,12 +65,19 @@ func can_handle_event(event):
 
 	return can_handle
 
+func _on_pawn_dead():
+	set_pawn_np(NodePath())
+
 func set_pawn_np(v):
 	pawn_np = v
 	if is_inside_tree() and pawn_np:
+		var old = pawn
 		pawn = get_node_or_null(pawn_np)
 		if pawn:
 			pawn.set("player", self)
+			pawn.connect("dead", self, "_on_pawn_dead")
+		if pawn != old:
+			emit_signal("pawn_changed", old, pawn)
 
 func get_index():
 	return PLAYER_STACK.find(self)
