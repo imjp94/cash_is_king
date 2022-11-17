@@ -2,6 +2,7 @@ tool
 extends "res://scenes/buildings/Building.gd"
 
 signal player_changed(from, to)
+signal interest_computed(matured_interest)
 
 # Use interest if both specified, else use any variable that is not zero
 export var interest = 5
@@ -119,6 +120,7 @@ func compute_interest(extra_interest_rate):
 	health.increase(matured_interest)
 
 	coins_flow(self, self, matured_interest)
+	emit_signal("interest_computed", matured_interest)
 
 func set_player_np(v):
 	player_np = v
