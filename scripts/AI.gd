@@ -47,6 +47,14 @@ func _unhandled_input(event):
 			$"/root/Game/Ball".global_transform.origin = target_pos
 
 func _process(delta):
+	if Engine.editor_hint:
+		return
+	if not is_instance_valid(pawn):
+		return
+	var nav_agent = pawn.get_node_or_null("NavigationAgent")
+	if not nav_agent:
+		return
+	
 	var owned_buildings = get_owned_buildings()
 	if owned_buildings:
 		var building_mature = false
@@ -55,6 +63,16 @@ func _process(delta):
 				building_mature = true
 				break
 		action_state.set_param("building_mature", building_mature)
+
+	var opponent_buildings = get_buildings(false, [self])
+	for opponent_building in opponent_buildings:
+		if opponent_building.health <= pawn.health:
+			action_state.set_param("can_buy_out", true)
+			var target = opponent_building
+			action_state.set_param("target", opponent_building)
+			navigate_pawn(nav_agent, target)
+			if is_nav_agent_target_reached(nav_agent):
+				action_state.set_trigger("in_range")
 
 func _physics_process(delta):
 	if Engine.editor_hint:
@@ -102,6 +120,16 @@ func interacting():
 
 	pawn.event()
 	get_tree().create_timer(0.2).connect("timeout", self, "interacting")
+
+func get_buildings(exclude_bank=true, exclude_owners=[]):
+	var asset_buildings = get_tree().get_nodes_in_group("asset_building")
+	var count = asset_buildings.size()
+	for i in count:
+		var index = count - 1 - i
+		var asset_building = asset_buildings[index] # Descending order
+		if asset_building.player in exclude_owners or (asset_building.is_in_group("bank") and exclude_bank):
+			asset_buildings.remove(index)
+	return asset_buildings
 
 func get_empty_buildings(exclude_bank=true):
 	var asset_buildings = get_tree().get_nodes_in_group("asset_building")
@@ -231,6 +259,28 @@ func _on_action_state_transited(from, to):
 								break
 						action_state.set_param("building_mature", building_mature)
 						action_state.set_param("has_enough_money", false)
+		"AttackProperty":
+			match to_dir.next():
+				"Depart":
+					var opponent_buildings = get_buildings(false, [self])
+					if opponent_buildings:
+						var target = opponent_buildings[0]
+						action_state.set_param("target", target)
+						navigate_pawn(nav_agent, target)
+						if is_nav_agent_target_reached(nav_agent):
+							action_state.set_trigger("in_range")
+					else:
+						action_state.set_trigger("done")
+				"InRange":
+					_is_shooting = true
+					shooting_target()
+					if is_nav_agent_target_reached(nav_agent):
+						action_state.set_trigger("arrived")
+				"Arrive":
+					var target = action_state.get_param("target")
+				"Finish":
+					var opponent_buildings = get_buildings(false, [self])
+					action_state.set_param("empty_building", opponent_buildings.size())
 
 func _on_asset_building_player_changed(from, to, asset_building):
 	var empty_buildings = get_empty_buildings()
@@ -249,6 +299,8 @@ func _on_asset_building_player_changed(from, to, asset_building):
 	if to == self:
 		asset_building.connect("interest_computed", self, "_on_owned_asset_building_interest_computed", [asset_building])
 		asset_building.health.connect("changed", self, "_on_owned_asset_building_health_changed", [asset_building])
+		if action_state.current == "AttackProperty/Arrive":
+			action_state.set_trigger("done")
 
 func _on_owned_asset_building_interest_computed(matured_interest, asset_building):
 	if asset_building.health.value > 15:

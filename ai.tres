@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=93 format=2]
+[gd_resource type="Resource" load_steps=107 format=2]
 
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=2]
@@ -13,13 +13,6 @@ __meta__ = {
 "graph_offset": Vector2( 565, 280 )
 }
 name = "AttackCharacter"
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 2 )
-__meta__ = {
-"graph_offset": Vector2( 509, 60 )
-}
-name = "AttackProperty"
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 2 )
@@ -353,6 +346,13 @@ __meta__ = {
 }
 name = "Saving"
 
+[sub_resource type="Resource" id=56]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 430, 200 )
+}
+name = "Arrive"
+
 [sub_resource type="Resource" id=54]
 script = ExtResource( 2 )
 __meta__ = {
@@ -388,12 +388,18 @@ __meta__ = {
 }
 name = "InRange"
 
-[sub_resource type="Resource" id=56]
-script = ExtResource( 2 )
-__meta__ = {
-"graph_offset": Vector2( 430, 200 )
+[sub_resource type="Resource" id=63]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=64]
+script = ExtResource( 3 )
+from = "Arrive"
+to = "Finish"
+conditions = {
+"done": SubResource( 63 )
 }
-name = "Arrive"
+priority = 0
 
 [sub_resource type="Resource" id=65]
 script = ExtResource( 4 )
@@ -455,19 +461,6 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=63]
-script = ExtResource( 4 )
-name = "done"
-
-[sub_resource type="Resource" id=64]
-script = ExtResource( 3 )
-from = "Arrive"
-to = "Finish"
-conditions = {
-"done": SubResource( 63 )
-}
-priority = 0
-
 [sub_resource type="Resource" id=70]
 script = ExtResource( 1 )
 __meta__ = {
@@ -501,6 +494,135 @@ transitions = {
 }
 }
 
+[sub_resource type="Resource" id=93]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 34, 160 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=94]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 314, 360 )
+}
+name = "Exit"
+
+[sub_resource type="Resource" id=95]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 314, 260 )
+}
+name = "Finish"
+
+[sub_resource type="Resource" id=96]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 171, 160 )
+}
+name = "Depart"
+
+[sub_resource type="Resource" id=97]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 287.5, 160 )
+}
+name = "InRange"
+
+[sub_resource type="Resource" id=98]
+script = ExtResource( 2 )
+__meta__ = {
+"graph_offset": Vector2( 413.5, 160 )
+}
+name = "Arrive"
+
+[sub_resource type="Resource" id=99]
+script = ExtResource( 3 )
+from = "Entry"
+to = "Depart"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=100]
+script = ExtResource( 4 )
+name = "in_range"
+
+[sub_resource type="Resource" id=101]
+script = ExtResource( 3 )
+from = "Depart"
+to = "InRange"
+conditions = {
+"in_range": SubResource( 100 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=102]
+script = ExtResource( 4 )
+name = "arrived"
+
+[sub_resource type="Resource" id=103]
+script = ExtResource( 3 )
+from = "InRange"
+to = "Arrive"
+conditions = {
+"arrived": SubResource( 102 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=104]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=105]
+script = ExtResource( 3 )
+from = "Arrive"
+to = "Finish"
+conditions = {
+"done": SubResource( 104 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=106]
+script = ExtResource( 3 )
+from = "Finish"
+to = "Exit"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=107]
+script = ExtResource( 1 )
+__meta__ = {
+"graph_offset": Vector2( 509, 60 )
+}
+name = "AttackProperty"
+states = {
+"Arrive": SubResource( 98 ),
+"Depart": SubResource( 96 ),
+"Entry": SubResource( 93 ),
+"Exit": SubResource( 94 ),
+"Finish": SubResource( 95 ),
+"InRange": SubResource( 97 )
+}
+transitions = {
+"Arrive": {
+"Finish": SubResource( 105 )
+},
+"Depart": {
+"InRange": SubResource( 101 )
+},
+"Entry": {
+"Depart": SubResource( 99 )
+},
+"Finish": {
+"Exit": SubResource( 106 )
+},
+"InRange": {
+"Arrive": SubResource( 103 )
+}
+}
+
 [sub_resource type="Resource" id=27]
 script = ExtResource( 4 )
 name = "abort"
@@ -514,16 +636,11 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=33]
-script = ExtResource( 4 )
-name = "abort"
-
 [sub_resource type="Resource" id=18]
 script = ExtResource( 3 )
 from = "AttackProperty"
 to = "Idle"
 conditions = {
-"abort": SubResource( 33 )
 }
 priority = 0
 
@@ -571,18 +688,25 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=29]
+[sub_resource type="Resource" id=108]
 script = ExtResource( 6 )
-name = "has_enough_money"
+name = "can_buy_out"
 comparation = 0
 value = true
+
+[sub_resource type="Resource" id=109]
+script = ExtResource( 5 )
+name = "empty_building"
+comparation = 0
+value = 0
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 3 )
 from = "Idle"
 to = "AttackProperty"
 conditions = {
-"has_enough_money": SubResource( 29 )
+"can_buy_out": SubResource( 108 ),
+"empty_building": SubResource( 109 )
 }
 priority = 0
 
@@ -693,7 +817,7 @@ script = ExtResource( 1 )
 name = ""
 states = {
 "AttackCharacter": SubResource( 8 ),
-"AttackProperty": SubResource( 7 ),
+"AttackProperty": SubResource( 107 ),
 "Defend": SubResource( 6 ),
 "Entry": SubResource( 1 ),
 "Harvest": SubResource( 91 ),
