@@ -5,6 +5,7 @@ signal player_changed(from, to)
 signal interest_computed(matured_interest)
 signal upgraded()
 
+export var biddable = true setget set_biddable
 export var upgrade_threshold = 50
 # Use interest if both specified, else use any variable that is not zero
 export var interest = 5
@@ -13,12 +14,14 @@ export(NodePath) var player_np setget set_player_np
 
 onready var health = $Health
 onready var label3d = $Label3D
+onready var area = $Area
 
 var player setget set_player
 
 
 func _ready():
 	set_player_np(player_np)
+	set_biddable(biddable)
 	label3d.text = health.to_text()
 
 func event(by, extra={}):
@@ -157,3 +160,9 @@ func set_player(v):
 
 func has_player():
 	return !!player
+
+func set_biddable(v):
+	biddable = v
+	if is_inside_tree():
+		area.monitoring = biddable
+		label3d.modulate.a = 1.0 if biddable else 0.2
