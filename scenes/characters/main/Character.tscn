@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://scenes/projectile/Projectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/main/Character.gd" type="Script" id=2]
 [ext_resource path="res://addons/kenney_prototypes/assets/colors/light/textures/texture_02.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Account.gd" type="Script" id=4]
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/equipment/EquipmentSlot.gd" type="Script" id=6]
+[ext_resource path="res://scenes/equipment/EmptyHanded.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleMesh" id=5]
 
@@ -40,8 +41,6 @@ linear_damp = 0.99
 script = ExtResource( 2 )
 speed = 20.0
 turn_vel = 270.0
-projectile_ps = ExtResource( 1 )
-shoot_force = 1500.0
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -58,8 +57,10 @@ material/0 = SubResource( 10 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0 )
 shape = SubResource( 6 )
 
-[node name="ShootOrigin" type="Spatial" parent="."]
+[node name="EquipmentSlot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
+script = ExtResource( 6 )
+equipment_scn = ExtResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2, -1.1 )

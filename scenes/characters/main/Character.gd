@@ -10,12 +10,10 @@ signal dead()
 export var damage = 1
 export var speed = 10.0
 export var turn_vel = 45.0
-export(PackedScene) var projectile_ps
-export var shoot_force = 1000.0
 
 onready var health = $Health
 onready var mesh_instance = $MeshInstance
-onready var shoot_origin = $ShootOrigin
+onready var equipment_slot = $EquipmentSlot
 onready var area = $Area
 onready var label3d = $Label3D
 
@@ -46,7 +44,7 @@ func _unhandled_input(event):
 		return
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		shoot()
+		attack()
 
 	if Input.is_action_just_pressed("event"):
 		event()
@@ -85,20 +83,15 @@ func turn(forward, right):
 	var av = Vector3.UP * deg2rad(turn_vel * angle_diff)
 	angular_velocity = av
 
-func shoot():
-	if not projectile_ps:
-		return
+func attack():
 	if health.value == 0:
 		return
-
-	var projectile = projectile_ps.instance()
-	projectile.instigator = player
-	projectile.damage = damage
-	get_parent().add_child(projectile)
-	projectile.global_transform.origin = shoot_origin.global_transform.origin
-	PhysicsServer.body_add_collision_exception(projectile.get_rid(), get_rid())
-	projectile.add_central_force(-shoot_origin.global_transform.basis.z * shoot_force)
-	health.deduct(1)
+	if not equipment_slot.equipment:
+		return
+	
+	var attacked = equipment_slot.equipment.attack()
+	if attacked:
+		health.deduct(1)
 
 func event():
 	if area.get_overlapping_bodies().size() == 0:

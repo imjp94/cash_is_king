@@ -110,7 +110,7 @@ func shooting_target():
 		action_state.set_param("has_enough_money", false)
 		return
 	
-	pawn.shoot()
+	pawn.attack()
 	pawn.look_at(action_state.get_param("target").global_transform.origin, Vector3.UP)
 	get_tree().create_timer(0.2).connect("timeout", self, "shooting_target")
 
