@@ -92,7 +92,10 @@ func attack():
 	
 	var attacked = equipment_slot.equipment.attack()
 	if attacked:
-		health.deduct(1)
+		var projectile_count = equipment_slot.equipment.get("projectile_count") # TODO: Better way to get projectile count from equipment
+		if not projectile_count:
+			projectile_count = 1
+		health.deduct(Coin.GRADE_DAMAGE[coin_grade] * projectile_count)
 
 func event():
 	if area.get_overlapping_bodies().size() == 0:
