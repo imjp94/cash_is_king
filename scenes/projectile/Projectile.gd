@@ -5,6 +5,7 @@ onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
 
 var damage = 1
+var push_back_force = 0.0
 var instigator
 
 
@@ -29,6 +30,8 @@ func _on_Area_body_entered(body):
 		yield(anim_player, "animation_finished")
 	else:
 		if health and instigator:
+			var dir = -global_transform.basis.z
+			body.add_central_force(dir * push_back_force)
 			health.credit(instigator, damage)
 
 	queue_free()

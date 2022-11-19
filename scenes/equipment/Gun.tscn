@@ -7,6 +7,7 @@
 [node name="Gun" instance=ExtResource( 1 )]
 cooldown = 0.2
 shoot_force = 2000.0
+projectile_push_back_force = 150.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 transform = Transform( -4.37114e-08, 0, 0.3, 0, 0.2, 0, -1, 0, -1.31134e-08, -3.72529e-08, 0, -0.5 )
