@@ -117,6 +117,9 @@ func shooting_target():
 func interacting():
 	if not _is_interacting:
 		return
+	if not is_instance_valid(pawn):
+		_is_interacting = false
+		return
 
 	pawn.event()
 	get_tree().create_timer(0.2).connect("timeout", self, "interacting")
