@@ -11,6 +11,7 @@ var instigator
 
 func _physics_process(delta):
 	if can_pick():
+		collision_mask += 16
 		instigator = null
 		set_physics_process(false)
 
@@ -43,3 +44,7 @@ func get_damage():
 	if not is_inside_tree():
 		return 1
 	return coin.GRADE_DAMAGE[coin.grade]
+
+func _on_Projectile_sleeping_state_changed():
+	if sleeping:
+		mode = MODE_STATIC
