@@ -32,10 +32,12 @@ func _physics_process(delta):
 	if not _can_input:
 		return
 	
-	var axis_x = Input.get_axis("ui_left", "ui_right")
-	var axis_y = Input.get_axis("ui_down", "ui_up")
-
-	move_and_turn(axis_y, axis_x)
+	var move_x = Input.get_axis("move_left", "move_right")
+	var move_y = Input.get_axis("move_down", "move_up")
+	move(move_y, move_x)
+	var turn_x = Input.get_axis("turn_left", "turn_right")
+	var turn_y = Input.get_axis("turn_down", "turn_up")
+	turn(turn_y if turn_y else  move_y, turn_x if turn_x else  move_x)
 
 func _unhandled_input(event):
 	if not player:
@@ -44,7 +46,7 @@ func _unhandled_input(event):
 		_can_input = false
 		return
 	
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("shoot"):
 		attack()
 
 	if Input.is_action_just_pressed("event"):
