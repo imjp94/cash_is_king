@@ -145,6 +145,7 @@ func _on_Health_credit_timeout(credits):
 func _on_Health_broke(by, credits):
 	for i in health.value:
 		var coin = ProjectileScene.instance()
+		coin.collision_mask += 16 # Projectile mask, let them collide with each other
 		get_parent().add_child(coin)
 		coin.global_transform = global_transform
 
