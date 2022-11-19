@@ -1,5 +1,16 @@
+tool
 extends Spatial
 
+enum GRADE {
+	SILVER, COPPER, GOLD
+}
+const GRADE_COLOR = [Color.silver, Color("ffa60d"), Color.gold]
+const GRADE_DAMAGE = [1, 2, 5]
+
+export(GRADE) var grade = GRADE.SILVER setget set_grade
+
+onready var mesh_instance = $MeshInstance
+onready var anim_player = $AnimationPlayer
 onready var timer = $Timer
 
 var target setget set_target
@@ -9,6 +20,7 @@ var _origin = Vector3.ZERO
 
 func _ready():
 	set_target(target)
+	set_grade(grade)
 	_origin = global_transform.origin
 
 func _process(delta):
@@ -33,3 +45,11 @@ func quadratic_bezier(p0: Vector3, p1: Vector3, p2: Vector3, t: float):
 	var q1 = p1.linear_interpolate(p2, t)
 	var r = q0.linear_interpolate(q1, t)
 	return r
+
+func set_grade(v):
+	var old = grade
+	grade = v
+	if is_inside_tree():
+		var material = mesh_instance.get("material/0")
+		material.set("albedo_color", GRADE_COLOR[grade])
+		material.set("emission", GRADE_COLOR[grade])

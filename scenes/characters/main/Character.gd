@@ -2,12 +2,13 @@ tool
 extends RigidBody
 
 const ProjectileScene = preload("res://scenes/projectile/Projectile.tscn")
+const Coin = preload("res://scenes/projectile/Coin.gd")
 const CoinScene = preload("res://scenes/projectile/Coin.tscn")
 
 signal color_changed(from, to)
 signal dead()
 
-export var damage = 1
+export(Coin.GRADE) var coin_grade = Coin.GRADE.SILVER
 export var speed = 10.0
 export var turn_vel = 45.0
 
@@ -100,7 +101,7 @@ func event():
 	var building_body = area.get_overlapping_bodies()[0]
 	var building = building_body.get_parent()
 	if "health" in building:
-		building.withdraw(player, damage)
+		building.withdraw(player, get_damage(), coin_grade)
 	if building.has_method("buy"):
 		building.buy(player)
 
@@ -123,16 +124,17 @@ func _on_Health_credit_timeout(credits):
 	label3d.text = health.to_text()
 
 	for creditor in credits.keys():
-		var amount = credits[creditor]
 		var target = creditor.pawn
-		var target_health = target.get_node("Health")
+		var amount = credits[creditor] / Coin.GRADE_DAMAGE[target.coin_grade]
+		target.health.increase(amount)
 		for i in amount:
 			var coin = CoinScene.instance()
+			coin.grade = target.coin_grade
 			coin.target = target
 			get_parent().add_child(coin)
 			coin.global_transform.origin = global_transform.origin
 			coin._origin = global_transform.origin
-			target_health.increase(1)
+		
 			yield(get_tree().create_timer(0.1), "timeout")
 
 func _on_Health_broke(by, credits):
@@ -161,3 +163,6 @@ func set_player(v):
 	if player:
 		_on_player_color_changed(player.color, player.color)
 		player.connect("color_changed", self, "_on_player_color_changed")
+
+func get_damage():
+	return Coin.GRADE_DAMAGE[coin_grade]

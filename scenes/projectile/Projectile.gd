@@ -1,10 +1,10 @@
 extends RigidBody
 
+onready var coin = $Coin
 onready var area = $Area
 onready var raycast = $RayCast
-onready var anim_player = $AnimationPlayer
 
-var damage = 1
+var damage setget , get_damage
 var push_back_force = 0.0
 var instigator
 
@@ -25,16 +25,21 @@ func _on_Area_body_entered(body):
 
 	if can_pick():
 		if health:
-			health.increase(damage)
-		anim_player.play("pick")
-		yield(anim_player, "animation_finished")
+			health.increase(get_damage())
+		coin.anim_player.play("pick")
+		yield(coin.anim_player, "animation_finished")
 	else:
 		if health and instigator:
 			var dir = -global_transform.basis.z
 			body.add_central_force(dir * push_back_force)
-			health.credit(instigator, damage)
+			health.credit(instigator, get_damage())
 
 	queue_free()
 
 func can_pick():
 	return raycast.is_colliding()
+
+func get_damage():
+	if not is_inside_tree():
+		return 1
+	return coin.GRADE_DAMAGE[coin.grade]

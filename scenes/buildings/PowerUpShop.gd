@@ -10,6 +10,6 @@ func buy(by, extra={}):
 		return false
 
 	pawn_health.deduct(10)
-	deposit(by, 10)
+	deposit(by, 10, pawn.coin_grade)
 	pawn.speed += 2
-	pawn.damage += 2
+	pawn.coin_grade = min(pawn.coin_grade + 1, 2)

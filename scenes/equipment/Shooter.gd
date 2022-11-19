@@ -23,9 +23,9 @@ func shoot(pos, dir):
 
 	var projectile = projectile_ps.instance()
 	projectile.instigator = get_equipment_owner().player
-	projectile.damage = damage
 	projectile.push_back_force = projectile_push_back_force
 	get_equipment_owner().get_parent().add_child(projectile)
+	projectile.coin.grade = get_equipment_owner().coin_grade
 
 	projectile.look_at_from_position(pos, pos + dir, shoot_origin.global_transform.basis.y)
 	PhysicsServer.body_add_collision_exception(projectile.get_rid(), get_equipment_owner().get_rid())

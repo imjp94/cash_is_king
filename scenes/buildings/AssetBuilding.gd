@@ -20,7 +20,7 @@ func _ready():
 	label3d.text = health.to_text()
 
 func event(by, extra={}):
-	return withdraw(by, extra.get("amount", 0))
+	return withdraw(by, extra.get("amount", 0), extra.get("grade", 0))
 
 func _on_Area_body_entered(projectile):
 	if not projectile.instigator: # Coin when drop on floor and pickable
@@ -37,7 +37,7 @@ func _on_Area_body_entered(projectile):
 
 	projectile.queue_free()
 
-func _on_withdraw(by, amount):
+func _on_withdraw(by, amount, grade):
 	if health.value <= 0:
 		return 0
 	if player != by:
@@ -121,7 +121,7 @@ func compute_interest(extra_interest_rate):
 	
 	health.increase(matured_interest)
 
-	coins_flow(self, self, matured_interest)
+	coins_flow(self, self, matured_interest, 2) # TODO: Dynamically decide coin grade
 	emit_signal("interest_computed", matured_interest)
 
 func set_player_np(v):
