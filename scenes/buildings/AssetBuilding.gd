@@ -3,7 +3,9 @@ extends "res://scenes/buildings/Building.gd"
 
 signal player_changed(from, to)
 signal interest_computed(matured_interest)
+signal upgraded()
 
+export var upgrade_threshold = 50
 # Use interest if both specified, else use any variable that is not zero
 export var interest = 5
 export var interest_rate = 0.05
@@ -43,6 +45,7 @@ func _on_withdraw(by, amount, grade):
 	if player != by:
 		return 0
 	
+	amount = min(health.value, amount)
 	var pawn = player.pawn
 	var pawn_health = pawn.get_node_or_null("Health")
 	if pawn_health:
@@ -53,7 +56,18 @@ func _on_withdraw(by, amount, grade):
 func _on_player_changed(from, to):
 	pass
 
+var _is_upgraded = false # TODO: Debug purpose only, current building should be directly replaced by new one
+
 func _on_Health_changed(diff):
+	if upgrade_threshold > 0 and health.value >= upgrade_threshold and not _is_upgraded:
+		# TODO: Debug purpose only, it should popup window to let owner choose what type of building to upgrade to
+		interest *= 2
+		interest_rate *= 2
+		scale *= 1.3
+		_is_upgraded = true
+
+		emit_signal("upgraded")
+
 	if not label3d:
 		return
 

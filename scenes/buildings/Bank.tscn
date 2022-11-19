@@ -21,6 +21,7 @@ uv1_triplanar = true
 extents = Vector3( 4.5, 4, 4.5 )
 
 [node name="Bank" groups=["bank"] instance=ExtResource( 1 )]
+upgrade_threshold = -1
 interest = 0
 
 [node name="CollisionShape" parent="StaticBody" index="0"]
