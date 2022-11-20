@@ -110,6 +110,23 @@ func event():
 	if building.has_method("buy"):
 		building.buy(player)
 
+func broke():
+	for i in health.value:
+		var coin = ProjectileScene.instance()
+		coin.collision_mask += 16 # Projectile mask, let them collide with each other
+		get_parent().add_child(coin)
+		coin.global_transform = global_transform
+
+		var push_dir = global_transform.basis.z.rotated(global_transform.basis.y, rand_range(-2 * PI, 2 * PI))
+		push_dir.y += 3.0
+		push_dir = push_dir.normalized()
+		var shatter_impulse = 10.0
+		coin.apply_central_impulse(push_dir * shatter_impulse)
+		coin.apply_torque_impulse(push_dir * rand_range(1.0, 5.0))
+	
+	emit_signal("dead")
+	queue_free()
+
 func _on_Health_changed(diff):
 	if not label3d:
 		return
@@ -143,21 +160,7 @@ func _on_Health_credit_timeout(credits):
 			yield(get_tree().create_timer(0.1), "timeout")
 
 func _on_Health_broke(by, credits):
-	for i in health.value:
-		var coin = ProjectileScene.instance()
-		coin.collision_mask += 16 # Projectile mask, let them collide with each other
-		get_parent().add_child(coin)
-		coin.global_transform = global_transform
-
-		var push_dir = global_transform.basis.z.rotated(global_transform.basis.y, rand_range(-2 * PI, 2 * PI))
-		push_dir.y += 3.0
-		push_dir = push_dir.normalized()
-		var shatter_impulse = 10.0
-		coin.apply_central_impulse(push_dir * shatter_impulse)
-		coin.apply_torque_impulse(push_dir * rand_range(1.0, 5.0))
-	
-	emit_signal("dead")
-	queue_free()
+	broke()
 
 func _on_player_color_changed(from, to):
 	if mesh_instance and player:
