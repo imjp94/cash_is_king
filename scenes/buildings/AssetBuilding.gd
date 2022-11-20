@@ -149,12 +149,15 @@ func set_player_np(v):
 func set_player(v):
 	var old = player
 	player = v
-	if player != old and player != null:
-		if old:
-			remove_from_group("player%d" % old.index)
-		add_to_group("player%d" % player.index)
-		if mesh_instance:
-			mesh_instance.get("material/0").set("albedo_color", player.color)
+	if player != old:
+		if player:
+			if old:
+				remove_from_group("player%d" % old.index)
+			add_to_group("player%d" % player.index)
+			if mesh_instance:
+				mesh_instance.get("material/0").set("albedo_color", player.color)
+		else:
+			mesh_instance.get("material/0").set("albedo_color", Color.white)
 		_on_player_changed(old, player)
 		emit_signal("player_changed", old, player)
 
