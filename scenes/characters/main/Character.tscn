@@ -33,7 +33,7 @@ outline_size = 12
 use_filter = true
 font_data = ExtResource( 5 )
 
-[node name="Character" type="RigidBody"]
+[node name="Character" type="RigidBody" groups=["player"]]
 collision_layer = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
