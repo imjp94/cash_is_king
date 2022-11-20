@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/consumable/Consumable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/consumable/Chance.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.7, 1.2, 0.5 )
@@ -81,6 +82,7 @@ tracks/1/keys = {
 }
 
 [node name="Chance" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
 
 [node name="CollisionShape" parent="Area" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
