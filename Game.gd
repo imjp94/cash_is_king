@@ -1,5 +1,8 @@
 extends Spatial
 
+signal player_lost(player)
+signal player_won(player)
+
 const Player = preload("res://scripts/Player.gd")
 const Character = preload("res://scenes/characters/main/Character.tscn")
 
@@ -14,6 +17,8 @@ var player1_spawn_point = Vector3.ZERO
 
 var _play_time = 0.0
 var _last_play_timestamp = 0
+var _winners = []
+var _losers = []
 
 
 func _ready():
@@ -27,10 +32,28 @@ func _ready():
 	update_time_label()
 
 func _on_asset_building_player_changed(from, to, asset_building):
-	for player in Player.PLAYER_STACK:
-		if get_tree().get_nodes_in_group("player%d" % player.index).size() == 0:
-			print("player%d lose" % player.index)
-			return
+	if from in _losers:
+		return
+	
+	var loser
+	if asset_building.is_in_group("bank") or get_tree().get_nodes_in_group("player%d" % from.index).size() == 0:
+		loser = from
+
+	if loser:
+		_losers.append(from)
+
+		if asset_building.is_in_group("bank"):
+			for asset_building in get_tree().get_nodes_in_group("asset_building"):
+				if asset_building.player == from:
+					asset_building.set_player_np(to.get_path())
+
+		print("player%d lose" % from.index)
+		emit_signal("player_lost", loser)
+		if Player.PLAYER_STACK.size() - 1 == _losers.size():
+			var winner = to
+			_winners.append(winner)
+			print("player%d won" % to.index)
+			emit_signal("player_won", winner)
 
 func _on_player_pawn_dead(player):
 	player.set_pawn_np(NodePath())
@@ -74,3 +97,9 @@ func get_play_time():
 	if is_playing():
 		return _play_time + OS.get_ticks_msec() - _last_play_timestamp
 	return _play_time
+
+func get_winners():
+	return _winners.duplicate()
+
+func get_losers():
+	return _losers.duplicate()
