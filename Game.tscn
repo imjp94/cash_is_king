@@ -266,7 +266,6 @@ pawn_np = NodePath("../Character")
 
 [node name="Player2" type="Node" parent="."]
 script = ExtResource( 8 )
-enable_input = false
 color = Color( 1, 0, 0, 1 )
 pawn_np = NodePath("../Character2")
 
