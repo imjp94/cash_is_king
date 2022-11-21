@@ -147,6 +147,9 @@ func _on_Health_credit_timeout(credits):
 
 	for creditor in credits.keys():
 		var target = creditor.pawn
+		if not is_instance_valid(target): # TODO: Should return to target's bank instead
+			continue
+		
 		var amount = credits[creditor] / Coin.GRADE_DAMAGE[target.coin_grade]
 		target.health.increase(amount)
 		for i in amount:
