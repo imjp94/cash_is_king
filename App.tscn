@@ -1,0 +1,237 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=1]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=3]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=5]
+[ext_resource path="res://App.gd" type="Script" id=6]
+[ext_resource path="res://scenes/gui/main_menu/MainMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/gui/level_select/LevelSelect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/gui/character_select/CharacterSelect.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/gui/setting/Setting.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 445.5, 100 )
+}
+name = "CharacterSelect"
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 14, 100 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 174, 320 )
+}
+name = "Exit"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 313.5, 240 )
+}
+name = "Game"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 299, 100 )
+}
+name = "LevelSelect"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 160.5, 100 )
+}
+name = "MainMenu"
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 171, -60 )
+}
+name = "Setting"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 4 )
+name = "next"
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 3 )
+from = "CharacterSelect"
+to = "Game"
+conditions = {
+"next": SubResource( 14 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 4 )
+name = "back"
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 3 )
+from = "CharacterSelect"
+to = "LevelSelect"
+conditions = {
+"back": SubResource( 20 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+from = "Entry"
+to = "MainMenu"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 4 )
+name = "finish"
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 3 )
+from = "Game"
+to = "MainMenu"
+conditions = {
+"finish": SubResource( 22 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 4 )
+name = "next"
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+from = "LevelSelect"
+to = "CharacterSelect"
+conditions = {
+"next": SubResource( 12 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 4 )
+name = "back"
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 3 )
+from = "LevelSelect"
+to = "MainMenu"
+conditions = {
+"back": SubResource( 18 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+name = "exit"
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+from = "MainMenu"
+to = "Exit"
+conditions = {
+"exit": SubResource( 8 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+name = "play"
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 3 )
+from = "MainMenu"
+to = "LevelSelect"
+conditions = {
+"play": SubResource( 10 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 4 )
+name = "setting"
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 3 )
+from = "MainMenu"
+to = "Setting"
+conditions = {
+"setting": SubResource( 24 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 3 )
+from = "Setting"
+to = "MainMenu"
+conditions = {
+"done": SubResource( 26 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 2 )
+name = ""
+states = {
+"CharacterSelect": SubResource( 4 ),
+"Entry": SubResource( 1 ),
+"Exit": SubResource( 6 ),
+"Game": SubResource( 5 ),
+"LevelSelect": SubResource( 3 ),
+"MainMenu": SubResource( 2 ),
+"Setting": SubResource( 23 )
+}
+transitions = {
+"CharacterSelect": {
+"Game": SubResource( 15 ),
+"LevelSelect": SubResource( 21 )
+},
+"Entry": {
+"MainMenu": SubResource( 7 )
+},
+"Game": {
+"MainMenu": SubResource( 16 )
+},
+"LevelSelect": {
+"CharacterSelect": SubResource( 13 ),
+"MainMenu": SubResource( 19 )
+},
+"MainMenu": {
+"Exit": SubResource( 9 ),
+"LevelSelect": SubResource( 11 ),
+"Setting": SubResource( 25 )
+},
+"Setting": {
+"MainMenu": SubResource( 27 )
+}
+}
+
+[node name="App" type="Node"]
+script = ExtResource( 6 )
+main_menu_scn = ExtResource( 7 )
+level_select_scn = ExtResource( 8 )
+character_select_scn = ExtResource( 9 )
+setting_scn = ExtResource( 10 )
+
+[node name="AppState" type="Node" parent="."]
+script = ExtResource( 1 )
+state_machine = SubResource( 17 )
+process_mode = 2
+
+[connection signal="transited" from="AppState" to="." method="_on_AppState_transited"]

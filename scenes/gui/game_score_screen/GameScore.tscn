@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/gui/game_score_screen/GameScore.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="GameScore" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 32
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 389.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 1 )
+text = "Game Score"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -453.0
+margin_top = -147.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 32
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 32
+
+[node name="Message" type="Label" parent="MarginContainer2"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 761.0
+margin_bottom = 131.0
+custom_fonts/font = SubResource( 2 )
+text = "Winner is Player%d"

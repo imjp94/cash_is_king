@@ -1,5 +1,7 @@
 extends Control
 
+onready var setting = $Setting
+
 var game_state
 
 
@@ -10,8 +12,16 @@ func _unhandled_input(event):
 			visible = !visible
 
 func _on_ResumeBtn_pressed():
-	game_state.set_trigger("resume")
-	visible = true
+	if game_state:
+		game_state.set_trigger("resume")
+		visible = true
+
+func _on_SettingBtn_pressed():
+	setting.show()
 
 func _on_ExitBtn_pressed():
-	game_state.set_trigger("exit")
+	if game_state:
+		game_state.set_trigger("exit")
+
+func _on_Setting_done():
+	setting.hide()

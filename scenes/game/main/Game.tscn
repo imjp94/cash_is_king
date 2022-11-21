@@ -1,26 +1,27 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
-[ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/textures/texture_02.png" type="Texture" id=1]
-[ext_resource path="res://scenes/gui/pause_screen/PauseScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/buildings/AssetBuilding.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/buildings/PowerUpShop.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=5]
-[ext_resource path="res://scenes/buildings/Bank.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Game.gd" type="Script" id=7]
-[ext_resource path="res://scripts/AI.gd" type="Script" id=8]
-[ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://ai.tres" type="Resource" id=10]
-[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=11]
-[ext_resource path="res://scenes/consumable/Fate.tscn" type="PackedScene" id=13]
-[ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/buildings/WeaponShop.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/consumable/Chance.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/consumable/ConsumableSpawner.gd" type="Script" id=17]
-[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=18]
-[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=19]
-[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=20]
-[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=21]
-[ext_resource path="res://scripts/SpawnPoint.gd" type="Script" id=22]
+[ext_resource path="res://scenes/buildings/AssetBuilding.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/consumable/Fate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/consumable/Chance.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=5]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=6]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=7]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=8]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=9]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/textures/texture_02.png" type="Texture" id=11]
+[ext_resource path="res://scenes/game/main/Game.gd" type="Script" id=12]
+[ext_resource path="res://scripts/AI.gd" type="Script" id=13]
+[ext_resource path="res://scenes/consumable/ConsumableSpawner.gd" type="Script" id=14]
+[ext_resource path="res://scripts/SpawnPoint.gd" type="Script" id=15]
+[ext_resource path="res://ai.tres" type="Resource" id=16]
+[ext_resource path="res://scenes/buildings/WeaponShop.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/buildings/Bank.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/gui/pause_screen/PauseScreen.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/gui/game_score_screen/GameScore.tscn" type="PackedScene" id=20]
+[ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/buildings/PowerUpShop.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ProceduralSky" id=3]
 
@@ -37,54 +38,59 @@ adjustment_contrast = 1.1
 adjustment_saturation = 1.1
 
 [sub_resource type="Resource" id=16]
-script = ExtResource( 21 )
+script = ExtResource( 8 )
 __meta__ = {
 "graph_offset": Vector2( 372.5, 40 )
 }
 name = "End"
 
 [sub_resource type="Resource" id=13]
-script = ExtResource( 21 )
+script = ExtResource( 8 )
 __meta__ = {
 "graph_offset": Vector2( 14, 40 )
 }
 name = "Entry"
 
 [sub_resource type="Resource" id=17]
-script = ExtResource( 21 )
+script = ExtResource( 8 )
 __meta__ = {
 "graph_offset": Vector2( 374, 160 )
 }
 name = "Exit"
 
 [sub_resource type="Resource" id=15]
-script = ExtResource( 21 )
+script = ExtResource( 8 )
 __meta__ = {
 "graph_offset": Vector2( 173.5, 160 )
 }
 name = "Pause"
 
 [sub_resource type="Resource" id=14]
-script = ExtResource( 21 )
+script = ExtResource( 8 )
 __meta__ = {
 "graph_offset": Vector2( 174, 40 )
 }
 name = "Run"
 
+[sub_resource type="Resource" id=30]
+script = ExtResource( 7 )
+name = "exit"
+
 [sub_resource type="Resource" id=26]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "End"
 to = "Exit"
 conditions = {
+"exit": SubResource( 30 )
 }
 priority = 0
 
 [sub_resource type="Resource" id=18]
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 name = "start"
 
 [sub_resource type="Resource" id=19]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "Entry"
 to = "Run"
 conditions = {
@@ -93,11 +99,11 @@ conditions = {
 priority = 0
 
 [sub_resource type="Resource" id=24]
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 name = "exit"
 
 [sub_resource type="Resource" id=25]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "Pause"
 to = "Exit"
 conditions = {
@@ -106,11 +112,11 @@ conditions = {
 priority = 0
 
 [sub_resource type="Resource" id=28]
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 name = "resume"
 
 [sub_resource type="Resource" id=29]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "Pause"
 to = "Run"
 conditions = {
@@ -119,11 +125,11 @@ conditions = {
 priority = 0
 
 [sub_resource type="Resource" id=22]
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 name = "end"
 
 [sub_resource type="Resource" id=23]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "Run"
 to = "End"
 conditions = {
@@ -132,11 +138,11 @@ conditions = {
 priority = 0
 
 [sub_resource type="Resource" id=20]
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 name = "pause"
 
 [sub_resource type="Resource" id=21]
-script = ExtResource( 18 )
+script = ExtResource( 6 )
 from = "Run"
 to = "Pause"
 conditions = {
@@ -145,7 +151,7 @@ conditions = {
 priority = 0
 
 [sub_resource type="Resource" id=27]
-script = ExtResource( 20 )
+script = ExtResource( 5 )
 name = ""
 states = {
 "End": SubResource( 16 ),
@@ -187,7 +193,7 @@ surfaces/0 = {
 
 [sub_resource type="SpatialMaterial" id=7]
 flags_world_triplanar = true
-albedo_texture = ExtResource( 1 )
+albedo_texture = ExtResource( 11 )
 roughness = 0.5
 uv1_scale = Vector3( 0.125, 0.125, 0.125 )
 uv1_triplanar = true
@@ -199,7 +205,7 @@ size = 11
 outline_size = 2
 outline_color = Color( 0.2, 0.2, 0.2, 1 )
 use_filter = true
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="NavigationMesh" id=10]
 vertices = PoolVector3Array( -4.75, 0.3, -17.5, -1.75, 0.3, -17.5, -1.75, 0.3, -18, -8.25, 0.3, -15.75, -8.25, 0.3, -11.75, -6.5, 0.3, -11.75, -6.5, 0.3, -15.75, -18, 0.3, -18, -17.5, 0.3, -15.75, -17, 0.3, -16.75, -8.25, 0.3, -15.75, -6.5, 0.3, -15.75, -6, 0.3, -16.75, -9, 0.3, -17, -18, 0.3, -10, -17.5, 0.3, -10, -17.5, 0.3, -15.75, -18, 0.3, -18, -10, 0.3, -17.5, -9, 0.3, -17, -6, 0.3, -16.75, -4.75, 0.3, -17.5, -10, 0.3, -18, -18, 0.3, -18, -15.75, 0.3, -17.5, -10, 0.3, -17.5, -4.75, 0.3, -17.5, -1.75, 0.3, -18, -10, 0.3, -18, -10, 0.3, -17.5, -18, 0.3, -18, -17, 0.3, -16.75, -15.75, 0.3, -17.5, -1.75, 0.3, -18, -1.75, 0.3, -17.5, 1, 0.3, -17.5, 7.25, 0.3, -18, 2.75, 0.3, -15.75, 2.75, 0.3, -11.5, 6.5, 0.3, -11.25, 6.5, 0.3, -16.75, 2.25, 0.3, -16.75, 6.5, 0.3, -16.75, 7.25, 0.3, -18, 1, 0.3, -17.5, 2.25, 0.3, -16.75, 2.75, 0.3, -15.75, 6.5, 0.3, -16.75, -17, 0.3, -9, -17.5, 0.3, -10, -18, 0.3, -10, -18, 0.3, -1, -6.5, 0.3, -10, -6.5, 0.3, -11.75, -8.25, 0.3, -11.75, -8.75, 0.3, -9, -10, 0.3, -8.25, -15.75, 0.3, -8.25, -18, 0.3, -1, -5.75, 0.3, -8.75, -6.5, 0.3, -10, -8.75, 0.3, -9, -4.75, 0.3, -8.25, -5.75, 0.3, -8.75, -8.75, 0.3, -9, -10, 0.3, -8.25, -4.25, 0.3, -3.25, -3.5, 0.3, -4.5, -3.5, 0.3, -4.5, -0.75, 0.3, -5, -1, 0.3, -8.25, -4.75, 0.3, -8.25, -15.75, 0.3, -8.25, -17, 0.3, -9, -18, 0.3, -1, -8.5, 0.3, 7.5, -4.25, 0.3, 2.5, -4.25, 0.3, -3.25, -10, 0.3, -8.25, -18, 0.3, -1, -16.75, 0.3, 7.5, -18, 0.3, -1, -18, 0.3, 8.25, -16.75, 0.3, 7.5, -8.5, 0.3, 7.5, -7.75, 0.3, 8, -3.75, 0.3, 3.25, -4.25, 0.3, 2.5, 1, 0.3, -8.25, -1, 0.3, -8.25, -0.75, 0.3, -5, 6.5, 0.3, -11.25, 2.75, 0.3, -11.5, 2.75, 0.3, -10, 6.5, 0.3, -8.5, 1, 0.3, -8.25, -0.75, 0.3, -5, 3.25, 0.3, -5, 2, 0.3, -8.75, 6.5, 0.3, -8.5, 2.75, 0.3, -10, 2, 0.3, -8.75, 3.25, 0.3, -5, 4.5, 0.3, -4, 7.5, 0.3, -7.25, 7.75, 0.3, 9.25, 7.75, 0.3, 11, 9.5, 0.3, 11, 9.5, 0.3, 9.25, 8.25, 0.3, -6.75, 5, 0.3, -3.25, 5, 0.3, 2.5, 7.75, 0.3, 9.25, 9.5, 0.3, 9.25, 10, 0.3, 8.25, 7, 0.3, 8, 18, 0.3, 0, 18, 0.3, -8, 16.5, 0.3, -6.75, 6, 0.3, 7.5, 7, 0.3, 8, 10, 0.3, 8.25, 11.25, 0.3, 7.5, 5, 0.3, 2.5, 4.25, 0.3, 3.75, 4.25, 0.3, 3.75, 1.75, 0.3, 4.25, 2, 0.3, 7.5, 6, 0.3, 7.5, 17, 0.3, 7.5, 18, 0.3, 8, 18, 0.3, 0, 8.25, 0.3, -6.75, 7.5, 0.3, -7.25, 4.5, 0.3, -4, 5, 0.3, -3.25, 11.25, 0.3, 7.5, 17, 0.3, 7.5, 18, 0.3, 0, 16.5, 0.3, -6.75, 8.25, 0.3, -6.75, 5, 0.3, 2.5, 0.25, 0.3, 7.5, 2, 0.3, 7.5, 1.75, 0.3, 4.25, 0.25, 0.3, 7.5, 1.75, 0.3, 4.25, -2.5, 0.3, 4.25, -1, 0.3, 8.25, -1, 0.3, 8.25, -2.5, 0.3, 4.25, -3.75, 0.3, 3.25, -7.75, 0.3, 8, -6.75, 0.3, 9.25, -1.5, 0.3, 11, -6.75, 0.3, 9.25, -6.75, 0.3, 11, -1.5, 0.3, 11, 1.5, 0.3, 18, 2, 0.3, 16.75, 0.25, 0.3, 16.75, 1.5, 0.3, 18, 0.25, 0.3, 16.75, -1, 0.3, 16, -7, 0.3, 18, -1.5, 0.3, 15, -1.5, 0.3, 11, -6.75, 0.3, 11, -7, 0.3, 18, -7, 0.3, 18, -1, 0.3, 16, -1.5, 0.3, 15, 18, 0.3, 18, 18, 0.3, 16.25, 17, 0.3, 16.75, 9.5, 0.3, 15, 9.5, 0.3, 11, 7.75, 0.3, 11, 7.75, 0.3, 15, 9.75, 0.3, 18, 11.25, 0.3, 16.75, 10.25, 0.3, 16.25, 7, 0.3, 16.25, 6, 0.3, 16.75, 10.25, 0.3, 16.25, 9.5, 0.3, 15, 7.75, 0.3, 15, 7, 0.3, 16.25, 6, 0.3, 16.75, 2, 0.3, 16.75, 1.5, 0.3, 18, 9.75, 0.3, 18, 18, 0.3, 18, 17, 0.3, 16.75, 11.25, 0.3, 16.75, 9.75, 0.3, 18 )
@@ -217,14 +223,14 @@ region_min_size = 30.0
 albedo_color = Color( 0.968627, 1, 0, 1 )
 
 [node name="Game" type="Spatial"]
-script = ExtResource( 7 )
+script = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
 
 [node name="GameState" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 11 )
+script = ExtResource( 4 )
 state_machine = SubResource( 27 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -241,11 +247,11 @@ autostart = true
 
 [node name="SpawnPoint" type="Spatial" parent="." groups=["spawn_point"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6 )
-script = ExtResource( 22 )
+script = ExtResource( 15 )
 
 [node name="SpawnPoint2" type="Spatial" parent="." groups=["spawn_point"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -5 )
-script = ExtResource( 22 )
+script = ExtResource( 15 )
 player_index = 1
 
 [node name="Floor" type="StaticBody" parent="." groups=["navmesh"]]
@@ -261,41 +267,41 @@ material/0 = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.1, 0 )
 shape = SubResource( 8 )
 
-[node name="Building" parent="." instance=ExtResource( 3 )]
+[node name="Building" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -12.8 )
 
-[node name="Building4" parent="." instance=ExtResource( 3 )]
+[node name="Building4" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12.8 )
 
-[node name="Building2" parent="." instance=ExtResource( 3 )]
+[node name="Building2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 12.2 )
 
-[node name="Building3" parent="." instance=ExtResource( 3 )]
+[node name="Building3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12.2 )
 
 [node name="Player1" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 9 )
 device = 0
 device_type = 1
 
 [node name="Player2" type="Node" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 13 )
 color = Color( 1, 0, 0, 1 )
 
 [node name="ActionState" type="Node" parent="Player2"]
-script = ExtResource( 11 )
-state_machine = ExtResource( 10 )
+script = ExtResource( 4 )
+state_machine = ExtResource( 16 )
 
-[node name="StackPlayerDebugger" parent="Player2/ActionState" instance=ExtResource( 14 )]
+[node name="StackPlayerDebugger" parent="Player2/ActionState" instance=ExtResource( 21 )]
 
-[node name="PowerUpShop" parent="." instance=ExtResource( 4 )]
+[node name="PowerUpShop" parent="." instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.3 )
 
-[node name="Bank" parent="." instance=ExtResource( 6 )]
+[node name="Bank" parent="." instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6, -1, 13.3 )
 player_np = NodePath("../Player1")
 
-[node name="Bank2" parent="." instance=ExtResource( 6 )]
+[node name="Bank2" parent="." instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4, -1, -12.7 )
 player_np = NodePath("../Player2")
 
@@ -317,24 +323,27 @@ navmesh = SubResource( 10 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
-[node name="WeaponShop" parent="." instance=ExtResource( 15 )]
+[node name="WeaponShop" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2, 0, -1.1 )
 
 [node name="FateSpawner" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
-script = ExtResource( 17 )
-consumable_scn = ExtResource( 13 )
+script = ExtResource( 14 )
+consumable_scn = ExtResource( 2 )
 nav_mesh_inst_np = NodePath("../NavigationMeshInstance")
 
 [node name="ChanceSpawner" type="Timer" parent="."]
 wait_time = 45.0
 autostart = true
-script = ExtResource( 17 )
-consumable_scn = ExtResource( 16 )
+script = ExtResource( 14 )
+consumable_scn = ExtResource( 3 )
 nav_mesh_inst_np = NodePath("../NavigationMeshInstance")
 
-[node name="PauseScreen" parent="." instance=ExtResource( 2 )]
+[node name="PauseScreen" parent="." instance=ExtResource( 19 )]
+visible = false
+
+[node name="GameScore" parent="." instance=ExtResource( 20 )]
 visible = false
 
 [connection signal="transited" from="GameState" to="." method="_on_GameState_transited"]

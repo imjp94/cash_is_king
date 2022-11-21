@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/gui/pause_screen/PauseScreen.gd" type="Script" id=2]
+[ext_resource path="res://scenes/gui/setting/Setting.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -38,11 +39,22 @@ margin_right = 64.0
 margin_bottom = 20.0
 text = "Resume"
 
-[node name="ExitBtn" type="Button" parent="VBoxContainer"]
+[node name="SettingBtn" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 64.0
 margin_bottom = 44.0
+text = "Setting"
+
+[node name="ExitBtn" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 68.0
 text = "Exit"
 
+[node name="Setting" parent="." instance=ExtResource( 3 )]
+visible = false
+
 [connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingBtn" to="." method="_on_SettingBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="done" from="Setting" to="." method="_on_Setting_done"]

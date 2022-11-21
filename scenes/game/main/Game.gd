@@ -13,7 +13,9 @@ export var overall_interest_rate = 0.0
 onready var game_state = $GameState
 onready var play_time_label = $PlayTimeLabel
 onready var pause_screen = $PauseScreen
+onready var game_score = $GameScore
 
+var app_state
 var play_time = 0.0 setget , get_play_time
 
 var _play_time = 0.0
@@ -24,6 +26,7 @@ var _losers = []
 
 func _ready():
 	pause_screen.game_state = game_state
+	game_score.game_state = game_state
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
 
@@ -53,11 +56,14 @@ func _on_GameState_transited(from, to):
 			for winner in _winners:
 				winner.enable_input = false
 				print("player%d won" % winner.index)
+				game_score.message.text = game_score.message.text % winner.index
 			for loser in _losers:
 				loser.enable_input = false
 				print("player%d lost" % loser.index)
+			game_score.show()
 		"Exit":
-			pass
+			if app_state:
+				app_state.set_trigger("finish")
 
 func _on_asset_building_player_changed(from, to, asset_building):
 	if not from:
