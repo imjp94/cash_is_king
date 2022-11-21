@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/textures/texture_02.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/main/Character.tscn" type="PackedScene" id=2]
@@ -12,7 +12,15 @@
 [ext_resource path="res://ai.tres" type="Resource" id=10]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=11]
 [ext_resource path="res://scripts/NavigationObstacle.gd" type="Script" id=12]
+[ext_resource path="res://scenes/consumable/Fate.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/buildings/WeaponShop.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/consumable/Chance.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/consumable/ConsumableSpawner.gd" type="Script" id=17]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=18]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=19]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=20]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=21]
 
 [sub_resource type="ProceduralSky" id=3]
 
@@ -27,6 +35,127 @@ adjustment_enabled = true
 adjustment_brightness = 1.1
 adjustment_contrast = 1.1
 adjustment_saturation = 1.1
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 21 )
+__meta__ = {
+"graph_offset": Vector2( 14, 40 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 21 )
+__meta__ = {
+"graph_offset": Vector2( 174, 40 )
+}
+name = "Run"
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 21 )
+__meta__ = {
+"graph_offset": Vector2( 173.5, 160 )
+}
+name = "Pause"
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 21 )
+__meta__ = {
+"graph_offset": Vector2( 372.5, 40 )
+}
+name = "End"
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 21 )
+__meta__ = {
+"graph_offset": Vector2( 374, 160 )
+}
+name = "Exit"
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 19 )
+name = "start"
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 18 )
+from = "Entry"
+to = "Run"
+conditions = {
+"start": SubResource( 18 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 19 )
+name = "pause"
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 18 )
+from = "Run"
+to = "Pause"
+conditions = {
+"pause": SubResource( 20 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 19 )
+name = "end"
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 18 )
+from = "Run"
+to = "End"
+conditions = {
+"end": SubResource( 22 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 19 )
+name = "exit"
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 18 )
+from = "Pause"
+to = "Exit"
+conditions = {
+"exit": SubResource( 24 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 18 )
+from = "End"
+to = "Exit"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 20 )
+name = ""
+states = {
+"End": SubResource( 16 ),
+"Entry": SubResource( 13 ),
+"Exit": SubResource( 17 ),
+"Pause": SubResource( 15 ),
+"Run": SubResource( 14 )
+}
+transitions = {
+"End": {
+"Exit": SubResource( 26 )
+},
+"Entry": {
+"Run": SubResource( 19 )
+},
+"Pause": {
+"Exit": SubResource( 25 )
+},
+"Run": {
+"End": SubResource( 23 ),
+"Pause": SubResource( 21 )
+}
+}
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "cube_Cube001"
@@ -78,6 +207,10 @@ script = ExtResource( 7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource( 11 )
+state_machine = SubResource( 27 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 10, 0 )
@@ -172,4 +305,22 @@ navmesh = SubResource( 10 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
+[node name="WeaponShop" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2, 0, -1.1 )
+
+[node name="FateSpawner" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+script = ExtResource( 17 )
+consumable_scn = ExtResource( 13 )
+nav_mesh_inst_np = NodePath("../NavigationMeshInstance")
+
+[node name="ChanceSpawner" type="Timer" parent="."]
+wait_time = 45.0
+autostart = true
+script = ExtResource( 17 )
+consumable_scn = ExtResource( 16 )
+nav_mesh_inst_np = NodePath("../NavigationMeshInstance")
+
+[connection signal="transited" from="GameState" to="." method="_on_GameState_transited"]
 [connection signal="timeout" from="TurnTimer" to="." method="_on_TurnTimer_timeout"]

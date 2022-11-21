@@ -6,9 +6,11 @@ signal player_won(player)
 const Player = preload("res://scripts/Player.gd")
 const Character = preload("res://scenes/characters/main/Character.tscn")
 
+export var start_on_ready = true
 export var spawn_time = 3.0
 export var overall_interest_rate = 0.0
 
+onready var game_state = $GameState
 onready var play_time_label = $PlayTimeLabel
 
 var play_time = 0.0 setget , get_play_time
@@ -31,6 +33,25 @@ func _ready():
 	start_play_time()
 	update_time_label()
 
+	if start_on_ready:
+		game_state.set_trigger("start")
+
+func _on_GameState_transited(from, to):
+	match to:
+		"Entry":
+			pass
+		"Run":
+			pass
+		"Pause":
+			pass
+		"End":
+			for winner in _winners:
+				print("player%d won" % winner.index)
+			for loser in _losers:
+				print("player%d lost" % loser.index)
+		"Exit":
+			pass
+
 func _on_asset_building_player_changed(from, to, asset_building):
 	if from in _losers:
 		return
@@ -47,13 +68,12 @@ func _on_asset_building_player_changed(from, to, asset_building):
 				if asset_building.player == from:
 					asset_building.set_player_np(to.get_path())
 
-		print("player%d lose" % from.index)
 		emit_signal("player_lost", loser)
 		if Player.PLAYER_STACK.size() - 1 == _losers.size():
 			var winner = to
 			_winners.append(winner)
-			print("player%d won" % to.index)
 			emit_signal("player_won", winner)
+			game_state.set_trigger("end")
 
 func _on_player_pawn_dead(player):
 	player.set_pawn_np(NodePath())
