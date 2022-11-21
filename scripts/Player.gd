@@ -52,16 +52,19 @@ func can_handle_event(event):
 		if event.device != device:
 			can_handle = false
 
-	if device_type < DEVICE_TYPE.ALL:
-		if event is InputEventKey:
-			if not (device_type & DEVICE_TYPE.KEYBOARD):
-				can_handle = false
-		elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-			if not (device_type & DEVICE_TYPE.JOYPAD):
-				can_handle = false
-		elif event is InputEventMouse:
-			if not (device_type & DEVICE_TYPE.MOUSE):
-				can_handle = false
+		if can_handle:
+			if device_type < DEVICE_TYPE.ALL:
+				if event is InputEventKey:
+					if not (device_type & DEVICE_TYPE.KEYBOARD):
+						can_handle = false
+				elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+					if not (device_type & DEVICE_TYPE.JOYPAD):
+						can_handle = false
+				elif event is InputEventMouse:
+					if not (device_type & DEVICE_TYPE.MOUSE):
+						can_handle = false
+	else:
+		can_handle = false
 
 	return can_handle
 

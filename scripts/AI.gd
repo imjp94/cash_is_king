@@ -49,6 +49,8 @@ func _unhandled_input(event):
 func _process(delta):
 	if Engine.editor_hint:
 		return
+	if not enable_input:
+		return
 	if not is_instance_valid(pawn):
 		return
 	var nav_agent = pawn.get_node_or_null("NavigationAgent")
@@ -77,6 +79,8 @@ func _process(delta):
 func _physics_process(delta):
 	if Engine.editor_hint:
 		return
+	if not enable_input:
+		return
 	if not is_instance_valid(pawn):
 		return
 	var nav_agent = pawn.get_node_or_null("NavigationAgent")
@@ -100,6 +104,8 @@ func _physics_process(delta):
 		action_state.set_trigger("in_range")
 
 func shooting_target():
+	if not enable_input:
+		return
 	if not _is_shooting:
 		return
 	if not is_instance_valid(pawn):
@@ -115,6 +121,8 @@ func shooting_target():
 	get_tree().create_timer(0.2).connect("timeout", self, "shooting_target")
 
 func interacting():
+	if not enable_input:
+		return
 	if not _is_interacting:
 		return
 	if not is_instance_valid(pawn):
