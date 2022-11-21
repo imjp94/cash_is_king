@@ -14,8 +14,6 @@ onready var game_state = $GameState
 onready var play_time_label = $PlayTimeLabel
 
 var play_time = 0.0 setget , get_play_time
-var player0_spawn_point = Vector3.ZERO
-var player1_spawn_point = Vector3.ZERO
 
 var _play_time = 0.0
 var _last_play_timestamp = 0
@@ -24,9 +22,6 @@ var _losers = []
 
 
 func _ready():
-	for player in Player.PLAYER_STACK:
-		set("player%d_spawn_point" % player.index, player.pawn.global_transform.origin)
-		player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
 
@@ -41,7 +36,11 @@ func _on_GameState_transited(from, to):
 		"Entry":
 			pass
 		"Run":
-			pass
+			if from == "Entry":
+				for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
+					spawn_point.spawn()
+					var player = Player.PLAYER_STACK[spawn_point.player_index]
+					player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 		"Pause":
 			pass
 		"End":
@@ -84,10 +83,10 @@ func _on_player_pawn_dead(player):
 	
 	yield(get_tree().create_timer(spawn_time), "timeout")
 
-	var character = Character.instance()
-	add_child(character)
-	character.global_transform.origin = get("player%d_spawn_point" % player.index)
-	player.set_pawn_np(character.get_path())
+	for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
+		if spawn_point.player_index == player.index:
+			spawn_point.spawn()
+			break
 	player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 
 func _on_TurnTimer_timeout():

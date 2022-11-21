@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=1]
+[ext_resource path="res://ai.tres" type="Resource" id=2]
+[ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/AI.gd" type="Script" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.gd" type="Script" id=5]
+
+[node name="Player2" type="Node"]
+script = ExtResource( 4 )
+color = Color( 1, 0, 0, 1 )
+pawn_np = NodePath("../Character2")
+
+[node name="ActionState" type="Node" parent="."]
+script = ExtResource( 1 )
+state_machine = ExtResource( 2 )
+
+[node name="StackPlayerDebugger" type="Control" parent="ActionState" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.498039 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

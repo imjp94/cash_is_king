@@ -11,9 +11,6 @@ var _is_interacting = false
 
 func _ready():
 	action_state.connect("transited", self, "_on_action_state_transited")
-	pawn.get_node("NavigationAgent").connect("velocity_computed", self, "_on_nav_agent_velocity_computed")
-	pawn.get_node("NavigationAgent").connect("target_reached", self, "_on_nav_agent_target_reached")
-	pawn.health.connect("changed", self, "_on_pawn_health_changed")
 
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
