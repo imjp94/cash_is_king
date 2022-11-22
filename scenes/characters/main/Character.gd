@@ -9,6 +9,7 @@ signal color_changed(from, to)
 signal dead()
 
 export(Coin.GRADE) var coin_grade = Coin.GRADE.SILVER
+export var color = Color.white setget set_color
 export var speed = 10.0
 export var turn_vel = 45.0
 
@@ -165,10 +166,17 @@ func _on_Health_credit_timeout(credits):
 func _on_Health_broke(by, credits):
 	broke()
 
+func set_color(v):
+	var old = color
+	color = v
+	if mesh_instance:
+		mesh_instance.get("material/0").set("albedo_color", color)
+	if color != old:
+		emit_signal("color_changed", old, color)
+
 func _on_player_color_changed(from, to):
 	if mesh_instance and player:
 		mesh_instance.get("material/0").set("albedo_color", to)
-	emit_signal("color_changed", from, to)
 
 func set_player(v):
 	player = v
