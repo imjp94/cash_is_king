@@ -172,7 +172,7 @@ func get_owned_buildings(exclude_bank=true):
 func navigate_pawn(nav_agent, target):
 	var target_pos = NavigationServer.map_get_closest_point(nav_agent.get_navigation_map(), target.global_transform.origin)
 	nav_agent.set_target_location(target_pos)
-	$"/root/Game/Ball".global_transform.origin = target_pos
+	$"../Ball".global_transform.origin = target_pos
 
 func is_nav_agent_target_reached(nav_agent):
 	return nav_agent.get_target_location().distance_to(pawn.global_transform.origin) <= nav_agent.path_desired_distance
