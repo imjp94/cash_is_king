@@ -1,5 +1,6 @@
 extends Node
 
+export(PackedScene) var start_screen_scn
 export(PackedScene) var main_menu_scn
 export(PackedScene) var level_select_scn
 export(PackedScene) var character_select_scn
@@ -15,6 +16,8 @@ func _on_AppState_transited(from, to):
 	# Handle next scene
 	var next_scn
 	match to:
+		"StartScreen":
+			next_scn = start_screen_scn.instance()
 		"MainMenu":
 			next_scn = main_menu_scn.instance()
 		"LevelSelect":
