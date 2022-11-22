@@ -33,7 +33,7 @@ func _enter_tree():
 	color = PLAYER_COLOR[get_index()]
 
 func _exit_tree():
-	PLAYER_STACK.remove(index)
+	PLAYER_STACK.remove(get_index())
 
 func _color_changed(from, to):
 	pass
