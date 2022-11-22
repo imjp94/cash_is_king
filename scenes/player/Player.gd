@@ -84,3 +84,47 @@ func set_pawn_np(v):
 
 func get_index():
 	return PLAYER_STACK.find(self)
+
+static func get_device_type(event):
+	if event is InputEventKey:
+		return DEVICE_TYPE.KEYBOARD
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		return DEVICE_TYPE.JOYPAD
+	elif event is InputEventMouse:
+		return DEVICE_TYPE.MOUSE
+	else:
+		printerr("Unknown device type from event: ", event)
+		return DEVICE_TYPE.ALL
+
+static func get_player_index(dev, dev_type):
+	for player in PLAYER_STACK:
+		if player.device == dev and player.device_type == dev_type:
+			return player.index
+	return -1
+
+static func get_player(idx):
+	for player in PLAYER_STACK:
+		if idx == player.index:
+			return player
+	return null
+
+static func has_player(dev, dev_type):
+	for player in PLAYER_STACK:
+		if player.device == dev and player.device_type == dev_type:
+			return true
+	return false
+
+static func add_player_from_input(event, parent, player_packed_scene):
+	var dev = event.device
+	var dev_type = get_device_type(event)
+	if not has_player(dev, dev_type):
+		var new_player = add_player(dev, dev_type, parent, player_packed_scene)
+		return new_player
+	return null
+
+static func add_player(dev, dev_type, parent, player_packed_scene):
+	var new_player = player_packed_scene.instance()
+	new_player.device = dev
+	new_player.device_type = dev_type
+	parent.add_child(new_player)
+	return new_player
