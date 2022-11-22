@@ -12,6 +12,7 @@ enum DEVICE_TYPE {
 }
 
 const PLAYER_STACK = []
+const PLAYER_COLOR = [Color.blue, Color.red, Color.yellow, Color.green]
 
 export var enable_input = true
 export var device = -1
@@ -29,6 +30,7 @@ func _ready():
 
 func _enter_tree():
 	PLAYER_STACK.append(self)
+	color = PLAYER_COLOR[get_index()]
 
 func _exit_tree():
 	PLAYER_STACK.remove(index)
@@ -113,6 +115,9 @@ static func has_player(dev, dev_type):
 		if player.device == dev and player.device_type == dev_type:
 			return true
 	return false
+
+static func get_player_count():
+	return PLAYER_STACK.size()
 
 static func add_player_from_input(event, parent, player_packed_scene):
 	var dev = event.device
