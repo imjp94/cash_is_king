@@ -62,6 +62,11 @@ func _on_GameState_transited(from, to):
 				print("player%d lost" % loser.index)
 			game_score.show()
 		"Exit":
+			for player in Player.PLAYER_STACK:
+				player.enable_input = true
+				if "action_state" in player: # AI
+					player.get_parent().remove_child(player)
+					player.queue_free()
 			if app_state:
 				app_state.set_trigger("finish")
 
