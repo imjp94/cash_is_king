@@ -1,7 +1,7 @@
 tool
 extends Spatial
 
-const Player = preload("res://scripts/Player.gd")
+const Player = preload("res://scenes/player/Player.gd")
 const CharacterScene = preload("res://scenes/characters/main/Character.tscn")
 
 export var player_index = 0

@@ -3,7 +3,7 @@ extends Spatial
 signal player_lost(player)
 signal player_won(player)
 
-const Player = preload("res://scripts/Player.gd")
+const Player = preload("res://scenes/player/Player.gd")
 const Character = preload("res://scenes/characters/main/Character.tscn")
 
 export var start_on_ready = true

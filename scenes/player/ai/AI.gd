@@ -1,5 +1,5 @@
 tool
-extends "res://scripts/Player.gd"
+extends "res://scenes/player/Player.gd"
 
 const StateDirectory = preload("res://addons/imjp94.yafsm/src/StateDirectory.gd")
 
