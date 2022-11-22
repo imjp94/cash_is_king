@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/gui/character_select/CharacterSelect.gd" type="Script" id=2]
+[ext_resource path="res://scenes/gui/character_select/CharacterSelect3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -23,6 +24,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="CharacterSelect3D" parent="ViewportContainer/Viewport" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -40,10 +54,10 @@ custom_fonts/font = SubResource( 1 )
 text = "Character Select"
 
 [node name="ButtonList" type="VBoxContainer" parent="."]
-anchor_left = 0.6
-anchor_top = 0.4
-anchor_right = 0.9
-anchor_bottom = 0.9
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
@@ -52,20 +66,20 @@ __meta__ = {
 }
 
 [node name="NextBtn" type="Button" parent="ButtonList"]
-margin_left = 121.0
-margin_top = 108.0
-margin_right = 185.0
-margin_bottom = 148.0
+margin_left = 44.0
+margin_top = 3.0
+margin_right = 108.0
+margin_bottom = 43.0
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 2 )
 text = "Next"
 flat = true
 
 [node name="BackBtn" type="Button" parent="ButtonList"]
-margin_left = 121.0
-margin_top = 152.0
-margin_right = 185.0
-margin_bottom = 192.0
+margin_left = 44.0
+margin_top = 47.0
+margin_right = 108.0
+margin_bottom = 87.0
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 3 )
 text = "Back"
