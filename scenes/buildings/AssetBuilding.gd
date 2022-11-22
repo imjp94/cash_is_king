@@ -1,26 +1,28 @@
 tool
 extends "res://scenes/buildings/Building.gd"
 
+const Player = preload("res://scenes/player/Player.gd")
+
 signal player_changed(from, to)
 signal interest_computed(matured_interest)
 signal upgraded()
 
+export var player_index = -1 setget set_player_index
 export var biddable = true setget set_biddable
 export var upgrade_threshold = 50
 # Use interest if both specified, else use any variable that is not zero
 export var interest = 5
 export var interest_rate = 0.05
-export(NodePath) var player_np setget set_player_np
 
 onready var health = $Health
 onready var label3d = $Label3D
 onready var area = $Area
 
-var player setget set_player
+var player setget , get_player
 
 
 func _ready():
-	set_player_np(player_np)
+	set_player_index(player_index)
 	set_biddable(biddable)
 	label3d.text = health.to_text()
 
@@ -38,7 +40,7 @@ func _on_Area_body_entered(projectile):
 		health.increase(projectile.damage)
 	else:
 		if health.credit(instigator, projectile.damage):
-			set_player(instigator)
+			set_player_index(instigator.index)
 
 	projectile.queue_free()
 
@@ -141,25 +143,31 @@ func compute_interest(extra_interest_rate):
 	coins_flow(self, self, matured_interest, 2) # TODO: Dynamically decide coin grade
 	emit_signal("interest_computed", matured_interest)
 
-func set_player_np(v):
-	player_np = v
-	if is_inside_tree():
-		set_player(get_node_or_null(player_np))
+func set_color(v):
+	if mesh_instance:
+		mesh_instance.get("material/0").set("albedo_color", v)
 
-func set_player(v):
-	var old = player
-	player = v
-	if player != old:
-		if player:
-			if old:
-				remove_from_group("player%d" % old.index)
-			add_to_group("player%d" % player.index)
-			if mesh_instance:
-				mesh_instance.get("material/0").set("albedo_color", player.color)
-		else:
-			mesh_instance.get("material/0").set("albedo_color", Color.white)
-		_on_player_changed(old, player)
-		emit_signal("player_changed", old, player)
+func set_player_index(v):
+	var old = player_index
+	player_index = v
+	var old_player = Player.get_player(old)
+	var player = Player.get_player(player_index)
+	if old_player:
+		remove_from_group("player%d" % old_player.index)
+	if player:
+		add_to_group("player%d" % player.index)
+	
+	if player_index > -1 and player_index < Player.PLAYER_COLOR.size():
+		set_color(Player.PLAYER_COLOR[player_index])
+	else:
+		set_color(Color.white)
+
+	if player_index != old:
+		_on_player_changed(old_player, player)
+		emit_signal("player_changed", old_player, player)
+
+func get_player():
+	return Player.get_player(player_index)
 
 func has_player():
 	return !!player
