@@ -113,6 +113,14 @@ no_depth_test = true
 text = "10"
 font = SubResource( 7 )
 
+[node name="UpgradeLabel" type="Label3D" parent="."]
+transform = Transform( -0.7, 0, 6.11959e-08, 6.11959e-08, -3.0598e-08, 0.7, 2.67496e-15, 0.7, 3.0598e-08, 0, 2.4, -2 )
+visible = false
+billboard = 1
+no_depth_test = true
+text = "$50 Upgrade"
+font = SubResource( 7 )
+
 [node name="HealthBar3D" parent="." instance=ExtResource( 5 )]
 transform = Transform( -1, -6.18172e-08, 6.18172e-08, 0, -0.707107, -0.707107, 8.74228e-08, -0.707107, 0.707107, 0, 0.4, -3 )
 material/0 = SubResource( 9 )

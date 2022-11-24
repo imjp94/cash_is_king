@@ -18,6 +18,7 @@ export var interest_rate = 0.05
 onready var health = $Health
 onready var health_bar_3d = $HealthBar3D
 onready var label3d = $Label3D
+onready var upgrade_label = $UpgradeLabel
 onready var area = $Area
 
 var player setget , get_player
@@ -72,6 +73,7 @@ func _on_Health_changed(diff):
 		interest_rate *= 2
 		scale *= 1.3
 		_is_upgraded = true
+		upgrade_label.hide()
 
 		emit_signal("upgraded")
 
@@ -159,6 +161,11 @@ func set_player_index(v):
 		remove_from_group("player%d" % old_player.index)
 	if player:
 		add_to_group("player%d" % player.index)
+		if upgrade_label and upgrade_threshold > 0:
+			upgrade_label.show()
+	else:
+		if upgrade_label:
+			upgrade_label.hide()
 	
 	if player_index > -1 and player_index < Player.PLAYER_COLOR.size():
 		set_color(Player.PLAYER_COLOR[player_index])
