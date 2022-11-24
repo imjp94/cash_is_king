@@ -9,10 +9,16 @@ var push_back_force = 0.0
 var instigator
 
 
+func _ready():
+	coin.anim_player.stop(true)
+	coin.rotation.x = deg2rad(90)
+
 func _physics_process(delta):
 	if can_pick():
 		collision_mask += 16
 		instigator = null
+		coin.anim_player.play("idle")
+		coin.rotation.x = 0
 		set_physics_process(false)
 
 func _on_Area_body_entered(body):
