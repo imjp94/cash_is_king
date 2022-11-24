@@ -2,12 +2,12 @@ tool
 extends Spatial
 
 enum GRADE {
-	SILVER, COPPER, GOLD
+	COPPER, SILVER, GOLD
 }
-const GRADE_COLOR = [Color.silver, Color("ffa60d"), Color.gold]
+const GRADE_COLOR = [Color("ff5e0d"), Color.silver, Color.gold]
 const GRADE_DAMAGE = [1, 2, 5]
 
-export(GRADE) var grade = GRADE.SILVER setget set_grade
+export(GRADE) var grade = GRADE.COPPER setget set_grade
 
 onready var mesh_instance = $MeshInstance
 onready var anim_player = $AnimationPlayer

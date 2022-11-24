@@ -8,7 +8,7 @@ const CoinScene = preload("res://scenes/projectile/Coin.tscn")
 signal color_changed(from, to)
 signal dead()
 
-export(Coin.GRADE) var coin_grade = Coin.GRADE.SILVER
+export(Coin.GRADE) var coin_grade = Coin.GRADE.COPPER
 export var color = Color.white setget set_color
 export var speed = 10.0
 export var turn_vel = 45.0
