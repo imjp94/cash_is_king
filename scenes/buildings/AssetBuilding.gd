@@ -36,7 +36,7 @@ func _on_Area_body_entered(projectile):
 	anim_player.play("hit")
 
 	var instigator = projectile.instigator
-	if player == instigator:
+	if get_player() == instigator:
 		health.increase(projectile.damage)
 	else:
 		if health.credit(instigator, projectile.damage):
@@ -47,11 +47,11 @@ func _on_Area_body_entered(projectile):
 func _on_withdraw(by, amount, grade):
 	if health.value <= 0:
 		return 0
-	if player != by:
+	if get_player() != by:
 		return 0
 	
 	amount = min(health.value, amount)
-	var pawn = player.pawn
+	var pawn = get_player().pawn
 	var pawn_health = pawn.get_node_or_null("Health")
 	if pawn_health:
 		pawn_health.increase(amount)
@@ -170,7 +170,7 @@ func get_player():
 	return Player.get_player(player_index)
 
 func has_player():
-	return !!player
+	return !!get_player()
 
 func set_biddable(v):
 	biddable = v
