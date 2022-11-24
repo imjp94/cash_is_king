@@ -14,6 +14,7 @@ export var speed = 10.0
 export var turn_vel = 45.0
 
 onready var health = $Health
+onready var health_bar_3d = $HealthBar3D
 onready var mesh_instance = $MeshInstance
 onready var equipment_slot = $EquipmentSlot
 onready var area = $Area
@@ -132,19 +133,19 @@ func _on_Health_changed(diff):
 	if not label3d:
 		return
 	
-	label3d.text = health.to_text()
+	label3d.text = str(health.value)
 
 func _on_Health_credited(creditor, amount):
 	if not label3d:
 		return
 	
-	label3d.text = health.to_text()
+	health_bar_3d.health_bar.set_value_pairs(health.get_health_bar_value_pairs())
 
 func _on_Health_credit_timeout(credits):
 	if not label3d:
 		return
 	
-	label3d.text = health.to_text()
+	health_bar_3d.health_bar.reset()
 
 	for creditor in credits.keys():
 		var target = creditor.pawn
@@ -171,12 +172,14 @@ func set_color(v):
 	color = v
 	if mesh_instance:
 		mesh_instance.get("material/0").set("albedo_color", color)
+	if health_bar_3d:
+		health_bar_3d.health_bar.color = color
 	if color != old:
 		emit_signal("color_changed", old, color)
 
 func _on_player_color_changed(from, to):
 	if mesh_instance and player:
-		mesh_instance.get("material/0").set("albedo_color", to)
+		set_color(to)
 
 func set_player(v):
 	player = v
