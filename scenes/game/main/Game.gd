@@ -11,9 +11,11 @@ export var spawn_time = 3.0
 export var overall_interest_rate = 0.0
 
 onready var game_state = $GameState
-onready var play_time_label = $PlayTimeLabel
+onready var play_turn_label = $"%PlayTurnLabel"
+onready var play_time_label = $"%PlayTimeLabel"
 onready var pause_screen = $PauseScreen
 onready var game_score = $GameScore
+onready var turn_timer = $TurnTimer
 
 var app_state
 var play_time = 0.0 setget , get_play_time
@@ -31,6 +33,7 @@ func _ready():
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
 
 	start_play_time()
+	update_turn_label()
 	update_time_label()
 
 	if start_on_ready:
@@ -107,11 +110,16 @@ func _on_player_pawn_dead(player):
 	player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 
 func _on_TurnTimer_timeout():
+	update_turn_label()
 	if get_play_time() > 60000 and overall_interest_rate < 0.5:
 		overall_interest_rate += 0.01
 	
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.call("compute_interest", overall_interest_rate)
+
+func update_turn_label():
+	var turn = int(get_play_time() / (turn_timer.wait_time * 1000))
+	play_turn_label.text = "Turn %d" % turn
 
 func update_time_label():
 	play_time_label.text = str(floor(get_play_time() / 1000))
