@@ -2,6 +2,7 @@ tool
 extends "res://scenes/buildings/Building.gd"
 
 const Player = preload("res://scenes/player/Player.gd")
+const Account = preload("res://scripts/Account.gd")
 
 signal player_changed(from, to)
 signal interest_computed(matured_interest)
@@ -15,6 +16,7 @@ export var interest = 5
 export var interest_rate = 0.05
 
 onready var health = $Health
+onready var health_bar_3d = $HealthBar3D
 onready var label3d = $Label3D
 onready var area = $Area
 
@@ -24,7 +26,7 @@ var player setget , get_player
 func _ready():
 	set_player_index(player_index)
 	set_biddable(biddable)
-	label3d.text = health.to_text()
+	label3d.text = str(health.value)
 
 func event(by, extra={}):
 	return withdraw(by, extra.get("amount", 0), extra.get("grade", 0))
@@ -76,19 +78,17 @@ func _on_Health_changed(diff):
 	if not label3d:
 		return
 
-	label3d.text = health.to_text()
+	label3d.text = str(health.value)
 
 func _on_Health_credited(creditor, amount):
 	if not label3d:
 		return
-	
-	label3d.text = health.to_text()
+
+	health_bar_3d.health_bar.set_value_pairs(health.get_health_bar_value_pairs())
 
 func _on_Health_broke(by, credits):
 	if not label3d:
 		return
-	
-	label3d.text = health.to_text()
 
 	for creditor in credits:
 		if by == creditor:
@@ -110,7 +110,8 @@ func _on_Health_credit_timeout(credits):
 	if not label3d:
 		return
 	
-	label3d.text = health.to_text()
+	# health_bar_3d.health_bar.color = get_player().color if get_player() else Color.white
+	health_bar_3d.health_bar.reset()
 
 	for creditor in credits:
 		var amount = credits[creditor]
@@ -146,6 +147,8 @@ func compute_interest(extra_interest_rate):
 func set_color(v):
 	if mesh_instance:
 		mesh_instance.get("material/0").set("albedo_color", v)
+	if health_bar_3d:
+		health_bar_3d.health_bar.color = v
 
 func set_player_index(v):
 	var old = player_index

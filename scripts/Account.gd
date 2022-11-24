@@ -36,6 +36,9 @@ func credit(creditor, amount):
 		return true
 	return false
 
+func get_health_bar_value_pairs():
+	return health_bar_value_pairs(credits, value)
+
 func _on_credit_timeout():
 	var credits_copy = credits.duplicate(true)
 	credits.clear()
@@ -52,3 +55,13 @@ func to_text():
 		fs += "}"
 	
 	return fs
+
+static func health_bar_value_pairs(credits, health_value):
+	var value_pairs = []
+	for creditor in credits:
+		var amount = credits[creditor]
+		value_pairs.append({
+			"value": amount / health_value if health_value != 0 else 1.0,
+			"color": creditor.color
+		})
+	return value_pairs

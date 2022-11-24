@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/gui/components/health_bar/HealthBar.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id=2]
+resource_local_to_scene = true
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 0.953333, 1, 0.3, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.3, 1, 0.346667, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.495667, 0.11, 1, 1 )
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[node name="HealthBar" type="Panel"]
+margin_right = 128.0
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+color = Color( 1, 1, 1, 1 )
+
+[node name="Bar1" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.867188
+anchor_bottom = 1.0
+margin_right = 16.9999
+rect_min_size = Vector2( 16, 0 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Bar2" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.726563
+anchor_bottom = 1.0
+margin_right = 15.9279
+rect_min_size = Vector2( 16, 0 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Bar3" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.539063
+anchor_bottom = 1.0
+margin_right = 6.13594
+rect_min_size = Vector2( 24, 0 )
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Bar4" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.296875
+anchor_bottom = 1.0
+margin_right = 9.616
+rect_min_size = Vector2( 24, 0 )
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
