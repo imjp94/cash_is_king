@@ -11,7 +11,7 @@ export var speed = 1.0
 export var navigation_radius = 30.0
 
 onready var collision_shape = $CollisionShape
-onready var mesh_instance = $MeshInstance
+onready var mesh_instance = $fortune_cat
 onready var area = $Area
 onready var nav_agent = $NavigationAgent
 
