@@ -12,7 +12,7 @@ enum DEVICE_TYPE {
 }
 
 const PLAYER_STACK = []
-const PLAYER_COLOR = [Color.blue, Color.red, Color.yellow, Color.green]
+const PLAYER_COLOR = [Color("3333ff"), Color("ff3333"), Color("ffff33"), Color("33ff33")]
 
 export var enable_input = true
 export var device = -1
