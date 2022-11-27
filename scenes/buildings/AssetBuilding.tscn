@@ -64,6 +64,7 @@ viewport_path = NodePath("HealthBar3D/Viewport")
 resource_local_to_scene = true
 flags_transparent = true
 flags_no_depth_test = true
+flags_albedo_tex_force_srgb = true
 vertex_color_is_srgb = true
 params_cull_mode = 2
 params_billboard_keep_scale = true
