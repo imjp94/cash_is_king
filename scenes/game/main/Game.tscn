@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://scenes/buildings/AssetBuilding.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/consumable/Fate.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/game/main/Game.gd" type="Script" id=12]
 [ext_resource path="res://scenes/consumable/ConsumableSpawner.gd" type="Script" id=14]
 [ext_resource path="res://scripts/SpawnPoint.gd" type="Script" id=15]
+[ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/buildings/WeaponShop.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/buildings/Bank.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/gui/pause_screen/PauseScreen.tscn" type="PackedScene" id=19]
@@ -212,6 +213,13 @@ region_min_size = 30.0
 [sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.968627, 1, 0, 1 )
 
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.2, 0.2, 0.2, 0.196078 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="DynamicFont" id=9]
 size = 11
 outline_size = 2
@@ -221,19 +229,35 @@ font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=32]
 resource_local_to_scene = true
-bg_color = Color( 0, 0, 1, 1 )
+bg_color = Color( 0.2, 0.2, 1, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id=33]
 resource_local_to_scene = true
-bg_color = Color( 1, 0, 0, 1 )
+bg_color = Color( 1, 0.2, 0.2, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id=34]
 resource_local_to_scene = true
-bg_color = Color( 1, 1, 0, 1 )
+bg_color = Color( 1, 1, 0.2, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id=35]
 resource_local_to_scene = true
-bg_color = Color( 0, 1, 0, 1 )
+bg_color = Color( 0.2, 1, 0.2, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 12 )
@@ -247,7 +271,7 @@ script = ExtResource( 4 )
 state_machine = SubResource( 27 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 10, 0 )
+transform = Transform( -0.707107, 0.5, 0.5, 0, -0.707107, 0.707107, 0.707107, 0.5, 0.5, 0, 10, 0 )
 shadow_enabled = true
 
 [node name="Camera" type="Camera" parent="."]
@@ -337,34 +361,48 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="BG" parent="HUD" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -28.0
-margin_right = 36.0
-margin_bottom = 40.0
+anchor_bottom = 0.0
+margin_left = -48.0
+margin_right = 48.0
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 36 )
 
-[node name="PlayTurnLabel" type="Label" parent="HUD/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/BG"]
+margin_right = 96.0
+margin_bottom = 32.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/BG/MarginContainer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 24.0
+
+[node name="PlayTurnLabel" type="Label" parent="HUD/BG/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_top = 12.0
 margin_right = 26.0
-margin_bottom = 28.0
+margin_bottom = 16.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "Turn"
 align = 1
 
-[node name="VSeparator" type="VSeparator" parent="HUD/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="HUD/BG/MarginContainer/HBoxContainer"]
 margin_left = 30.0
 margin_right = 34.0
-margin_bottom = 40.0
+margin_bottom = 16.0
 
-[node name="PlayTimeLabel" type="Label" parent="HUD/HBoxContainer"]
+[node name="PlayTimeLabel" type="Label" parent="HUD/BG/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 38.0
-margin_top = 12.0
 margin_right = 64.0
-margin_bottom = 28.0
+margin_bottom = 16.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "Time"
@@ -373,8 +411,8 @@ align = 1
 [node name="Avatar" parent="HUD" instance=ExtResource( 21 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -66.0
-margin_right = 64.0
+margin_top = -82.0
+margin_right = 90.0
 margin_bottom = 0.0
 custom_styles/panel = SubResource( 32 )
 player_index = 0
@@ -382,9 +420,9 @@ player_index = 0
 [node name="Avatar2" parent="HUD" instance=ExtResource( 21 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -64.0
+margin_left = -90.0
 margin_right = 0.0
-margin_bottom = 66.0
+margin_bottom = 82.0
 custom_styles/panel = SubResource( 33 )
 player_index = 1
 
@@ -399,8 +437,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = -66.0
+margin_left = -91.0
+margin_top = -82.0
 margin_right = 0.0
 margin_bottom = 0.0
 custom_styles/panel = SubResource( 35 )
