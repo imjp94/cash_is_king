@@ -15,16 +15,25 @@ export var turn_vel = 45.0
 
 onready var health = $Health
 onready var health_bar_3d = $HealthBar3D
-onready var mesh_instance = $MeshInstance
+onready var mesh_instance = $character/Character/Skeleton/Body
 onready var equipment_slot = $EquipmentSlot
 onready var area = $Area
 onready var label3d = $Label3D
+onready var anim_tree = $AnimationTree
 
 var player setget set_player
 
 var _pending_look_dir = Vector3.FORWARD
 var _can_input = false
 
+
+func _ready():
+	# TODO: Proper way to handle equipment animation
+	match equipment_slot.equipment.name:
+		"EmptyHanded":
+			anim_tree.set("parameters/ThrowPose/blend_amount", 1.0)
+		_:
+			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
 
 func _physics_process(delta):
 	if Engine.editor_hint:
@@ -61,9 +70,11 @@ func move_and_turn(forward, right):
 	turn(forward, right)
 
 func move(forward, right):
+	var value = abs(forward) + abs(right)
 	add_central_force(Vector3.FORWARD * forward * (speed))
 	add_central_force(Vector3.RIGHT * right * (speed))
 	# linear_velocity = (Vector3.FORWARD * forward * speed) + (Vector3.RIGHT * right * speed)
+	anim_tree.set("parameters/Run/blend_amount", value)
 
 func turn(forward, right):
 	var value = abs(forward) + abs(right)
@@ -93,14 +104,14 @@ func attack():
 		return
 	if not equipment_slot.equipment:
 		return
-	
+
 	var attacked = equipment_slot.equipment.attack()
 	if attacked:
 		var projectile_count = equipment_slot.equipment.get("projectile_count") # TODO: Better way to get projectile count from equipment
 		if not projectile_count:
 			projectile_count = 1
 		health.deduct(Coin.GRADE_DAMAGE[coin_grade] * projectile_count)
-
+		
 		# TODO: Proper way to handle equipment animation
 		match equipment_slot.equipment.name:
 			"EmptyHanded":
@@ -196,3 +207,16 @@ func set_player(v):
 
 func get_damage():
 	return Coin.GRADE_DAMAGE[coin_grade]
+
+func _on_EquipmentSlot_equipment_changed(from, to):
+	if Engine.editor_hint:
+		return
+	if not to:
+		return
+	
+	# TODO: Proper way to handle equipment animation
+	match to.name:
+		"EmptyHanded":
+			anim_tree.set("parameters/ThrowPose/blend_amount", 1.0)
+		_:
+			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
