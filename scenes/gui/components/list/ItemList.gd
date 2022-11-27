@@ -2,7 +2,7 @@ extends ScrollContainer
 
 signal item_selected(index)
 
-onready var hbox = $HBoxContainer
+onready var hbox = $BG/MarginContainer/HBoxContainer
 
 
 func _ready():

@@ -1,16 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/fonts/Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Bungee/Bungee-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/gui/start_screen/StartScreen.gd" type="Script" id=3]
+[ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
+outline_size = 12
+outline_color = Color( 0.2, 0.2, 0.2, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
+outline_size = 6
+outline_color = Color( 0.2, 0.2, 0.2, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -18,6 +23,8 @@ font_data = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+
+[node name="BG" parent="." instance=ExtResource( 4 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 40.0
@@ -30,8 +37,9 @@ custom_constants/margin_bottom = 32
 [node name="Label" type="Label" parent="MarginContainer"]
 margin_left = 64.0
 margin_top = 32.0
-margin_right = 595.0
-margin_bottom = 164.0
+margin_right = 763.0
+margin_bottom = 129.0
+custom_colors/font_color = Color( 0.443137, 0.866667, 0.745098, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Cash Is King"
 
@@ -49,6 +57,7 @@ margin_bottom = 25.0
 margin_top = 4.0
 margin_right = 195.0
 margin_bottom = 46.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Press Start"
 align = 1

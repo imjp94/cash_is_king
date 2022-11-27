@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gui/components/list/ItemList.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.2, 0.2, 0.196078 )
 
 [node name="ItemList" type="ScrollContainer"]
 anchor_right = 0.25
@@ -10,9 +14,25 @@ follow_focus = true
 scroll_vertical_enabled = false
 script = ExtResource( 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 48.0
-margin_right = 256.0
-margin_bottom = 48.0
+[node name="BG" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 32.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
+margin_right = 32.0
+margin_bottom = 16.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 8
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 6

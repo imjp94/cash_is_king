@@ -67,7 +67,7 @@ func set_player_index(v):
 		
 	var player = Player.get_player(player_index)
 	
-	if not Engine.editor_hint:
+	if not Engine.editor_hint and is_inside_tree():
 		if player:
 			show()
 			for asset_building in get_tree().get_nodes_in_group("asset_building"):
