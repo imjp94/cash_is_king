@@ -101,6 +101,13 @@ func attack():
 			projectile_count = 1
 		health.deduct(Coin.GRADE_DAMAGE[coin_grade] * projectile_count)
 
+		# TODO: Proper way to handle equipment animation
+		match equipment_slot.equipment.name:
+			"EmptyHanded":
+				anim_tree.set("parameters/Throw/active", true)
+			_:
+				anim_tree.set("parameters/Shoot/active", true)
+
 func event():
 	if area.get_overlapping_bodies().size() == 0:
 		return
