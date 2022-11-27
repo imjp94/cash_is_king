@@ -26,5 +26,4 @@ func set_equipment(v):
 	equipment = v
 	if old:
 		old.queue_free()
-	if equipment != old:
-		emit_signal("equipment_changed", old, equipment)
+	emit_signal("equipment_changed", old, equipment)
