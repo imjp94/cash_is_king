@@ -110,14 +110,6 @@ params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_texture = SubResource( 12 )
 
-[sub_resource type="StyleBoxFlat" id=14]
-resource_local_to_scene = true
-bg_color = Color( 1, 1, 1, 1 )
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
-
 [node name="Character" type="RigidBody" groups=["player"]]
 collision_layer = 3
 axis_lock_angular_x = true
@@ -192,9 +184,6 @@ radius = 3.0
 [node name="HealthBar3D" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3.5, 0 )
 material/0 = SubResource( 13 )
-
-[node name="HealthBar" parent="HealthBar3D/Viewport" index="0"]
-custom_styles/panel = SubResource( 14 )
 
 [connection signal="broke" from="Health" to="." method="_on_Health_broke"]
 [connection signal="changed" from="Health" to="." method="_on_Health_changed"]
