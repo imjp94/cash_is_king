@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/equipment/Shooter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/model/weaponpack_assets/Models/pistol.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -11,11 +12,17 @@ projectile_push_back_force = 150.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 transform = Transform( -4.37114e-08, 0, 0.3, 0, 0.2, 0, -1, 0, -1.31134e-08, -3.72529e-08, 0, -0.5 )
+visible = false
 mesh = SubResource( 1 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="." index="1"]
 transform = Transform( 1.91069e-15, -8.74228e-09, 0.3, -0.6, -5.24537e-09, 0, 4.37114e-08, -0.2, -1.31134e-08, -7.45058e-09, -0.4, 0.5 )
+visible = false
 mesh = SubResource( 1 )
 
 [node name="ShootOrigin" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
+
+[node name="pistol" type="MeshInstance" parent="." index="3"]
+transform = Transform( -37.846, 0, 3.3086e-06, 0, 37.846, 0, -3.3086e-06, 0, -37.846, 0, -0.471, 0 )
+mesh = ExtResource( 2 )
