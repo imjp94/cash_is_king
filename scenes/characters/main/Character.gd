@@ -21,6 +21,7 @@ onready var equipment_slot = $EquipmentSlot
 onready var area = $Area
 onready var label3d = $Label3D
 onready var anim_tree = $AnimationTree
+onready var empty_handed = $EmptyHanded
 
 var player setget set_player
 
@@ -33,12 +34,6 @@ var _root_motion_linear_velocity = Vector3.ZERO
 func _ready():
 	_orientation = global_transform
 	_orientation.origin = Vector3()
-	# TODO: Proper way to handle equipment animation
-	match equipment_slot.equipment.name:
-		"EmptyHanded":
-			pass
-		_:
-			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
 
 func _physics_process(delta):
 	if Engine.editor_hint:
@@ -133,22 +128,19 @@ func turn(forward, right):
 func attack():
 	if health.value == 0:
 		return
-	if not equipment_slot.equipment:
-		return
-
-	var attacked = equipment_slot.equipment.attack()
-	if attacked:
-		var projectile_count = equipment_slot.equipment.get("projectile_count") # TODO: Better way to get projectile count from equipment
-		if not projectile_count:
-			projectile_count = 1
-		health.deduct(Coin.GRADE_DAMAGE[coin_grade] * projectile_count)
-		
-		# TODO: Proper way to handle equipment animation
-		match equipment_slot.equipment.name:
-			"EmptyHanded":
-				anim_tree.set("parameters/Throw/active", true)
-			_:
-				anim_tree.set("parameters/Shoot/active", true)
+	if equipment_slot.equipment:
+		var attacked = equipment_slot.equipment.attack()
+		if attacked:
+			var projectile_count = equipment_slot.equipment.get("projectile_count") # TODO: Better way to get projectile count from equipment
+			if not projectile_count:
+				projectile_count = 1
+			health.deduct(Coin.GRADE_DAMAGE[coin_grade] * projectile_count)
+			anim_tree.set("parameters/Shoot/active", true)
+	else:
+		var attacked = empty_handed.equipment.attack()
+		if attacked:
+			health.deduct(Coin.GRADE_DAMAGE[coin_grade])
+			anim_tree.set("parameters/Throw/active", true)
 
 func event():
 	if area.get_overlapping_bodies().size() == 0:
@@ -245,9 +237,4 @@ func _on_EquipmentSlot_equipment_changed(from, to):
 	if not to:
 		return
 	
-	# TODO: Proper way to handle equipment animation
-	match to.name:
-		"EmptyHanded":
-			pass
-		_:
-			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
+	anim_tree.set("parameters/Strafing/blend_amount", 1.0)
