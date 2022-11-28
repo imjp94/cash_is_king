@@ -21,8 +21,8 @@ visible = false
 mesh = SubResource( 1 )
 
 [node name="ShootOrigin" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.1 )
 
 [node name="pistol" type="MeshInstance" parent="." index="3"]
-transform = Transform( -37.846, 0, 3.3086e-06, 0, 37.846, 0, -3.3086e-06, 0, -37.846, 0, -0.471, 0 )
+transform = Transform( -37.846, 0, 3.3086e-06, 0, 37.846, 0, -3.3086e-06, 0, -37.846, 0, 0.129, -0.6 )
 mesh = ExtResource( 2 )
