@@ -12,6 +12,7 @@ export(Coin.GRADE) var coin_grade = Coin.GRADE.COPPER
 export var color = Color.white setget set_color
 export var speed = 10.0
 export var turn_vel = 45.0
+export var apply_root_motion = false
 
 onready var health = $Health
 onready var health_bar_3d = $HealthBar3D
@@ -25,13 +26,17 @@ var player setget set_player
 
 var _pending_look_dir = Vector3.FORWARD
 var _can_input = false
+var _orientation = Transform()
+var _root_motion_linear_velocity = Vector3.ZERO
 
 
 func _ready():
+	_orientation = global_transform
+	_orientation.origin = Vector3()
 	# TODO: Proper way to handle equipment animation
 	match equipment_slot.equipment.name:
 		"EmptyHanded":
-			anim_tree.set("parameters/ThrowPose/blend_amount", 1.0)
+			pass
 		_:
 			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
 
@@ -71,10 +76,36 @@ func move_and_turn(forward, right):
 
 func move(forward, right):
 	var value = abs(forward) + abs(right)
-	add_central_force(Vector3.FORWARD * forward * (speed))
-	add_central_force(Vector3.RIGHT * right * (speed))
-	# linear_velocity = (Vector3.FORWARD * forward * speed) + (Vector3.RIGHT * right * speed)
+	var base_transform = Transform() # World Transform
+
+	if value:
+		_pending_look_dir = (-base_transform.basis.z * forward + base_transform.basis.x * right)
+		_pending_look_dir.y = 0
+		_pending_look_dir = _pending_look_dir.normalized()
+
+	value = value / value if value > 0 else 0
+
+	# Use vector2 direction to get signed angled, to determine turn direction
+	var control_dir = Vector2(_pending_look_dir.x, _pending_look_dir.z)
+	var char_forward = -global_transform.basis.z
+	var char_dir = Vector2(char_forward.x, char_forward.z)
+	var angle_diff = control_dir.angle_to(char_dir)
+	angle_diff *= value
+
+	value -= abs(angle_diff / PI) 
+
 	anim_tree.set("parameters/Run/blend_amount", value)
+
+	if apply_root_motion:
+		_orientation.basis = global_transform.basis
+		var vel = (_orientation * $AnimationTree.get_root_motion_transform()).origin / (get_physics_process_delta_time())
+		_root_motion_linear_velocity.x = vel.x
+		_root_motion_linear_velocity.z = vel.z
+		_orientation.origin = Vector3.ZERO
+		_orientation = _orientation.orthonormalized()
+		linear_velocity = _root_motion_linear_velocity
+	else:
+		_root_motion_linear_velocity = Vector3.ZERO
 
 func turn(forward, right):
 	var value = abs(forward) + abs(right)
@@ -217,6 +248,6 @@ func _on_EquipmentSlot_equipment_changed(from, to):
 	# TODO: Proper way to handle equipment animation
 	match to.name:
 		"EmptyHanded":
-			anim_tree.set("parameters/ThrowPose/blend_amount", 1.0)
+			pass
 		_:
 			anim_tree.set("parameters/Strafing/blend_amount", 1.0)
