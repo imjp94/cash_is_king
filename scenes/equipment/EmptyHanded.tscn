@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/equipment/Shooter.gd" type="Script" id=1]
 [ext_resource path="res://scenes/equipment/Shooter.tscn" type="PackedScene" id=2]
 
 [node name="EmptyHanded" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
 cooldown = 0.3
-shoot_force = 1500.0
+shoot_force = 2000.0
 projectile_push_back_force = 100.0

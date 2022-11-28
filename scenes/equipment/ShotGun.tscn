@@ -11,7 +11,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-shoot_force = 2000.0
+shoot_force = 3000.0
 projectile_push_back_force = 200.0
 projectile_count = 5
 spread_angle_max = 15.0

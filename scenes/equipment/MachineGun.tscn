@@ -9,7 +9,7 @@
 [node name="MachineGun" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 cooldown = 0.2
-shoot_force = 2500.0
+shoot_force = 5000.0
 projectile_push_back_force = 200.0
 projectile_count = 3
 
