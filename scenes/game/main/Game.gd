@@ -50,9 +50,9 @@ func _on_GameState_transited(from, to):
 		"Run":
 			if from == "Entry":
 				for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
-					spawn_point.spawn()
-					var player = Player.PLAYER_STACK[spawn_point.player_index]
-					player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
+					if spawn_point.spawn():
+						var player = Player.PLAYER_STACK[spawn_point.player_index]
+						player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 		"Pause":
 			get_tree().paused = true
 		"End":
