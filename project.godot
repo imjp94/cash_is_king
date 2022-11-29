@@ -22,7 +22,7 @@ gdscript/warnings/unused_signal=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gd-blender-3d-shortcuts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/ui_design_tool/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/gd-blender-3d-shortcuts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jm_pp_outlines/plugin.cfg", "res://addons/ui_design_tool/plugin.cfg" )
 
 [gui]
 
@@ -121,4 +121,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
