@@ -1,0 +1,344 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_split_Mesh road_split.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantCurve_Mesh road_slantCurve.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_sideEntry_Mesh road_sideEntry.mesh" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_straightBarrier_Mesh road_straightBarrier.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantFlatCurve_Mesh road_slantFlatCurve.mesh" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/tile_low_Mesh tile_low.mesh" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_sideBarrier_Mesh road_sideBarrier.mesh" type="ArrayMesh" id=7]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantBarrier_Mesh road_slantBarrier.mesh" type="ArrayMesh" id=8]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantFlatHigh_Mesh road_slantFlatHigh.mesh" type="ArrayMesh" id=9]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantHigh_Mesh road_slantHigh.mesh" type="ArrayMesh" id=10]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantHighBarrier_Mesh road_slantHighBarrier.mesh" type="ArrayMesh" id=11]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_sideEntryBarrier_Mesh road_sideEntryBarrier.mesh" type="ArrayMesh" id=12]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_sideExitBarrier_Mesh road_sideExitBarrier.mesh" type="ArrayMesh" id=13]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_splitBarrier_Mesh road_splitBarrier.mesh" type="ArrayMesh" id=14]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_straight_Mesh road_straight.mesh" type="ArrayMesh" id=15]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantCurveBarrier_Mesh road_slantCurveBarrier.mesh" type="ArrayMesh" id=16]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/tile_high_Mesh tile_high.mesh" type="ArrayMesh" id=17]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_square_Mesh road_square.mesh" type="ArrayMesh" id=18]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/tile_slantHigh_Mesh tile_slantHigh.mesh" type="ArrayMesh" id=19]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slant_Mesh road_slant.mesh" type="ArrayMesh" id=20]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_squareBarrier_Mesh road_squareBarrier.mesh" type="ArrayMesh" id=21]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_straightBarrierEnd_Mesh road_straightBarrierEnd.mesh" type="ArrayMesh" id=22]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/tile_slant_Mesh tile_slant.mesh" type="ArrayMesh" id=23]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bendBarrier_Mesh road_bendBarrier.mesh" type="ArrayMesh" id=24]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_side_Mesh road_side.mesh" type="ArrayMesh" id=25]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_sideExit_Mesh road_sideExit.mesh" type="ArrayMesh" id=26]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_roundabout_Mesh road_roundabout.mesh" type="ArrayMesh" id=27]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_slantFlat_Mesh road_slantFlat.mesh" type="ArrayMesh" id=28]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bendSidewalk_Mesh road_bendSidewalk.mesh" type="ArrayMesh" id=29]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_endRoundBarrier_Mesh road_endRoundBarrier.mesh" type="ArrayMesh" id=30]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_endRound_Mesh road_endRound.mesh" type="ArrayMesh" id=31]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_drivewayDoubleBarrier_Mesh road_drivewayDoubleBarrier.mesh" type="ArrayMesh" id=32]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_crossroad_Mesh road_crossroad.mesh" type="ArrayMesh" id=33]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_end_Mesh road_end.mesh" type="ArrayMesh" id=34]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_intersectionPath_Mesh road_intersectionPath.mesh" type="ArrayMesh" id=35]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_intersectionBarrier_Mesh road_intersectionBarrier.mesh" type="ArrayMesh" id=36]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_intersectionLine_Mesh road_intersectionLine.mesh" type="ArrayMesh" id=37]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_curveBarrier_Mesh road_curveBarrier.mesh" type="ArrayMesh" id=38]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_curveIntersection_Mesh road_curveIntersection.mesh" type="ArrayMesh" id=39]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_crossroadPath_Mesh road_crossroadPath.mesh" type="ArrayMesh" id=40]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_drivewaySingle_Mesh road_drivewaySingle.mesh" type="ArrayMesh" id=41]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_crossroadLine_Mesh road_crossroadLine.mesh" type="ArrayMesh" id=42]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_intersection_Mesh road_intersection.mesh" type="ArrayMesh" id=43]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_curve_Mesh road_curve.mesh" type="ArrayMesh" id=44]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_endBarrier_Mesh road_endBarrier.mesh" type="ArrayMesh" id=45]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bendSquare_Mesh road_bendSquare.mesh" type="ArrayMesh" id=46]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_roundaboutBarrier_Mesh road_roundaboutBarrier.mesh" type="ArrayMesh" id=47]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_drivewayDouble_Mesh road_drivewayDouble.mesh" type="ArrayMesh" id=48]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_crossing_Mesh road_crossing.mesh" type="ArrayMesh" id=49]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bridge_Mesh road_bridge.mesh" type="ArrayMesh" id=50]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_curvePavement_Mesh road_curvePavement.mesh" type="ArrayMesh" id=51]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bendSquareBarrier_Mesh road_bendSquareBarrier.mesh" type="ArrayMesh" id=52]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_drivewaySingleBarrier_Mesh road_drivewaySingleBarrier.mesh" type="ArrayMesh" id=53]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_curveIntersectionBarrier_Mesh road_curveIntersectionBarrier.mesh" type="ArrayMesh" id=54]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_bend_Mesh road_bend.mesh" type="ArrayMesh" id=55]
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/road_crossroadBarrier_Mesh road_crossroadBarrier.mesh" type="ArrayMesh" id=56]
+[ext_resource path="res://scenes/meshlib/AssetDistributor.gd" type="Script" id=57]
+
+[node name="CityRoad" type="Spatial"]
+script = ExtResource( 57 )
+margin_x = 10.0
+margin_z = 10.0
+
+[node name="road_bendSquareBarrier_Mesh road_bendSquareBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, -30 )
+mesh = ExtResource( 52 )
+skeleton = NodePath("")
+
+[node name="road_bendSquare_Mesh road_bendSquare" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, -20 )
+mesh = ExtResource( 46 )
+skeleton = NodePath("")
+
+[node name="road_bend_Mesh road_bend" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, -10 )
+mesh = ExtResource( 55 )
+skeleton = NodePath("")
+
+[node name="road_bridge_Mesh road_bridge" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, 0 )
+mesh = ExtResource( 50 )
+skeleton = NodePath("")
+
+[node name="road_crossing_Mesh road_crossing" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, 10 )
+mesh = ExtResource( 49 )
+skeleton = NodePath("")
+
+[node name="road_crossroadBarrier_Mesh road_crossroadBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, 20 )
+mesh = ExtResource( 56 )
+skeleton = NodePath("")
+
+[node name="road_crossroadLine_Mesh road_crossroadLine" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, 30 )
+mesh = ExtResource( 42 )
+skeleton = NodePath("")
+
+[node name="road_crossroadPath_Mesh road_crossroadPath" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -30, 0, 40 )
+mesh = ExtResource( 40 )
+skeleton = NodePath("")
+
+[node name="road_crossroad_Mesh road_crossroad" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, -30 )
+mesh = ExtResource( 33 )
+skeleton = NodePath("")
+
+[node name="road_curveBarrier_Mesh road_curveBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, -20 )
+mesh = ExtResource( 38 )
+skeleton = NodePath("")
+
+[node name="road_curveIntersectionBarrier_Mesh road_curveIntersectionBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, -10 )
+mesh = ExtResource( 54 )
+skeleton = NodePath("")
+
+[node name="road_curveIntersection_Mesh road_curveIntersection" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, 0 )
+mesh = ExtResource( 39 )
+skeleton = NodePath("")
+
+[node name="road_curvePavement_Mesh road_curvePavement" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, 10 )
+mesh = ExtResource( 51 )
+skeleton = NodePath("")
+
+[node name="road_curve_Mesh road_curve" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, 20 )
+mesh = ExtResource( 44 )
+skeleton = NodePath("")
+
+[node name="road_drivewayDoubleBarrier_Mesh road_drivewayDoubleBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, 30 )
+mesh = ExtResource( 32 )
+skeleton = NodePath("")
+
+[node name="road_drivewayDouble_Mesh road_drivewayDouble" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -20, 0, 40 )
+mesh = ExtResource( 48 )
+skeleton = NodePath("")
+
+[node name="road_drivewaySingleBarrier_Mesh road_drivewaySingleBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, -30 )
+mesh = ExtResource( 53 )
+skeleton = NodePath("")
+
+[node name="road_drivewaySingle_Mesh road_drivewaySingle" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, -20 )
+mesh = ExtResource( 41 )
+skeleton = NodePath("")
+
+[node name="road_endBarrier_Mesh road_endBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, -10 )
+mesh = ExtResource( 45 )
+skeleton = NodePath("")
+
+[node name="road_endRoundBarrier_Mesh road_endRoundBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 0 )
+mesh = ExtResource( 30 )
+skeleton = NodePath("")
+
+[node name="road_endRound_Mesh road_endRound" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 10 )
+mesh = ExtResource( 31 )
+skeleton = NodePath("")
+
+[node name="road_end_Mesh road_end" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 20 )
+mesh = ExtResource( 34 )
+skeleton = NodePath("")
+
+[node name="road_intersectionBarrier_Mesh road_intersectionBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 30 )
+mesh = ExtResource( 36 )
+skeleton = NodePath("")
+
+[node name="road_intersectionLine_Mesh road_intersectionLine" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 40 )
+mesh = ExtResource( 37 )
+skeleton = NodePath("")
+
+[node name="road_intersectionPath_Mesh road_intersectionPath" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -30 )
+mesh = ExtResource( 35 )
+skeleton = NodePath("")
+
+[node name="road_intersection_Mesh road_intersection" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -20 )
+mesh = ExtResource( 43 )
+skeleton = NodePath("")
+
+[node name="road_roundaboutBarrier_Mesh road_roundaboutBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -10 )
+mesh = ExtResource( 47 )
+skeleton = NodePath("")
+
+[node name="road_roundabout_Mesh road_roundabout" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+mesh = ExtResource( 27 )
+skeleton = NodePath("")
+
+[node name="road_sideBarrier_Mesh road_sideBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 10 )
+mesh = ExtResource( 7 )
+skeleton = NodePath("")
+
+[node name="road_sideEntryBarrier_Mesh road_sideEntryBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 20 )
+mesh = ExtResource( 12 )
+skeleton = NodePath("")
+
+[node name="road_sideEntry_Mesh road_sideEntry" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 30 )
+mesh = ExtResource( 3 )
+skeleton = NodePath("")
+
+[node name="road_sideExitBarrier_Mesh road_sideExitBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 40 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("")
+
+[node name="road_sideExit_Mesh road_sideExit" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, -30 )
+mesh = ExtResource( 26 )
+skeleton = NodePath("")
+
+[node name="road_side_Mesh road_side" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, -20 )
+mesh = ExtResource( 25 )
+skeleton = NodePath("")
+
+[node name="road_slantBarrier_Mesh road_slantBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, -10 )
+mesh = ExtResource( 8 )
+skeleton = NodePath("")
+
+[node name="road_slantCurveBarrier_Mesh road_slantCurveBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 0 )
+mesh = ExtResource( 16 )
+skeleton = NodePath("")
+
+[node name="road_slantCurve_Mesh road_slantCurve" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 10 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+
+[node name="road_slantFlatCurve_Mesh road_slantFlatCurve" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 20 )
+mesh = ExtResource( 5 )
+skeleton = NodePath("")
+
+[node name="road_slantFlatHigh_Mesh road_slantFlatHigh" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 30 )
+mesh = ExtResource( 9 )
+skeleton = NodePath("")
+
+[node name="road_slantFlat_Mesh road_slantFlat" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 40 )
+mesh = ExtResource( 28 )
+skeleton = NodePath("")
+
+[node name="road_slantHighBarrier_Mesh road_slantHighBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, -30 )
+mesh = ExtResource( 11 )
+skeleton = NodePath("")
+
+[node name="road_slantHigh_Mesh road_slantHigh" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, -20 )
+mesh = ExtResource( 10 )
+skeleton = NodePath("")
+
+[node name="road_slant_Mesh road_slant" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, -10 )
+mesh = ExtResource( 20 )
+skeleton = NodePath("")
+
+[node name="road_splitBarrier_Mesh road_splitBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 0 )
+mesh = ExtResource( 14 )
+skeleton = NodePath("")
+
+[node name="road_split_Mesh road_split" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 10 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("")
+
+[node name="road_squareBarrier_Mesh road_squareBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 20 )
+mesh = ExtResource( 21 )
+skeleton = NodePath("")
+
+[node name="road_square_Mesh road_square" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 30 )
+mesh = ExtResource( 18 )
+skeleton = NodePath("")
+
+[node name="road_straightBarrierEnd_Mesh road_straightBarrierEnd" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 40 )
+mesh = ExtResource( 22 )
+skeleton = NodePath("")
+
+[node name="road_straightBarrier_Mesh road_straightBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, -30 )
+mesh = ExtResource( 4 )
+skeleton = NodePath("")
+
+[node name="road_straight_Mesh road_straight" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, -20 )
+mesh = ExtResource( 15 )
+skeleton = NodePath("")
+
+[node name="tile_high_Mesh tile_high" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, -10 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("")
+
+[node name="tile_low_Mesh tile_low" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, 0 )
+mesh = ExtResource( 6 )
+skeleton = NodePath("")
+
+[node name="tile_slantHigh_Mesh tile_slantHigh" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, 10 )
+mesh = ExtResource( 19 )
+skeleton = NodePath("")
+
+[node name="tile_slant_Mesh tile_slant" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, 20 )
+mesh = ExtResource( 23 )
+skeleton = NodePath("")
+
+[node name="road_bendBarrier_Mesh road_bendBarrier" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, 30 )
+mesh = ExtResource( 24 )
+skeleton = NodePath("")
+
+[node name="road_bendSidewalk_Mesh road_bendSidewalk" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 30, 0, 40 )
+mesh = ExtResource( 29 )
+skeleton = NodePath("")

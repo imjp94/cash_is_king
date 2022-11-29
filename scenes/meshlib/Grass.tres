@@ -1,0 +1,29 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 0.784314 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+period = 42.9
+persistence = 1.0
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+flags_world_triplanar = true
+albedo_color = Color( 0.175, 0.35, 0.14, 1 )
+roughness = 0.5
+detail_enabled = true
+detail_mask = SubResource( 4 )
+detail_blend_mode = 0
+detail_uv_layer = 0
+detail_albedo = SubResource( 2 )
+uv1_scale = Vector3( 0.25, 0.25, 0.25 )
+uv1_triplanar = true
