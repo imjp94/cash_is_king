@@ -11,6 +11,7 @@ extents = Vector3( 1.5, 1.5, 1.5 )
 resource_local_to_scene = true
 flags_world_triplanar = true
 albedo_texture = ExtResource( 2 )
+metallic_specular = 1.0
 roughness = 0.5
 uv1_scale = Vector3( 0.125, 0.125, 0.125 )
 uv1_triplanar = true
@@ -24,7 +25,6 @@ viewport_path = NodePath("HealthBar3D/Viewport")
 [sub_resource type="SpatialMaterial" id=6]
 resource_local_to_scene = true
 flags_transparent = true
-flags_no_depth_test = true
 flags_albedo_tex_force_srgb = true
 vertex_color_is_srgb = true
 params_cull_mode = 2
