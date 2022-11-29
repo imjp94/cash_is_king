@@ -36,6 +36,7 @@ func _physics_process(delta):
 
 	var vel = (Vector3.FORWARD * forward * speed) + (Vector3.RIGHT * right * speed)
 	linear_velocity = vel
+	mesh_instance.look_at(global_transform.origin + dir, Vector3.UP)
 
 func explode():
 	for i in _current_value:
