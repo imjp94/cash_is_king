@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/model/kenney_citykitroads/Models/GLTF format/construction_pylon_Mesh construction_pylon.mesh" type="ArrayMesh" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.16, 0.19, 0.15 )
+
+[node name="TrafficCone" type="RigidBody"]
+
+[node name="construction_pylon_Mesh construction_pylon" type="MeshInstance" parent="."]
+transform = Transform( 16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0.015, 0 )
+mesh = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.775, 0 )
+shape = SubResource( 1 )
