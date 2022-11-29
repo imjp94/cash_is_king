@@ -1,5 +1,7 @@
 extends Spatial
 
+signal destroy(by, extra)
+
 const Coin = preload("res://scenes/projectile/Coin.gd")
 const CoinScene = preload("res://scenes/projectile/Coin.tscn")
 
@@ -20,11 +22,19 @@ func deposit(by, amount, grade):
 	coins_flow(by.pawn, self, amount, grade)
 	return amount
 
+func destroy(by, extra={}):
+	anim_player.play("destroy")
+	_on_destroy(by)
+	emit_signal("destroy", by, extra)
+
 func _on_withdraw(by, amount, grade):
 	return amount
 
 func _on_deposit(by, amount, grade):
 	return amount
+
+func _on_destroy(by):
+	pass
 
 func coin_flow(from, to, grade):
 	anim_player.play_backwards("hit")

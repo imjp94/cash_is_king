@@ -32,6 +32,15 @@ func _ready():
 func event(by, extra={}):
 	return withdraw(by, extra.get("amount", 0), extra.get("grade", 0))
 
+func _on_destroy(by):
+	_is_upgraded = false
+	interest /= 2.0
+	interest_rate /= 2.0
+	scale /= 1.3
+	upgrade_label.show()
+	set_player_index(-1)
+	health.deduct(health.value)
+
 func _on_Area_body_entered(projectile):
 	if not projectile.instigator: # Coin when drop on floor and pickable
 		return

@@ -8,5 +8,4 @@ func _on_Area_body_entered(body):
 		var building = body.get_parent()
 		if building.is_in_group("asset_building"):
 			if building.has_player():
-				building.player_index = -1
-				building.health.deduct(building.health.value)
+				building.destroy(self)
