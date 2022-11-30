@@ -1,0 +1,288 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://scenes/meshlib/AssetDistributor.gd" type="Script" id=1]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_overhang_Mesh detail_overhang.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/roof_center_Mesh roof_center.mesh" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperA_Mesh skyscraperA.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_umbrellaDetailed_Mesh detail_umbrellaDetailed.mesh" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingD_Mesh low_buildingD.mesh" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingA_Mesh large_buildingA.mesh" type="ArrayMesh" id=7]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperE_Mesh skyscraperE.mesh" type="ArrayMesh" id=8]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_awningWide_Mesh detail_awningWide.mesh" type="ArrayMesh" id=9]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingD_Mesh large_buildingD.mesh" type="ArrayMesh" id=10]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingE_Mesh large_buildingE.mesh" type="ArrayMesh" id=11]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingG_Mesh large_buildingG.mesh" type="ArrayMesh" id=12]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_overhangWide_Mesh detail_overhangWide.mesh" type="ArrayMesh" id=13]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingC_Mesh large_buildingC.mesh" type="ArrayMesh" id=14]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingG_Mesh low_buildingG.mesh" type="ArrayMesh" id=15]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingJ_Mesh low_buildingJ.mesh" type="ArrayMesh" id=16]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingK_Mesh low_buildingK.mesh" type="ArrayMesh" id=17]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingL_Mesh low_buildingL.mesh" type="ArrayMesh" id=18]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingM_Mesh low_buildingM.mesh" type="ArrayMesh" id=19]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_wideA_Mesh low_wideA.mesh" type="ArrayMesh" id=20]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingE_Mesh low_buildingE.mesh" type="ArrayMesh" id=21]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingC_Mesh low_buildingC.mesh" type="ArrayMesh" id=22]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_umbrella_Mesh detail_umbrella.mesh" type="ArrayMesh" id=23]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingF_Mesh large_buildingF.mesh" type="ArrayMesh" id=24]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_wideB_Mesh low_wideB.mesh" type="ArrayMesh" id=25]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperB_Mesh skyscraperB.mesh" type="ArrayMesh" id=26]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperC_Mesh skyscraperC.mesh" type="ArrayMesh" id=27]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingH_Mesh low_buildingH.mesh" type="ArrayMesh" id=28]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/large_buildingB_Mesh large_buildingB.mesh" type="ArrayMesh" id=29]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingA_Mesh low_buildingA.mesh" type="ArrayMesh" id=30]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingB_Mesh low_buildingB.mesh" type="ArrayMesh" id=31]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingF_Mesh low_buildingF.mesh" type="ArrayMesh" id=32]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingN_Mesh low_buildingN.mesh" type="ArrayMesh" id=33]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/low_buildingI_Mesh low_buildingI.mesh" type="ArrayMesh" id=34]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/roof_corner_Mesh roof_corner.mesh" type="ArrayMesh" id=35]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/detail_awning_Mesh detail_awning.mesh" type="ArrayMesh" id=36]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/roof_side_Mesh roof_side.mesh" type="ArrayMesh" id=37]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/sign_billboard_Mesh sign_billboard.mesh" type="ArrayMesh" id=38]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/sign_hospital_Mesh sign_hospital.mesh" type="ArrayMesh" id=39]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperD_Mesh skyscraperD.mesh" type="ArrayMesh" id=40]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/roof_overhang_Mesh roof_overhang.mesh" type="ArrayMesh" id=41]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingB_Mesh small_buildingB.mesh" type="ArrayMesh" id=42]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingC_Mesh small_buildingC.mesh" type="ArrayMesh" id=43]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowD_Mesh wall_windowD.mesh" type="ArrayMesh" id=44]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingF_Mesh small_buildingF.mesh" type="ArrayMesh" id=45]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_doorA_Mesh wall_doorA.mesh" type="ArrayMesh" id=46]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_solid_Mesh wall_solid.mesh" type="ArrayMesh" id=47]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowA_Mesh wall_windowA.mesh" type="ArrayMesh" id=48]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowB_Mesh wall_windowB.mesh" type="ArrayMesh" id=49]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowE_Mesh wall_windowE.mesh" type="ArrayMesh" id=50]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingE_Mesh small_buildingE.mesh" type="ArrayMesh" id=51]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowC_Mesh wall_windowC.mesh" type="ArrayMesh" id=52]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_doorB_Mesh wall_doorB.mesh" type="ArrayMesh" id=53]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/skyscraperF_Mesh skyscraperF.mesh" type="ArrayMesh" id=54]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingD_Mesh small_buildingD.mesh" type="ArrayMesh" id=55]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/small_buildingA_Mesh small_buildingA.mesh" type="ArrayMesh" id=56]
+[ext_resource path="res://assets/model/kenney_citykitcommercial/Models/GLTF format/wall_windowF_Mesh wall_windowF.mesh" type="ArrayMesh" id=57]
+
+[node name="City" type="Spatial"]
+script = ExtResource( 1 )
+margin_x = 3.0
+margin_z = 3.0
+
+[node name="detail_awningWide_Mesh detail_awningWide" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, -61.5 )
+mesh = ExtResource( 9 )
+
+[node name="detail_awning_Mesh detail_awning" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, -43.5 )
+mesh = ExtResource( 36 )
+
+[node name="detail_overhangWide_Mesh detail_overhangWide" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, -25.5 )
+mesh = ExtResource( 13 )
+
+[node name="detail_overhang_Mesh detail_overhang" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, -7.5 )
+mesh = ExtResource( 2 )
+
+[node name="detail_umbrellaDetailed_Mesh detail_umbrellaDetailed" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, 10.5 )
+mesh = ExtResource( 5 )
+
+[node name="detail_umbrella_Mesh detail_umbrella" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, 28.5 )
+mesh = ExtResource( 23 )
+
+[node name="large_buildingA_Mesh large_buildingA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, 46.5 )
+mesh = ExtResource( 7 )
+
+[node name="large_buildingB_Mesh large_buildingB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -54, 0, 64.5 )
+mesh = ExtResource( 29 )
+
+[node name="large_buildingC_Mesh large_buildingC" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, -61.5 )
+mesh = ExtResource( 14 )
+
+[node name="large_buildingD_Mesh large_buildingD" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, -43.5 )
+mesh = ExtResource( 10 )
+
+[node name="large_buildingE_Mesh large_buildingE" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, -25.5 )
+mesh = ExtResource( 11 )
+
+[node name="large_buildingF_Mesh large_buildingF" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, -7.5 )
+mesh = ExtResource( 24 )
+
+[node name="large_buildingG_Mesh large_buildingG" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, 10.5 )
+mesh = ExtResource( 12 )
+
+[node name="low_buildingA_Mesh low_buildingA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, 28.5 )
+mesh = ExtResource( 30 )
+
+[node name="low_buildingB_Mesh low_buildingB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, 46.5 )
+mesh = ExtResource( 31 )
+
+[node name="low_buildingC_Mesh low_buildingC" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -36, 0, 64.5 )
+mesh = ExtResource( 22 )
+
+[node name="low_buildingD_Mesh low_buildingD" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, -61.5 )
+mesh = ExtResource( 6 )
+
+[node name="low_buildingE_Mesh low_buildingE" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, -43.5 )
+mesh = ExtResource( 21 )
+
+[node name="low_buildingF_Mesh low_buildingF" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, -25.5 )
+mesh = ExtResource( 32 )
+
+[node name="low_buildingG_Mesh low_buildingG" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, -7.5 )
+mesh = ExtResource( 15 )
+
+[node name="low_buildingH_Mesh low_buildingH" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, 10.5 )
+mesh = ExtResource( 28 )
+
+[node name="low_buildingI_Mesh low_buildingI" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, 28.5 )
+mesh = ExtResource( 34 )
+
+[node name="low_buildingJ_Mesh low_buildingJ" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, 46.5 )
+mesh = ExtResource( 16 )
+
+[node name="low_buildingK_Mesh low_buildingK" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 0, 64.5 )
+mesh = ExtResource( 17 )
+
+[node name="low_buildingL_Mesh low_buildingL" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, -61.5 )
+mesh = ExtResource( 18 )
+
+[node name="low_buildingM_Mesh low_buildingM" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, -43.5 )
+mesh = ExtResource( 19 )
+
+[node name="low_buildingN_Mesh low_buildingN" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, -25.5 )
+mesh = ExtResource( 33 )
+
+[node name="low_wideA_Mesh low_wideA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, -7.5 )
+mesh = ExtResource( 20 )
+
+[node name="low_wideB_Mesh low_wideB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 10.5 )
+mesh = ExtResource( 25 )
+
+[node name="roof_center_Mesh roof_center" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 28.5 )
+mesh = ExtResource( 3 )
+
+[node name="roof_corner_Mesh roof_corner" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 46.5 )
+mesh = ExtResource( 35 )
+
+[node name="roof_overhang_Mesh roof_overhang" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 64.5 )
+mesh = ExtResource( 41 )
+
+[node name="roof_side_Mesh roof_side" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, -61.5 )
+mesh = ExtResource( 37 )
+
+[node name="sign_billboard_Mesh sign_billboard" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, -43.5 )
+mesh = ExtResource( 38 )
+
+[node name="sign_hospital_Mesh sign_hospital" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, -25.5 )
+mesh = ExtResource( 39 )
+
+[node name="skyscraperA_Mesh skyscraperA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, -7.5 )
+mesh = ExtResource( 4 )
+
+[node name="skyscraperB_Mesh skyscraperB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, 10.5 )
+mesh = ExtResource( 26 )
+
+[node name="skyscraperC_Mesh skyscraperC" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, 28.5 )
+mesh = ExtResource( 27 )
+
+[node name="skyscraperD_Mesh skyscraperD" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, 46.5 )
+mesh = ExtResource( 40 )
+
+[node name="skyscraperE_Mesh skyscraperE" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 18, 0, 64.5 )
+mesh = ExtResource( 8 )
+
+[node name="skyscraperF_Mesh skyscraperF" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, -61.5 )
+mesh = ExtResource( 54 )
+
+[node name="small_buildingA_Mesh small_buildingA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, -43.5 )
+mesh = ExtResource( 56 )
+
+[node name="small_buildingB_Mesh small_buildingB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, -25.5 )
+mesh = ExtResource( 42 )
+
+[node name="small_buildingC_Mesh small_buildingC" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, -7.5 )
+mesh = ExtResource( 43 )
+
+[node name="small_buildingD_Mesh small_buildingD" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, 10.5 )
+mesh = ExtResource( 55 )
+
+[node name="small_buildingE_Mesh small_buildingE" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, 28.5 )
+mesh = ExtResource( 51 )
+
+[node name="small_buildingF_Mesh small_buildingF" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, 46.5 )
+mesh = ExtResource( 45 )
+
+[node name="wall_doorA_Mesh wall_doorA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 36, 0, 64.5 )
+mesh = ExtResource( 46 )
+
+[node name="wall_doorB_Mesh wall_doorB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, -61.5 )
+mesh = ExtResource( 53 )
+
+[node name="wall_solid_Mesh wall_solid" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, -43.5 )
+mesh = ExtResource( 47 )
+
+[node name="wall_windowA_Mesh wall_windowA" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, -25.5 )
+mesh = ExtResource( 48 )
+
+[node name="wall_windowB_Mesh wall_windowB" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, -7.5 )
+mesh = ExtResource( 49 )
+
+[node name="wall_windowC_Mesh wall_windowC" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, 10.5 )
+mesh = ExtResource( 52 )
+
+[node name="wall_windowD_Mesh wall_windowD" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, 28.5 )
+mesh = ExtResource( 44 )
+
+[node name="wall_windowE_Mesh wall_windowE" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, 46.5 )
+mesh = ExtResource( 50 )
+
+[node name="wall_windowF_Mesh wall_windowF" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 54, 0, 64.5 )
+mesh = ExtResource( 57 )
