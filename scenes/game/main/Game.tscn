@@ -21,7 +21,7 @@
 [ext_resource path="res://scenes/gui/pause_screen/PauseScreen.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/gui/game_score_screen/GameScore.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/gui/avatar/Avatar.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scenes/buildings/PowerUpShop.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/buildings/CarShop.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/meshlib/road.meshlib" type="MeshLibrary" id=24]
 [ext_resource path="res://scenes/meshlib/terrain.meshlib" type="MeshLibrary" id=25]
 [ext_resource path="res://scenes/meshlib/city_deco.meshlib" type="MeshLibrary" id=26]
@@ -342,7 +342,7 @@ directional_shadow_depth_range = 1
 directional_shadow_max_distance = 500.0
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624861, 4.2039e-45, -0.624861, 0.780736, 4.2039e-45, 209.865, 265.217 )
+transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624862, 4.2039e-45, -0.624862, 0.780736, 4.2039e-45, 209.963, 265.339 )
 fov = 10.0
 size = 55.0
 far = 500.0
@@ -428,9 +428,6 @@ transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.0490
 [node name="Building15" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.04907e-06, 0, -24 )
 
-[node name="PowerUpShop" parent="." instance=ExtResource( 22 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, -2.09815e-06 )
-
 [node name="Bank" parent="." instance=ExtResource( 18 )]
 transform = Transform( -1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -24, 0, 24 )
 player_index = 0
@@ -457,6 +454,9 @@ material/0 = SubResource( 12 )
 
 [node name="WeaponShop" parent="." instance=ExtResource( 17 )]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 0, -3.49691e-07 )
+
+[node name="CarShop" parent="." instance=ExtResource( 22 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, -2.09815e-06 )
 
 [node name="FateSpawner" type="Timer" parent="."]
 wait_time = 30.0
