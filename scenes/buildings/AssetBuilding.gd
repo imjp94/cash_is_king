@@ -10,7 +10,7 @@ signal upgraded()
 
 export var player_index = -1 setget set_player_index
 export var biddable = true setget set_biddable
-export var upgrade_threshold = 50
+export var upgrade_threshold = 50 setget set_upgrade_threshold
 # Use interest if both specified, else use any variable that is not zero
 export var interest = 5
 export var interest_rate = 0.05
@@ -27,6 +27,7 @@ var player setget , get_player
 func _ready():
 	set_player_index(player_index)
 	set_biddable(biddable)
+	set_upgrade_threshold(upgrade_threshold)
 	label3d.text = str(health.value)
 
 func event(by, extra={}):
@@ -73,6 +74,9 @@ func _on_withdraw(by, amount, grade):
 func _on_player_changed(from, to):
 	pass
 
+func _on_upgraded():
+	pass
+
 var _is_upgraded = false # TODO: Debug purpose only, current building should be directly replaced by new one
 
 func _on_Health_changed(diff):
@@ -83,7 +87,7 @@ func _on_Health_changed(diff):
 		scale *= 1.3
 		_is_upgraded = true
 		upgrade_label.hide()
-
+		_on_upgraded()
 		emit_signal("upgraded")
 
 	if not label3d:
@@ -196,3 +200,13 @@ func set_biddable(v):
 	if is_inside_tree():
 		area.monitoring = biddable
 		label3d.modulate.a = 1.0 if biddable else 0.2
+
+func set_upgrade_threshold(v):
+	upgrade_threshold = v
+	if upgrade_threshold > -1:
+		if has_player():
+			upgrade_label.show()
+		if upgrade_label:
+			upgrade_label.text = "$%d Upgrade" % upgrade_threshold
+	else:
+		upgrade_label.hide()
