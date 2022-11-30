@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/consumable/Consumable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/consumable/Chance.gd" type="Script" id=3]
 [ext_resource path="res://scenes/consumable/Overlay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://decalco/src/Decal.shader" type="Shader" id=5]
+[ext_resource path="res://assets/texture/decal2.png" type="Texture" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.7, 1.2, 0.5 )
@@ -82,6 +84,26 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
+[sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/albedo_tint = Color( 0.827451, 0.85098, 0.129412, 0.392157 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 1.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 1.0
+shader_param/metallic_strength = 1.0
+shader_param/animation_speed = 1.0
+shader_param/flipbook_columns_count = 1
+shader_param/one_shot = false
+shader_param/start_time = null
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = false
+shader_param/border_mask = ExtResource( 6 )
+shader_param/albedo = ExtResource( 6 )
+
 [node name="Chance" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
@@ -105,5 +127,10 @@ visible = false
 
 [node name="Label" parent="Overlay" index="0"]
 text = "Fortune Cat"
+
+[node name="Decal" type="MeshInstance" parent="." index="4"]
+transform = Transform( -1, 8.7423e-08, 0, 7.64274e-15, 8.74228e-08, 0.25, 8.7423e-08, 1, -5.4639e-09, 0, 0, 0 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [editable path="Overlay"]
