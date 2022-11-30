@@ -24,7 +24,7 @@ func _ready():
 	_origin = global_transform.origin
 
 func _process(delta):
-	if not target:
+	if not is_instance_valid(target): # TODO: Identify this coin is for animation or projectile, free it if solely for animation
 		set_process(!!target)
 		return
 
