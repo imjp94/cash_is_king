@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/gui/components/list/ItemList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/equipment/MachineGun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/equipment/Gun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/equipment/ShotGun.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/gui/components/list/Item.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/gui/components/list/PricedItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/gui/weapon_list/WeaponItem.gd" type="Script" id=6]
+[ext_resource path="res://assets/model/weaponpack_assets/Render/pistol.png" type="Texture" id=7]
+[ext_resource path="res://assets/model/weaponpack_assets/Render/machinegun.png" type="Texture" id=8]
+[ext_resource path="res://assets/model/weaponpack_assets/Render/shotgun.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.2, 0.2, 0.2, 0.196078 )
@@ -32,8 +35,9 @@ margin_bottom = 111.0
 [node name="Item" parent="BG/MarginContainer/HBoxContainer" index="0" instance=ExtResource( 5 )]
 margin_bottom = 103.0
 script = ExtResource( 6 )
+texture = ExtResource( 7 )
 text = "Gun"
-price = 1
+price = 5
 weapon_scn = ExtResource( 3 )
 
 [node name="Item2" parent="BG/MarginContainer/HBoxContainer" index="1" instance=ExtResource( 5 )]
@@ -41,9 +45,10 @@ margin_left = 68.0
 margin_right = 132.0
 margin_bottom = 103.0
 script = ExtResource( 6 )
+texture = ExtResource( 8 )
 text = "Machine
 Gun"
-price = 2
+price = 5
 weapon_scn = ExtResource( 2 )
 
 [node name="Item3" parent="BG/MarginContainer/HBoxContainer" index="2" instance=ExtResource( 5 )]
@@ -51,6 +56,7 @@ margin_left = 136.0
 margin_right = 200.0
 margin_bottom = 103.0
 script = ExtResource( 6 )
+texture = ExtResource( 9 )
 text = "Shotgun"
 price = 5
 weapon_scn = ExtResource( 4 )

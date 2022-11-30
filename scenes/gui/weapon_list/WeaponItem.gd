@@ -1,5 +1,4 @@
 tool
-extends "res://scenes/gui/components/list/Item.gd"
+extends "res://scenes/gui/components/list/PricedItem.gd"
 
-export var price = 1
 export(PackedScene) var weapon_scn
