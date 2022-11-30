@@ -17,9 +17,9 @@ func _on_upgraded():
 	if not _is_upgraded:
 		match coin_grade:
 			Coin.GRADE.COPPER:
-				set_upgrade_threshold(11)
+				set_upgrade_threshold(100)
 			Coin.GRADE.SILVER:
-				set_upgrade_threshold(12)
+				set_upgrade_threshold(200)
 			Coin.GRADE.GOLD:
 				set_upgrade_threshold(-1)
 
