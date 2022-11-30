@@ -18,7 +18,7 @@
 [ext_resource path="res://scenes/gui/pause_screen/PauseScreen.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/gui/game_score_screen/GameScore.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/gui/avatar/Avatar.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scenes/buildings/PowerUpShop.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/buildings/CarShop.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ProceduralSky" id=31]
 
