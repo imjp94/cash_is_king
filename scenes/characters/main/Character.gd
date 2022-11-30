@@ -28,7 +28,6 @@ onready var decal = $Decal
 var player setget set_player
 
 var _pending_look_dir = Vector3.FORWARD
-var _can_input = false
 var _orientation = Transform()
 var _root_motion_linear_velocity = Vector3.ZERO
 
@@ -42,30 +41,23 @@ func _physics_process(delta):
 		return
 	if not player:
 		return
-	if not _can_input:
-		return
 	
-	var move_x = Input.get_axis("move_left", "move_right")
-	var move_y = Input.get_axis("move_down", "move_up")
+	var move_x = Input.get_axis(player.get_action("move_left"), player.get_action("move_right"))
+	var move_y = Input.get_axis(player.get_action("move_down"), player.get_action("move_up"))
 	move(move_y, move_x)
-	var turn_x = Input.get_axis("turn_left", "turn_right")
-	var turn_y = Input.get_axis("turn_down", "turn_up")
+	var turn_x = Input.get_axis(player.get_action("turn_left"), player.get_action("turn_right"))
+	var turn_y = Input.get_axis(player.get_action("turn_down"), player.get_action("turn_up"))
 	turn(turn_y if turn_y else  move_y, turn_x if turn_x else  move_x)
 
 func _unhandled_input(event):
 	if not player:
 		return
-	if not player.can_handle_event(event):
-		_can_input = false
-		return
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed(player.get_action("shoot")):
 		attack()
 
-	if Input.is_action_just_pressed("event"):
+	if Input.is_action_just_pressed(player.get_action("event")):
 		event()
-
-	_can_input = true
 
 func move_and_turn(forward, right):
 	move(forward, right)

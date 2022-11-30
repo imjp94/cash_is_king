@@ -87,6 +87,16 @@ func set_pawn_np(v):
 func get_index():
 	return PLAYER_STACK.find(self)
 
+# Keyboard action doesn't have suffix device index - "action". Controller action always come with device index - "action0"
+func get_action(action):
+	var has_keyboard_player = false
+	for player in PLAYER_STACK:
+		if player.device_type == DEVICE_TYPE.KEYBOARD:
+			has_keyboard_player = true
+			break
+	var controller_index = max(get_index()-1, 0) if has_keyboard_player else get_index()
+	return action if device_type == DEVICE_TYPE.KEYBOARD else "%s%d" % [action,controller_index]
+
 static func get_device_type(event):
 	if event is InputEventKey:
 		return DEVICE_TYPE.KEYBOARD
