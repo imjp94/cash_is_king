@@ -18,6 +18,7 @@ onready var health = $Health
 onready var health_bar_3d = $HealthBar3D
 onready var mesh_instance = $character/Character/Skeleton/Body
 onready var equipment_slot = $EquipmentSlot
+onready var vehicle_slot = $VehicleSlot
 onready var area = $Area
 onready var label3d = $Label3D
 onready var anim_tree = $AnimationTree
@@ -238,3 +239,13 @@ func _on_EquipmentSlot_equipment_changed(from, to):
 		return
 	
 	anim_tree.set("parameters/Strafing/blend_amount", 1.0)
+
+func _on_VehicleSlot_equipment_changed(from, to):
+	if Engine.editor_hint:
+		return
+	if not to:
+		return
+
+	var speed_scale = to.speed_scale
+	speed = speed_scale
+	anim_tree.set("parameters/RunSpeed/scale", speed_scale)
