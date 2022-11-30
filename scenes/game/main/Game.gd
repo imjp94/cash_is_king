@@ -80,7 +80,16 @@ func _on_asset_building_player_changed(from, to, asset_building):
 		return
 	
 	var loser
-	if asset_building.is_in_group("bank") or get_tree().get_nodes_in_group("player%d" % from.index).size() == 0:
+	var has_more_bank = false
+	var has_building = get_tree().get_nodes_in_group("player%d" % from.index).size() > 0
+	for bank in get_tree().get_nodes_in_group("bank"):
+		if bank == asset_building:
+			continue
+		if bank.player_index == from.index:
+			has_more_bank = true
+			break
+	
+	if not has_building or not has_more_bank:
 		loser = from
 
 	if loser:
@@ -89,7 +98,9 @@ func _on_asset_building_player_changed(from, to, asset_building):
 		if asset_building.is_in_group("bank"):
 			for asset_building in get_tree().get_nodes_in_group("asset_building"):
 				if asset_building.player != to:
-					asset_building.player_index = to.index
+					
+					if not has_more_bank:
+						asset_building.player_index = to.index
 
 		emit_signal("player_lost", loser)
 		if Player.PLAYER_STACK.size() - 1 == _losers.size():
