@@ -29,7 +29,7 @@ func _process(delta):
 		return
 
 	var p0 = _origin
-	var p1 = _origin + (target.global_transform.origin - _origin / 2.0) + (Vector3.UP * 30.0)
+	var p1 = _origin + ((target.global_transform.origin - _origin) / 2.0) + (Vector3.UP * 30.0)
 	var p2 = target.global_transform.origin
 	var t = (1.0 - timer.time_left / timer.wait_time)
 	global_transform.origin = quadratic_bezier(p0, p1, p2, t)
