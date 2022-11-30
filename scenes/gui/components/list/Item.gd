@@ -5,6 +5,7 @@ export(Texture) var texture setget set_texture
 export(String, MULTILINE) var text = "Item" setget set_text
 
 onready var button = $"%Button"
+onready var texture_rect = $"%TextureRect"
 onready var label = $"%Label"
 
 
@@ -15,7 +16,7 @@ func _ready():
 func set_texture(v):
 	texture = v
 	if is_inside_tree():
-		button.get("custom_styles/normal").texture = texture
+		texture_rect.texture = texture
 
 func set_text(v):
 	text = v
