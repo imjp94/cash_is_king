@@ -4,7 +4,7 @@ extends Spatial
 enum GRADE {
 	COPPER, SILVER, GOLD
 }
-const GRADE_COLOR = [Color("ff5e0d"), Color.silver, Color.gold]
+const GRADE_COLOR = [Color("e8a06e"), Color.silver, Color.gold]
 const GRADE_DAMAGE = [1, 2, 5]
 
 export(GRADE) var grade = GRADE.COPPER setget set_grade
