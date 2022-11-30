@@ -30,6 +30,10 @@ func _ready():
 	set_upgrade_threshold(upgrade_threshold)
 	label3d.text = str(health.value)
 
+	if not Engine.editor_hint:
+		if not get_player():
+			set_player_index(-1)
+
 func event(by, extra={}):
 	return withdraw(by, extra.get("amount", 0), extra.get("grade", 0))
 
@@ -169,11 +173,12 @@ func set_player_index(v):
 	var old = player_index
 	player_index = v
 	var old_player = Player.get_player(old)
-	var player = Player.get_player(player_index)
+	var new_player = Player.get_player(player_index)
+
 	if old_player:
 		remove_from_group("player%d" % old_player.index)
-	if player:
-		add_to_group("player%d" % player.index)
+	if new_player:
+		add_to_group("player%d" % new_player.index)
 		if upgrade_label and upgrade_threshold > 0:
 			upgrade_label.show()
 	else:
@@ -186,8 +191,8 @@ func set_player_index(v):
 		set_color(Color.white)
 
 	if player_index != old:
-		_on_player_changed(old_player, player)
-		emit_signal("player_changed", old_player, player)
+		_on_player_changed(old_player, new_player)
+		emit_signal("player_changed", old_player, new_player)
 
 func get_player():
 	return Player.get_player(player_index)
