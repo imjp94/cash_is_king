@@ -1,6 +1,6 @@
 extends Control
 
-onready var label = $Label
+onready var label = $RichTextLabel
 onready var timer = $Timer
 
 

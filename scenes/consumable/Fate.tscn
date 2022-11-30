@@ -112,7 +112,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
-transform = Transform( 3.9, 0, 0, 0, 3.9, 0, 0, 0, 3.9, 0, 1, 0 )
+transform = Transform( 3.9, 0, 0, 0, 3.9, 0, 0, 0, 3.9, 0, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
@@ -122,20 +122,30 @@ playback_speed = 0.5
 anims/RESET = SubResource( 3 )
 anims/play = SubResource( 4 )
 
-[node name="Overlay" parent="." index="3" instance=ExtResource( 4 )]
+[node name="BadOverlay" parent="." index="3" instance=ExtResource( 4 )]
 visible = false
 
-[node name="Label" parent="Overlay" index="0"]
-margin_left = -212.0
-margin_top = -133.5
-margin_right = 212.0
-margin_bottom = 133.5
-text = "Monster
-Incoming"
+[node name="RichTextLabel" parent="BadOverlay" index="0"]
+custom_colors/default_color = Color( 0.8, 0.160784, 0.160784, 1 )
 
-[node name="Decal" type="MeshInstance" parent="." index="4"]
+[node name="Timer" parent="BadOverlay" index="1"]
+wait_time = 2.0
+
+[node name="GoodOverlay" parent="." index="4" instance=ExtResource( 4 )]
+visible = false
+
+[node name="RichTextLabel" parent="GoodOverlay" index="0"]
+custom_colors/default_color = Color( 0.901961, 0.87451, 0.0901961, 1 )
+bbcode_text = "
+[center][wave amp=64 freq=16]%s[/wave][/center]"
+
+[node name="Timer" parent="GoodOverlay" index="1"]
+wait_time = 2.0
+
+[node name="Decal" type="MeshInstance" parent="." index="5"]
 transform = Transform( -1, 8.7423e-08, 0, 7.64274e-15, 8.74228e-08, 0.25, 8.7423e-08, 1, -5.4639e-09, 0, 0, 0 )
 mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
 
-[editable path="Overlay"]
+[editable path="BadOverlay"]
+[editable path="GoodOverlay"]

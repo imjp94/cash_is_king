@@ -1,10 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/consumable/Overlay.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-Italic.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/Nunito/Nunito-BoldItalic.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 96
+outline_size = 12
+outline_color = Color( 0.1, 0.1, 0.1, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -12,23 +29,29 @@ font_data = ExtResource( 1 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 1381, -89 )
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -94.5
-margin_top = -66.0
-margin_right = 94.5
-margin_bottom = 66.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
-text = "Overlay"
-align = 1
-valign = 1
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/bold_italics_font = SubResource( 2 )
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "
+[center][shake rate=16 level=32]%s[/shake][/center]"
+text = "
+%s"
+scroll_active = false
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

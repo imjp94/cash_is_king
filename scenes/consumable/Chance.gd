@@ -9,7 +9,7 @@ func _consume(by):
 	var inst = FortuneCatScene.instance()
 	get_parent().add_child(inst)
 	inst.global_transform.origin = global_transform.origin
-
+	overlay.label.bbcode_text = overlay.label.bbcode_text % "$ Fortune Cat $"
 	overlay.show()
 
 	yield(overlay, "tree_exited")
