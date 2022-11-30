@@ -117,6 +117,13 @@ func _on_player_pawn_dead(player):
 	for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
 		if spawn_point.player_index == player.index:
 			spawn_point.spawn()
+			for bank in get_tree().get_nodes_in_group("bank"):
+				if bank.player_index == player.index:
+					var default_pawn_health = player.pawn.health.value # This is the default health set in inspector
+					var amount = max(bank.health.value, default_pawn_health)
+					bank.health.deduct(amount)
+					player.pawn.health.value = amount
+					break
 			break
 	player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 
