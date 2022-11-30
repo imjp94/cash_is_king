@@ -172,6 +172,9 @@ func broke():
 	emit_signal("dead")
 	queue_free()
 
+func damaged():
+	anim_tree.set("parameters/Damaged/active", true)
+
 func _on_Health_changed(diff):
 	if not label3d:
 		return
