@@ -19,7 +19,7 @@ emission_on_uv2 = false
 [sub_resource type="SphereShape" id=3]
 
 [sub_resource type="SphereShape" id=4]
-radius = 0.35
+radius = 0.7
 
 [node name="Projectile" type="RigidBody" groups=["projectile"]]
 collision_layer = 16

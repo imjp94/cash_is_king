@@ -40,6 +40,7 @@ func _on_Area_body_entered(body):
 			var dir = -global_transform.basis.z
 			body.add_central_force(dir * push_back_force)
 			health.credit(instigator, get_damage())
+			body.damaged()
 
 	queue_free()
 
