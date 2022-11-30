@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://decalco/src/Decal.shader" type="Shader" id=1]
+[ext_resource path="res://assets/texture/decal.png" type="Texture" id=2]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/albedo_tint = Color( 0, 0, 0, 0.392157 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 1.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 1.0
+shader_param/metallic_strength = 1.0
+shader_param/animation_speed = 1.0
+shader_param/flipbook_columns_count = 1
+shader_param/one_shot = false
+shader_param/start_time = null
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = false
+shader_param/border_mask = ExtResource( 2 )
+shader_param/albedo = ExtResource( 2 )

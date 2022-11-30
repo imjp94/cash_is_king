@@ -23,6 +23,7 @@ onready var area = $Area
 onready var label3d = $Label3D
 onready var anim_tree = $AnimationTree
 onready var empty_handed = $EmptyHanded
+onready var decal = $Decal
 
 var player setget set_player
 
@@ -218,6 +219,13 @@ func set_color(v):
 		health_bar_3d.health_bar.color = color
 	if color != old:
 		emit_signal("color_changed", old, color)
+	if decal:
+		var decal_material = decal.get("material/0")
+		var decal_color = decal_material.get("shader_param/albedo_tint")
+		decal_color.r = color.r
+		decal_color.g = color.g
+		decal_color.b = color.b
+		decal_material.set("shader_param/albedo_tint", decal_color)
 
 func _on_player_color_changed(from, to):
 	if mesh_instance and player:

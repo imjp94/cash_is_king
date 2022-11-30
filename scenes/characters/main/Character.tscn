@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/gui/components/health_bar/HealthBar3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/main/Character.gd" type="Script" id=2]
@@ -8,10 +8,10 @@
 [ext_resource path="res://scenes/equipment/EquipmentSlot.gd" type="Script" id=6]
 [ext_resource path="res://scenes/equipment/EmptyHanded.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/model/character/character.gltf" type="PackedScene" id=8]
+[ext_resource path="res://scenes/characters/main/CharacterDecal.tres" type="Material" id=9]
 
 [sub_resource type="SpatialMaterial" id=10]
 resource_local_to_scene = true
-albedo_color = Color( 0, 0, 1, 1 )
 albedo_texture = ExtResource( 3 )
 uv1_scale = Vector3( 0.125, 0.125, 0.125 )
 uv1_triplanar = true
@@ -127,6 +127,8 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
+[sub_resource type="CubeMesh" id=29]
+
 [node name="Character" type="RigidBody" groups=["player"]]
 collision_layer = 3
 axis_lock_angular_x = true
@@ -192,7 +194,7 @@ transform = Transform( 0.807383, 0.394355, -0.438883, 0.394356, 0.192618, 0.8985
 script = ExtResource( 6 )
 
 [node name="VehicleSlot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 4.03552e-28, 1, 0, 0, 0, 1, 0, 0.7, 7.10543e-15 )
+transform = Transform( 1, -2.71051e-20, -9.69352e-27, 2.5411e-20, 1, -4.12115e-13, 8.07794e-28, 4.12115e-13, 1, 2.5411e-21, 0.7, 4.9738e-14 )
 script = ExtResource( 6 )
 
 [node name="EmptyHanded" type="Spatial" parent="."]
@@ -234,6 +236,11 @@ custom_styles/panel = SubResource( 27 )
 
 [node name="RootMotionView" type="RootMotionView" parent="."]
 animation_path = NodePath("../AnimationTree")
+
+[node name="Decal" type="MeshInstance" parent="."]
+transform = Transform( -2, 1.74846e-07, 0, 7.64274e-15, 8.74228e-08, 0.25, 1.74846e-07, 2, -1.09278e-08, 0, 0, 0 )
+mesh = SubResource( 29 )
+material/0 = ExtResource( 9 )
 
 [connection signal="broke" from="Health" to="." method="_on_Health_broke"]
 [connection signal="changed" from="Health" to="." method="_on_Health_changed"]
