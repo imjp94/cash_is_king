@@ -123,8 +123,10 @@ autostart = true
 [node name="CoinSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 10 )
 volume_db = -24.0
+bus = "SFX"
 
 [node name="CoinSFX2" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 9 )
 volume_db = -16.0
 autoplay = true
+bus = "SFX"
