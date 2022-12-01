@@ -32,11 +32,21 @@ func _unhandled_input(event):
 		if player:
 			show_character(player)
 			verify_ai_count()
-
+		else:
+			player = Player.get_player(Player.get_player_index(event.device, Player.get_device_type(event)))
+			if player.index != 0: # Cannot remove player 1
+				hide_character(player)
+				player.queue_free()
+			
 func show_character(player):
 	var character = character_select_3d.get("character%d" % (player.index + 1))
 	character.show()
 	character.color = player.color
+
+func hide_character(player):
+	var character = character_select_3d.get("character%d" % (player.index + 1))
+	character.hide()
+	character.color = Color.white
 
 func verify_ai_count():
 	var ai_count = min(get_ai_count(), get_max_ai_count())
