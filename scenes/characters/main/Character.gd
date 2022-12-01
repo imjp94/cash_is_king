@@ -205,7 +205,7 @@ func _on_Health_credit_timeout(credits):
 			coin.global_transform.origin = global_transform.origin
 			coin._origin = global_transform.origin
 		
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(0.1, false), "timeout")
 
 func _on_Health_broke(by, credits):
 	broke()

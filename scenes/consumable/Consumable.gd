@@ -7,7 +7,7 @@ export var lifetime = 20.0
 
 
 func _ready():
-	get_tree().create_timer(lifetime).connect("timeout", self, "_on_timeout")
+	get_tree().create_timer(lifetime, false).connect("timeout", self, "_on_timeout")
 
 func consume(by):
 	_consume(by)

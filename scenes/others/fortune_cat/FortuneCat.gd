@@ -23,7 +23,7 @@ var _current_value = 0
 
 
 func _ready():
-	get_tree().create_timer(duration).connect("timeout", self, "_on_timeout")
+	get_tree().create_timer(duration, false).connect("timeout", self, "_on_timeout")
 
 func _physics_process(delta):
 	if is_nav_agent_target_reached():

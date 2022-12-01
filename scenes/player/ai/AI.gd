@@ -115,7 +115,7 @@ func shooting_target():
 	
 	pawn.attack()
 	pawn.look_at(action_state.get_param("target").global_transform.origin, Vector3.UP)
-	get_tree().create_timer(0.2).connect("timeout", self, "shooting_target")
+	get_tree().create_timer(0.2, false).connect("timeout", self, "shooting_target")
 
 func interacting():
 	if not enable_input:
@@ -127,7 +127,7 @@ func interacting():
 		return
 
 	pawn.event()
-	get_tree().create_timer(0.2).connect("timeout", self, "interacting")
+	get_tree().create_timer(0.2, false).connect("timeout", self, "interacting")
 
 func get_buildings(exclude_bank=true, exclude_owners=[]):
 	var asset_buildings = get_tree().get_nodes_in_group("asset_building")

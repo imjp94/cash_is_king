@@ -15,7 +15,7 @@ var _credit_timer
 func credit(creditor, amount):
 	if credits.empty():
 		if not _credit_timer:
-			_credit_timer = get_tree().create_timer(credit_duration)
+			_credit_timer = get_tree().create_timer(credit_duration, false)
 			_credit_timer.connect("timeout", self, "_on_credit_timeout")
 		emit_signal("credit_started")
 	

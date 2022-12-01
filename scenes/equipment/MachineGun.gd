@@ -16,6 +16,6 @@ func _attack(extra={}):
 
 		shoot(pos, dir)
 
-		yield(get_tree().create_timer(cooldown / actual_projectile_count), "timeout")
+		yield(get_tree().create_timer(cooldown / actual_projectile_count, false), "timeout")
 
 	return true

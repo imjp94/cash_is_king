@@ -49,4 +49,4 @@ func coins_flow(from, to, amount, grade):
 	amount /= Coin.GRADE_DAMAGE[grade]
 	for i in amount:
 		coin_flow(from, to, grade)
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(0.1, false), "timeout")

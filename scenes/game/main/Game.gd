@@ -32,7 +32,6 @@ func _ready():
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
 
-	start_play_time()
 	update_turn_label()
 	update_time_label()
 
@@ -48,12 +47,14 @@ func _on_GameState_transited(from, to):
 		"Entry":
 			pass
 		"Run":
+			start_play_time()
 			if from == "Entry":
 				for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
 					if spawn_point.spawn():
 						var player = Player.PLAYER_STACK[spawn_point.player_index]
 						player.pawn.connect("dead", self, "_on_player_pawn_dead", [player])
 		"Pause":
+			end_play_time()
 			get_tree().paused = true
 		"End":
 			for winner in _winners:
@@ -112,7 +113,7 @@ func _on_asset_building_player_changed(from, to, asset_building):
 func _on_player_pawn_dead(player):
 	player.set_pawn_np(NodePath())
 	
-	yield(get_tree().create_timer(spawn_time), "timeout")
+	yield(get_tree().create_timer(spawn_time, false), "timeout")
 
 	for spawn_point in get_tree().get_nodes_in_group("spawn_point"):
 		if spawn_point.player_index == player.index:
@@ -141,7 +142,7 @@ func update_turn_label():
 
 func update_time_label():
 	play_time_label.text = str(floor(get_play_time() / 1000))
-	get_tree().create_timer(1.0).connect("timeout", self, "update_time_label")
+	get_tree().create_timer(1.0, false).connect("timeout", self, "update_time_label")
 
 func start_play_time():
 	if is_playing():
