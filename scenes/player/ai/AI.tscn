@@ -14,3 +14,4 @@ script = ExtResource( 3 )
 state_machine = ExtResource( 4 )
 
 [node name="StackPlayerDebugger" parent="ActionState" instance=ExtResource( 5 )]
+visible = false
