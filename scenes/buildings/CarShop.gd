@@ -2,7 +2,9 @@ extends "res://scenes/buildings/Shop.gd"
 
 const CarScn = preload("res://scenes/equipment/Car.tscn")
 
-var price = 10 # TODO: Proper way to set prices
+onready var label3d = $Label3D
+
+var price = 50 # TODO: Proper way to set prices
 
 
 func buy(by, extra={}):
@@ -16,3 +18,10 @@ func buy(by, extra={}):
 	pawn_health.deduct(price)
 	deposit(by, price, pawn.coin_grade)
 	pawn.vehicle_slot.equipment_scn = CarScn
+
+func _on_Area_body_exited(body):
+	label3d.hide()
+
+func _on_Area_body_entered(body):
+	label3d.text = "Buy Car $%d" %price
+	label3d.show()
