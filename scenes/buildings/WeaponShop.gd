@@ -12,6 +12,7 @@ func _unhandled_input(event):
 func _on_Area_body_entered(body):
 	customer = body.player
 	weapon_list_3d.show()
+	weapon_list.hbox.get_child(0).button.grab_focus()
 
 func _on_Area_body_exited(body):
 	customer = null
