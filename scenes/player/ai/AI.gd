@@ -15,7 +15,7 @@ func _ready():
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
 		asset_building.connect("player_changed", self, "_on_asset_building_player_changed", [asset_building])
 
-	action_state.set_param("empty_building", get_empty_buildings().size())
+	action_state.set_param("empty_building", get_empty_buildings(false).size())
 
 	connect("pawn_changed", self, "_on_pawn_changed")
 
@@ -62,16 +62,6 @@ func _process(delta):
 				building_mature = true
 				break
 		action_state.set_param("building_mature", building_mature)
-
-	var opponent_buildings = get_buildings(false, [self])
-	for opponent_building in opponent_buildings:
-		if opponent_building.health <= pawn.health:
-			action_state.set_param("can_buy_out", true)
-			var target = opponent_building
-			action_state.set_param("target", opponent_building)
-			navigate_pawn(nav_agent, target)
-			if is_nav_agent_target_reached(nav_agent):
-				action_state.set_trigger("in_range")
 
 func _physics_process(delta):
 	if Engine.editor_hint:
@@ -190,12 +180,22 @@ func _on_action_state_transited(from, to):
 	
 	match to_dir.next():
 		"Idle":
-			var empty_buildings = get_empty_buildings()
+			var empty_buildings = get_empty_buildings(false)
 			action_state.set_param("empty_building", empty_buildings.size())
+			var opponent_buildings = get_buildings(false, [self])
+			for opponent_building in opponent_buildings:
+				if opponent_building.health <= pawn.health:
+					action_state.set_param("can_buy_out", true)
+					var target = opponent_building
+					action_state.set_param("target", opponent_building)
+					navigate_pawn(nav_agent, target)
+					if is_nav_agent_target_reached(nav_agent):
+						action_state.set_trigger("in_range")
+					break
 		"Invest":
 			match to_dir.next():
 				"Depart":
-					var empty_buildings = get_empty_buildings()
+					var empty_buildings = get_empty_buildings(false)
 					if empty_buildings:
 						var target = empty_buildings[0]
 						action_state.set_param("target", target)
@@ -203,7 +203,7 @@ func _on_action_state_transited(from, to):
 						if is_nav_agent_target_reached(nav_agent):
 							action_state.set_trigger("in_range")
 					else:
-						action_state.set_trigger("done")
+						action_state.set_trigger("give_up")
 				"InRange":
 					_is_shooting = true
 					shooting_target()
@@ -212,7 +212,7 @@ func _on_action_state_transited(from, to):
 				"Arrive":
 					var target = action_state.get_param("target")
 				"Finish":
-					var empty_buildings = get_empty_buildings()
+					var empty_buildings = get_empty_buildings(false)
 					action_state.set_param("empty_building", empty_buildings.size())
 		"Withdraw":
 			match to_dir.next():
@@ -272,15 +272,19 @@ func _on_action_state_transited(from, to):
 		"AttackProperty":
 			match to_dir.next():
 				"Depart":
-					var opponent_buildings = get_buildings(false, [self])
-					if opponent_buildings:
-						var target = opponent_buildings[0]
-						action_state.set_param("target", target)
-						navigate_pawn(nav_agent, target)
-						if is_nav_agent_target_reached(nav_agent):
-							action_state.set_trigger("in_range")
+					var target = action_state.get_param("target")
+					if target:
+						if target.health.value > pawn.health.value:
+							action_state.set_param("can_buy_out", false)
+							action_state.set_trigger("give_up")
+							action_state.reset(1)
+						else:
+							action_state.set_param("target", target)
+							navigate_pawn(nav_agent, target)
+							if is_nav_agent_target_reached(nav_agent):
+								action_state.set_trigger("in_range")
 					else:
-						action_state.set_trigger("done")
+						action_state.set_trigger("give_up")
 				"InRange":
 					_is_shooting = true
 					shooting_target()
@@ -288,12 +292,16 @@ func _on_action_state_transited(from, to):
 						action_state.set_trigger("arrived")
 				"Arrive":
 					var target = action_state.get_param("target")
+					if target.health.value > pawn.health.value:
+						action_state.set_param("can_buy_out", false)
+						action_state.set_trigger("done")
+						action_state.reset(1) # Idle located at index 1, right after Entry
 				"Finish":
 					var opponent_buildings = get_buildings(false, [self])
 					action_state.set_param("empty_building", opponent_buildings.size())
 
 func _on_asset_building_player_changed(from, to, asset_building):
-	var empty_buildings = get_empty_buildings()
+	var empty_buildings = get_empty_buildings(false)
 	action_state.set_param("empty_building", empty_buildings.size())
 	if action_state.current == "Invest" and empty_buildings.size() == 0:
 		action_state.set_trigger("abort")
@@ -330,7 +338,7 @@ func _on_nav_agent_target_reached():
 
 func _on_pawn_health_changed(diff):
 	if action_state.current == "Withdraw/Arrive":
-		if pawn.health.value >= 10 or get_bank().health.value == 0:
+		if get_bank().health.value <= 30:
 			_is_interacting = false
 			action_state.set_trigger("done")
 
