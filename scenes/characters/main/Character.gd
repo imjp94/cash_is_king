@@ -42,6 +42,8 @@ func _physics_process(delta):
 		return
 	if not player:
 		return
+	if not player.enable_input:
+		return
 	
 	var move_x = Input.get_axis(player.get_action("move_left"), player.get_action("move_right"))
 	var move_y = Input.get_axis(player.get_action("move_down"), player.get_action("move_up"))
@@ -52,6 +54,8 @@ func _physics_process(delta):
 
 func _unhandled_input(event):
 	if not player:
+		return
+	if not player.enable_input:
 		return
 	
 	if Input.is_action_just_pressed(player.get_action("shoot")):
