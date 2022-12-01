@@ -222,4 +222,5 @@ func set_upgrade_threshold(v):
 		if upgrade_label:
 			upgrade_label.text = "$%d Upgrade" % upgrade_threshold
 	else:
-		upgrade_label.hide()
+		if upgrade_label:
+			upgrade_label.hide()
