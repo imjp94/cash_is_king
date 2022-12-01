@@ -53,6 +53,11 @@ func hide_character(player):
 func verify_ai_count():
 	var ai_count = min(get_ai_count(), get_max_ai_count())
 	ai_count = clamp(get_ai_count(), get_min_ai_count(), get_max_ai_count())
+	if app_state:
+		var game_scn = app_state.get_param("game_scn")
+		if game_scn is PackedScene:
+			if "Tutorial" in game_scn.resource_path:
+				ai_count = 0
 	ai_count_btn.text = str(ai_count)
 
 func append_ai_count():
