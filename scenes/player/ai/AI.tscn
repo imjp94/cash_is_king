@@ -5,9 +5,9 @@
 [ext_resource path="res://scenes/player/ai/ai.tres" type="Resource" id=4]
 [ext_resource path="res://addons/imjp94.yafsm/src/debugger/StackPlayerDebugger.tscn" type="PackedScene" id=5]
 
-[node name="AI" type="Node"]
+[node name="AI" type="Node" groups=["ai"]]
 script = ExtResource( 2 )
-color = Color( 1, 0, 0, 1 )
+color = Color( 0.2, 0.2, 1, 1 )
 
 [node name="ActionState" type="Node" parent="."]
 script = ExtResource( 3 )

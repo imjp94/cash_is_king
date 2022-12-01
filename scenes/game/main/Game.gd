@@ -68,9 +68,9 @@ func _on_GameState_transited(from, to):
 		"Exit":
 			for player in Player.PLAYER_STACK:
 				player.enable_input = true
-				if "action_state" in player: # AI
-					player.get_parent().remove_child(player)
-					player.queue_free()
+			for ai in get_tree().get_nodes_in_group("ai"):
+				ai.get_parent().remove_child(ai)
+				ai.queue_free()
 			if app_state:
 				app_state.set_trigger("finish")
 
