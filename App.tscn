@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/gui/character_select/CharacterSelect.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/gui/setting/Setting.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/gui/start_screen/StartScreen.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/gui/splash_screen/SplashScreen.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
@@ -22,7 +23,7 @@ name = "CharacterSelect"
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 __meta__ = {
-"graph_offset": Vector2( -46, 100 )
+"graph_offset": Vector2( 14, -140 )
 }
 name = "Entry"
 
@@ -64,9 +65,16 @@ name = "Setting"
 [sub_resource type="Resource" id=28]
 script = ExtResource( 5 )
 __meta__ = {
-"graph_offset": Vector2( 37.5, 100 )
+"graph_offset": Vector2( -2.5, 100 )
 }
 name = "StartScreen"
+
+[sub_resource type="Resource" id=31]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( -7.5, 0 )
+}
+name = "SplashScreen"
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 4 )
@@ -185,14 +193,6 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=7]
-script = ExtResource( 3 )
-from = "Entry"
-to = "StartScreen"
-conditions = {
-}
-priority = 0
-
 [sub_resource type="Resource" id=29]
 script = ExtResource( 4 )
 name = "start"
@@ -203,6 +203,27 @@ from = "StartScreen"
 to = "MainMenu"
 conditions = {
 "start": SubResource( 29 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+from = "Entry"
+to = "SplashScreen"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=32]
+script = ExtResource( 4 )
+name = "done"
+
+[sub_resource type="Resource" id=33]
+script = ExtResource( 3 )
+from = "SplashScreen"
+to = "StartScreen"
+conditions = {
+"done": SubResource( 32 )
 }
 priority = 0
 
@@ -217,6 +238,7 @@ states = {
 "LevelSelect": SubResource( 3 ),
 "MainMenu": SubResource( 2 ),
 "Setting": SubResource( 23 ),
+"SplashScreen": SubResource( 31 ),
 "StartScreen": SubResource( 28 )
 }
 transitions = {
@@ -225,7 +247,7 @@ transitions = {
 "LevelSelect": SubResource( 21 )
 },
 "Entry": {
-"StartScreen": SubResource( 7 )
+"SplashScreen": SubResource( 7 )
 },
 "Game": {
 "MainMenu": SubResource( 16 )
@@ -242,6 +264,9 @@ transitions = {
 "Setting": {
 "MainMenu": SubResource( 27 )
 },
+"SplashScreen": {
+"StartScreen": SubResource( 33 )
+},
 "StartScreen": {
 "MainMenu": SubResource( 30 )
 }
@@ -249,6 +274,7 @@ transitions = {
 
 [node name="App" type="Node"]
 script = ExtResource( 6 )
+splash_screen = ExtResource( 12 )
 start_screen_scn = ExtResource( 11 )
 main_menu_scn = ExtResource( 7 )
 level_select_scn = ExtResource( 8 )
