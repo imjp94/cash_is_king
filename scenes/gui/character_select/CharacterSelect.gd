@@ -11,6 +11,8 @@ onready var btn_list = $ButtonList
 onready var next_btn = $"%NextBtn"
 onready var ai_count_btn = $"%AICountBtn"
 
+var _next_pressed = false
+
 
 func _ready():
 	next_btn.grab_focus()
@@ -63,7 +65,8 @@ func append_ai_count():
 
 func _on_NextBtn_pressed():
 	verify_ai_count()
-	if app_state:
+	if app_state and not _next_pressed:
+		_next_pressed = true
 		var game_scn = app_state.get_param("game_scn")
 		if game_scn is PackedScene:
 			for i in get_ai_count():
