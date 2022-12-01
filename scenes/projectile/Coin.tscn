@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/projectile/Coin.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/sfx/pickupCoin (5).wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/sfx/shoot.wav" type="AudioStream" id=3]
 
 [sub_resource type="CylinderMesh" id=5]
 height = 0.5
@@ -82,6 +84,24 @@ tracks/1/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5 )
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CoinSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="AudioStreamRandomPitch" id=10]
+audio_stream = ExtResource( 2 )
+
+[sub_resource type="AudioStreamRandomPitch" id=9]
+audio_stream = ExtResource( 3 )
 
 [node name="Coin" type="Spatial"]
 script = ExtResource( 1 )
@@ -99,3 +119,12 @@ anims/pick = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="CoinSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 10 )
+volume_db = -24.0
+
+[node name="CoinSFX2" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 9 )
+volume_db = -16.0
+autoplay = true

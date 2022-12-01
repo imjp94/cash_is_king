@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scenes/gui/components/health_bar/HealthBar3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/main/Character.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/equipment/EmptyHanded.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/model/character/character.gltf" type="PackedScene" id=8]
 [ext_resource path="res://scenes/characters/main/CharacterDecal.tres" type="Material" id=9]
+[ext_resource path="res://assets/audio/sfx/bubble3.wav" type="AudioStream" id=10]
 
 [sub_resource type="SpatialMaterial" id=10]
 resource_local_to_scene = true
@@ -48,6 +49,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ null, SubResource( 34 ), null ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../HitSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=15]
@@ -124,7 +137,7 @@ nodes/Throw/position = Vector2( -342.143, 314.014 )
 nodes/ThrowPose/node = SubResource( 26 )
 nodes/ThrowPose/position = Vector2( -540, 260 )
 nodes/output/position = Vector2( 360, 100 )
-node_connections = [ "Shoot", 0, "Strafing", "Shoot", 1, "Animation 4", "Strafing", 0, "Throw", "Strafing", 1, "Animation 3", "Run", 0, "Animation", "Run", 1, "RunSpeed", "Throw", 0, "ThrowPose", "Throw", 1, "Animation 6", "ThrowPose", 0, "Run", "ThrowPose", 1, "Animation 5", "RunSpeed", 0, "Animation 2", "Damaged", 0, "Shoot", "Damaged", 1, "Animation 7", "output", 0, "Damaged" ]
+node_connections = [ "Run", 0, "Animation", "Run", 1, "RunSpeed", "Strafing", 0, "Throw", "Strafing", 1, "Animation 3", "Throw", 0, "ThrowPose", "Throw", 1, "Animation 6", "ThrowPose", 0, "Run", "ThrowPose", 1, "Animation 5", "RunSpeed", 0, "Animation 2", "Shoot", 0, "Strafing", "Shoot", 1, "Animation 4", "Damaged", 0, "Shoot", "Damaged", 1, "Animation 7", "output", 0, "Damaged" ]
 
 [sub_resource type="CapsuleMesh" id=5]
 
@@ -258,6 +271,9 @@ tracks/2/keys = {
 "values": [ SubResource( 31 ), SubResource( 31 ), null ]
 }
 
+[sub_resource type="AudioStreamRandomPitch" id=38]
+audio_stream = ExtResource( 10 )
+
 [node name="Character" type="RigidBody" groups=["player"]]
 collision_layer = 3
 axis_lock_angular_x = true
@@ -380,6 +396,10 @@ material/0 = ExtResource( 9 )
 autoplay = "spawn"
 anims/RESET = SubResource( 30 )
 anims/spawn = SubResource( 32 )
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 38 )
+volume_db = -16.0
 
 [connection signal="broke" from="Health" to="." method="_on_Health_broke"]
 [connection signal="changed" from="Health" to="." method="_on_Health_changed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/others/fortune_cat/FortuneCat.gd" type="Script" id=1]
 [ext_resource path="res://assets/model/fortune_cat/fortune_cat.gltf" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/audio/sfx/bubble3.wav" type="AudioStream" id=4]
 
 [sub_resource type="SphereShape" id=1]
 radius = 2.0
@@ -24,6 +25,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ) ]
 }
+
+[sub_resource type="Animation" id=9]
+resource_name = "hit"
 
 [sub_resource type="Animation" id=5]
 resource_name = "play"
@@ -64,6 +68,21 @@ tracks/0/keys = {
 "values": [ Vector3( 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../HitSFX:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="Animation" id=8]
 resource_name = "play"
 length = 0.5
@@ -80,6 +99,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ), Vector3( 1, 1, 1 ) ]
 }
+
+[sub_resource type="AudioStreamRandomPitch" id=11]
+audio_stream = ExtResource( 4 )
 
 [node name="FortuneCat" type="RigidBody"]
 collision_layer = 4
@@ -111,6 +133,7 @@ radius = 2.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "play"
 anims/RESET = SubResource( 4 )
+anims/hit = SubResource( 9 )
 anims/play = SubResource( 5 )
 
 [node name="Label3D" type="Label3D" parent="."]
@@ -123,6 +146,11 @@ font = SubResource( 6 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label3D"]
 autoplay = "play"
 anims/RESET = SubResource( 7 )
+anims/hit = SubResource( 10 )
 anims/play = SubResource( 8 )
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 11 )
+volume_db = -16.0
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

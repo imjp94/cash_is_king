@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/others/monster/Monster.gd" type="Script" id=1]
 [ext_resource path="res://assets/texture/monster/monster.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/audio/sfx/monster_footstep.wav" type="AudioStream" id=4]
 
 [sub_resource type="QuadMesh" id=3]
 
@@ -49,6 +50,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 6.5, 0 ), Vector3( 0, 7.5, 0 ), Vector3( 0, 6.5, 0 ), Vector3( 0, 5.5, 0 ), Vector3( 0, 6.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="DynamicFont" id=7]
@@ -122,6 +135,9 @@ tracks/0/keys = {
 "values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ), Vector3( 1, 1, 1 ) ]
 }
 
+[sub_resource type="AudioStreamRandomPitch" id=12]
+audio_stream = ExtResource( 4 )
+
 [node name="Monster" type="RigidBody"]
 collision_layer = 4
 collision_mask = 4
@@ -181,5 +197,10 @@ font = SubResource( 7 )
 autoplay = "play"
 anims/RESET = SubResource( 10 )
 anims/play = SubResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 12 )
+volume_db = -6.0
+bus = "SFX"
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

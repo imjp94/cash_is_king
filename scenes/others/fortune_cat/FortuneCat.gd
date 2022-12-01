@@ -14,6 +14,7 @@ onready var collision_shape = $CollisionShape
 onready var mesh_instance = $fortune_cat
 onready var area = $Area
 onready var nav_agent = $NavigationAgent
+onready var anim_player = $AnimationPlayer
 
 var current_value setget , get_current_value
 var progress setget , get_progress
@@ -64,6 +65,7 @@ func _on_Area_body_entered(body):
 		explode()
 		emit_signal("threshold_reached", body)
 
+	anim_player.play("hit")
 	var new_scale = 1 + (get_progress() * max_upscale)
 	collision_shape.scale = Vector3.ONE * new_scale
 	mesh_instance.scale = Vector3.ONE * new_scale

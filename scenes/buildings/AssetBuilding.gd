@@ -20,6 +20,9 @@ onready var health_bar_3d = $HealthBar3D
 onready var label3d = $Label3D
 onready var upgrade_label = $UpgradeLabel
 onready var area = $Area
+onready var hit_sfx = $HitSFX
+onready var ka_ching_sfx = $KaChingSFX
+onready var upgrade_sfx = $UpgradeSFX
 
 var player setget , get_player
 
@@ -51,6 +54,7 @@ func _on_Area_body_entered(projectile):
 		return
 	
 	anim_player.play("hit")
+	hit_sfx.play()
 
 	var instigator = projectile.instigator
 	if get_player() == instigator:
@@ -67,6 +71,8 @@ func _on_withdraw(by, amount, grade):
 	if get_player() != by:
 		return 0
 	
+	hit_sfx.play()
+	
 	amount = min(health.value, amount)
 	var pawn = get_player().pawn
 	var pawn_health = pawn.get_node_or_null("Health")
@@ -76,10 +82,12 @@ func _on_withdraw(by, amount, grade):
 	return amount
 
 func _on_player_changed(from, to):
-	pass
+	if ka_ching_sfx:
+		ka_ching_sfx.play()
 
 func _on_upgraded():
-	pass
+	if upgrade_sfx:
+		upgrade_sfx.play()
 
 var _is_upgraded = false # TODO: Debug purpose only, current building should be directly replaced by new one
 
