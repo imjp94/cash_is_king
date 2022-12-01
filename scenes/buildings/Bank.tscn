@@ -51,6 +51,9 @@ script = ExtResource( 4 )
 upgrade_threshold = 100
 coin_grade = 0
 
+[node name="Health" parent="." index="0"]
+default_value = 30.0
+
 [node name="CollisionShape" parent="StaticBody" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )
