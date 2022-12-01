@@ -14,6 +14,8 @@
 [sub_resource type="SpatialMaterial" id=10]
 resource_local_to_scene = true
 albedo_texture = ExtResource( 3 )
+metallic_specular = 1.0
+roughness = 0.5
 uv1_scale = Vector3( 0.125, 0.125, 0.125 )
 uv1_triplanar = true
 
@@ -292,6 +294,10 @@ credit_duration = 3.0
 
 [node name="character" parent="." instance=ExtResource( 8 )]
 
+[node name="Skeleton" parent="character/Character" index="0"]
+bones/2/bound_children = [ NodePath("Spline") ]
+bones/5/bound_children = [ NodePath("RightHand") ]
+
 [node name="Body" parent="character/Character/Skeleton" index="0"]
 material/0 = SubResource( 10 )
 
@@ -367,7 +373,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 9 )
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 5.5, 0 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 6.5, 0 )
 billboard = 1
 text = "20"
 font = SubResource( 11 )
@@ -378,7 +384,7 @@ avoidance_enabled = true
 radius = 3.0
 
 [node name="HealthBar3D" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.8, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 5.8, 0 )
 material/0 = SubResource( 13 )
 
 [node name="HealthBar" parent="HealthBar3D/Viewport" index="0"]
