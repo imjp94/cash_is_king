@@ -340,7 +340,7 @@ directional_shadow_depth_range = 1
 directional_shadow_max_distance = 500.0
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624861, 4.2039e-45, -0.624861, 0.780736, 4.2039e-45, 209.965, 265.341 )
+transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624861, 4.2039e-45, -0.624861, 0.780736, 4.2039e-45, 209.962, 265.338 )
 fov = 10.0
 size = 55.0
 far = 500.0
@@ -476,6 +476,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="BG" parent="HUD" instance=ExtResource( 16 )]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
