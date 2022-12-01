@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/gui/level_select/LevelSelect.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/main/Game.tscn" type="PackedScene" id=3]
@@ -6,6 +6,31 @@
 [ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/main/Tutorial.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/gui/components/Button.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec2 fade_range = vec2(0.0, 1.0);
+uniform vec2 fade_pos = vec2(0.5);
+uniform vec2 shadow_range = vec2(0.0, 0.0);
+uniform vec4 shadow_color: hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+void fragment() {
+	COLOR.a = 1.0-smoothstep(fade_range.x, fade_range.y, distance(UV.xy, fade_pos));
+	
+	float shadow = smoothstep(shadow_range.y, shadow_range.x, distance(UV.xy, fade_pos));
+	COLOR.rgb = mix(COLOR.rgb, shadow_color.rgb, (1.0-shadow) * shadow_color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/fade_range = Vector2( 0.478, 0.482 )
+shader_param/fade_pos = Vector2( 0.5, 0.5 )
+shader_param/shadow_range = Vector2( 0, 0 )
+shader_param/shadow_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.8, 0.16, 0.330667, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -24,6 +49,18 @@ main_game = ExtResource( 3 )
 
 [node name="BG" parent="." instance=ExtResource( 5 )]
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource( 3 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -750.0
+margin_top = -471.0
+margin_right = 352.0
+margin_bottom = 568.0
+custom_styles/panel = SubResource( 4 )
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -41,10 +78,14 @@ custom_fonts/font = SubResource( 1 )
 text = "Levels"
 
 [node name="ButtonList" type="VBoxContainer" parent="."]
-anchor_left = 0.6
-anchor_top = 0.4
-anchor_right = 0.9
-anchor_bottom = 0.9
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -455.0
+margin_top = -357.0
+margin_right = -147.8
+margin_bottom = -57.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
