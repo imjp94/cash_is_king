@@ -59,7 +59,7 @@ func _on_GameState_transited(from, to):
 			for winner in _winners:
 				winner.enable_input = false
 				print("player%d won" % winner.index)
-				game_score.message.text = game_score.message.text % winner.index
+				game_score.message.bbcode_text = game_score.message.bbcode_text % [winner.color.to_html(), winner.index + 1]
 			for loser in _losers:
 				loser.enable_input = false
 				print("player%d lost" % loser.index)
