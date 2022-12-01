@@ -29,11 +29,14 @@ func show_character(player):
 
 func _on_NextBtn_pressed():
 	if app_state:
-		if Player.get_player_count() == 1: # Spawn AI if there's only one player
-			var ai = Player.add_player(-1, 0, $"/root", AIScn)
-			show_character(ai)
-			
-			yield(get_tree().create_timer(2), "timeout")
+		var game_scn = app_state.get_param("game_scn")
+		if game_scn is PackedScene:
+			if not ("Tutorial" in game_scn.resource_path):
+				if Player.get_player_count() == 1: # Spawn AI if there's only one player
+					var ai = Player.add_player(-1, 0, $"/root", AIScn)
+					show_character(ai)
+					
+					yield(get_tree().create_timer(2), "timeout")
 		
 		app_state.set_trigger("next")
 
