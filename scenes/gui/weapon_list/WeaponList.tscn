@@ -48,7 +48,7 @@ script = ExtResource( 6 )
 texture = ExtResource( 8 )
 text = "Machine
 Gun"
-price = 5
+price = 15
 weapon_scn = ExtResource( 2 )
 
 [node name="Item3" parent="BG/MarginContainer/HBoxContainer" index="2" instance=ExtResource( 5 )]
@@ -58,5 +58,5 @@ margin_bottom = 103.0
 script = ExtResource( 6 )
 texture = ExtResource( 9 )
 text = "Shotgun"
-price = 5
+price = 30
 weapon_scn = ExtResource( 4 )
