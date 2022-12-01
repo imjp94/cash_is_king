@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/fonts/Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/gui/setting/Setting.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Bungee/Bungee-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/gui/components/Button.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -12,11 +12,6 @@ outline_size = 12
 outline_color = Color( 0.2, 0.2, 0.2, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 24
-use_filter = true
-font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
@@ -62,15 +57,12 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 32
 custom_constants/margin_bottom = 16
 
-[node name="DoneBtn" type="Button" parent="MarginContainer2"]
+[node name="DoneBtn" parent="MarginContainer2" instance=ExtResource( 6 )]
 margin_left = 32.0
 margin_top = 16.0
-margin_right = 102.0
+margin_right = 105.0
 margin_bottom = 56.0
-size_flags_horizontal = 4
-custom_fonts/font = SubResource( 2 )
 text = "Done"
-flat = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 anchor_left = 0.2

@@ -23,7 +23,7 @@ func _on_visibility_changed():
 func _on_ResumeBtn_pressed():
 	if game_state:
 		game_state.set_trigger("resume")
-		visible = true
+		visible = false
 
 func _on_SettingBtn_pressed():
 	setting.show()

@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Bungee/Bungee-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/gui/pause_screen/PauseScreen.gd" type="Script" id=2]
 [ext_resource path="res://scenes/gui/setting/Setting.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/gui/components/background/BG.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/fonts/Nunito/Nunito-Black.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/gui/components/Button.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -12,13 +12,6 @@ outline_size = 12
 outline_color = Color( 0.2, 0.2, 0.2, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 30
-outline_size = 4
-outline_color = Color( 0.2, 0.2, 0.2, 1 )
-use_filter = true
-font_data = ExtResource( 5 )
 
 [node name="PauseScreen" type="Control"]
 pause_mode = 2
@@ -52,28 +45,24 @@ margin_right = 63.5
 margin_bottom = 76.0
 grow_horizontal = 2
 
-[node name="ResumeBtn" type="Button" parent="VBoxContainer"]
-margin_right = 127.0
-margin_bottom = 48.0
-custom_fonts/font = SubResource( 2 )
+[node name="ResumeBtn" parent="VBoxContainer" instance=ExtResource( 6 )]
+margin_left = 12.0
+margin_right = 115.0
 text = "Resume"
-flat = true
 
-[node name="SettingBtn" type="Button" parent="VBoxContainer"]
-margin_top = 52.0
-margin_right = 127.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 2 )
+[node name="SettingBtn" parent="VBoxContainer" instance=ExtResource( 6 )]
+margin_left = 14.0
+margin_top = 44.0
+margin_right = 112.0
+margin_bottom = 84.0
 text = "Setting"
-flat = true
 
-[node name="ExitBtn" type="Button" parent="VBoxContainer"]
-margin_top = 104.0
-margin_right = 127.0
-margin_bottom = 152.0
-custom_fonts/font = SubResource( 2 )
+[node name="ExitBtn" parent="VBoxContainer" instance=ExtResource( 6 )]
+margin_left = 34.0
+margin_top = 88.0
+margin_right = 92.0
+margin_bottom = 128.0
 text = "Exit"
-flat = true
 
 [node name="Setting" parent="." instance=ExtResource( 3 )]
 visible = false

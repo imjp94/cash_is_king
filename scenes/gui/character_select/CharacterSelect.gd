@@ -36,7 +36,7 @@ func _on_NextBtn_pressed():
 					var ai = Player.add_player(-1, 0, $"/root", AIScn)
 					show_character(ai)
 					
-					yield(get_tree().create_timer(2), "timeout")
+					yield(get_tree().create_timer(2, false), "timeout")
 		
 		app_state.set_trigger("next")
 
