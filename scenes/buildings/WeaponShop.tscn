@@ -25,6 +25,7 @@ viewport_path = NodePath("Viewport")
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
+flags_no_depth_test = true
 flags_albedo_tex_force_srgb = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
@@ -59,7 +60,7 @@ margin_right = 170.75
 margin_bottom = 83.96
 
 [node name="WeaponList3D" type="MeshInstance" parent="." index="5"]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 7, 0 )
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 7, 0 )
 visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
