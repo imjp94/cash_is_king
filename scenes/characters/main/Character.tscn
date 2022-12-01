@@ -294,10 +294,6 @@ credit_duration = 3.0
 
 [node name="character" parent="." instance=ExtResource( 8 )]
 
-[node name="Skeleton" parent="character/Character" index="0"]
-bones/2/bound_children = [ NodePath("Spline") ]
-bones/5/bound_children = [ NodePath("RightHand") ]
-
 [node name="Body" parent="character/Character/Skeleton" index="0"]
 material/0 = SubResource( 10 )
 
@@ -379,7 +375,6 @@ text = "20"
 font = SubResource( 11 )
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
-path_desired_distance = 2.0
 avoidance_enabled = true
 radius = 3.0
 
