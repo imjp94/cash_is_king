@@ -130,7 +130,7 @@ func _on_player_pawn_dead(player):
 
 func _on_TurnTimer_timeout():
 	update_turn_label()
-	if get_play_time() > 60000 and overall_interest_rate < 0.5:
+	if get_play_time() > 300000 and overall_interest_rate < 0.3:
 		overall_interest_rate += 0.01
 	
 	for asset_building in get_tree().get_nodes_in_group("asset_building"):
