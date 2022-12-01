@@ -98,11 +98,11 @@ func _on_asset_building_player_changed(from, to, asset_building):
 
 		if asset_building.is_in_group("bank"):
 			for asset_building in get_tree().get_nodes_in_group("asset_building"):
-				if asset_building.player != to:
-					
-					if not has_more_bank:
-						asset_building.player_index = to.index
-
+				if asset_building.player == loser:
+						if not has_more_bank:
+							asset_building.player_index = to.index
+		loser.pawn.disconnect("dead", self, "_on_player_pawn_dead")
+		loser.pawn.queue_free()
 		emit_signal("player_lost", loser)
 		if Player.PLAYER_STACK.size() - 1 == _losers.size():
 			var winner = to
