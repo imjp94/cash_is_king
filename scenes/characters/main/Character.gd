@@ -24,6 +24,7 @@ onready var label3d = $Label3D
 onready var anim_tree = $AnimationTree
 onready var empty_handed = $EmptyHanded
 onready var decal = $Decal
+onready var anim_player = $AnimationPlayer
 
 var player setget set_player
 
