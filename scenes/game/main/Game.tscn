@@ -340,7 +340,7 @@ directional_shadow_depth_range = 1
 directional_shadow_max_distance = 500.0
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624861, 4.2039e-45, -0.624861, 0.780736, 4.2039e-45, 209.826, 265.168 )
+transform = Transform( 1, 4.2039e-45, -1.4013e-45, -1.4013e-45, 0.780736, 0.624861, 4.2039e-45, -0.624861, 0.780736, 4.2039e-45, 209.965, 265.341 )
 fov = 10.0
 size = 55.0
 far = 500.0
@@ -447,6 +447,7 @@ visible = false
 navmesh = SubResource( 10 )
 
 [node name="Ball" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
